@@ -8,13 +8,15 @@ import s from '../HoloPanel.module.css';
 import { ButtonLink, Diamond, LevelGauge, Tags, TodoBadges } from '../primitives.tsx';
 import { ProjectCapture } from '../ProjectCapture.tsx';
 import { ui } from '../styles.ts';
+import { TrophiesContent } from '../game/Trophies.tsx';
+import { ShipTerminal } from './ShipTerminal.tsx';
 
 /*
  * Affiche le panneau demandé par le store (state.panel). Utilisé à bord comme en mode classique :
  * le contenu est le même, seule la position change.
  */
 
-const roomOf: Record<Panel['kind'], RoomId> = {
+const roomOf: Record<Exclude<Panel['kind'], 'trophies'>, RoomId> = {
   project: 'starmap',
   profile: 'bridge',
   pupil: 'bridge',
@@ -48,8 +50,23 @@ export function PanelHost({ placement }: { placement: 'center' | 'side' }) {
   const panel = useStore((st) => st.panel);
   const openPanel = useStore((st) => st.openPanel);
   const closePanel = useStore((st) => st.closePanel);
+  const emit = useStore((st) => st.emit);
+  const linkOpened = () => emit('link.open');
   const { t, ui: u, name, date } = useT();
   if (!panel) return null;
+
+  if (panel.kind === 'trophies') {
+    return (
+      <HoloPanel
+        code={u('trophies.title')}
+        title={u('trophies.title')}
+        placement={placement}
+        onClose={closePanel}
+      >
+        <TrophiesContent />
+      </HoloPanel>
+    );
+  }
 
   const room = content.rooms.find((r) => r.id === roomOf[panel.kind])!;
   const code = `${room.code} · ${t(room.name)}`;
@@ -129,7 +146,7 @@ export function PanelHost({ placement }: { placement: 'center' | 'side' }) {
           title={profile.name}
           subtitle={`${t(profile.role)} · ${profile.location}`}
           actions={profile.links.map((link) => (
-            <ButtonLink key={link.id} href={link.url}>
+            <ButtonLink key={link.id} href={link.url} onClick={linkOpened}>
               {link.label} ↗
             </ButtonLink>
           ))}
@@ -199,6 +216,7 @@ export function PanelHost({ placement }: { placement: 'center' | 'side' }) {
               </li>
             ))}
           </ol>
+          <ShipTerminal />
           <h3 className={`${ui.label} ${s.subhead}`}>{u('machines.hosting')}</h3>
           <ul className={s.list}>
             {machines.hosting.map((h) => (
@@ -281,7 +299,12 @@ export function PanelHost({ placement }: { placement: 'center' | 'side' }) {
           {...common}
           title={u('comms.title')}
           actions={content.profile.links.map((link, i) => (
-            <ButtonLink key={link.id} variant={i === 0 ? 'holo' : 'secondary'} href={link.url}>
+            <ButtonLink
+              key={link.id}
+              variant={i === 0 ? 'holo' : 'secondary'}
+              href={link.url}
+              onClick={linkOpened}
+            >
               {link.label} · {link.handle} ↗
             </ButtonLink>
           ))}

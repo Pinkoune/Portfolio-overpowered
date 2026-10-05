@@ -34,6 +34,11 @@ export function Header({ can3d }: { can3d: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const active = useActiveSection(sectionIds);
   const setPreferredMode = useStore((st) => st.setPreferredMode);
+  const emit = useStore((st) => st.emit);
+  // Lire une section du mode classique compte comme visiter la salle : la progression suit.
+  useEffect(() => {
+    if (active) emit('room.visit', active);
+  }, [active, emit]);
   const goTo = useStore((st) => st.goTo);
 
   useEffect(() => {

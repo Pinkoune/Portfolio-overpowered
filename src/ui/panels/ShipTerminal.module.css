@@ -1,0 +1,70 @@
+.terminal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--pk-line-soft);
+  background: var(--pk-void);
+  font-family: var(--pk-font-hud);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pk-text-dim);
+}
+
+.build {
+  color: var(--pk-text-dim);
+}
+
+.command {
+  align-self: flex-start;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--pk-holo);
+  font: inherit;
+  cursor: pointer;
+  list-style: none;
+}
+
+.command::-webkit-details-marker {
+  display: none;
+}
+
+.command:hover {
+  color: var(--pk-text);
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+}
+
+.output span[data-ok='true'] {
+  color: var(--pk-text);
+}
+
+.log ol {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.hash {
+  color: var(--pk-amber);
+}
+
+.root {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.root:hover {
+  color: var(--pk-text);
+  text-decoration: underline;
+}

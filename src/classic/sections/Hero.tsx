@@ -1,7 +1,9 @@
 import heroImage from '../../assets/hero.webp';
 import { content } from '../../content/index.ts';
 import { useT } from '../../i18n/useT.ts';
-import { ButtonLink } from '../../ui/primitives.tsx';
+import { useStore } from '../../state/store.ts';
+import { useRank } from '../../ui/game/useRank.ts';
+import { ButtonLink, Diamond } from '../../ui/primitives.tsx';
 import { ui } from '../../ui/styles.ts';
 import s from '../classic.module.css';
 
@@ -37,6 +39,8 @@ export function Hero() {
         />
       </figure>
 
+      <ProgressStrip />
+
       <div className={s.about}>
         <dl className={s.facts}>
           {profile.facts.map((fact) => (
@@ -53,5 +57,26 @@ export function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** Bande de progression (maquette G) : rang et succès ; ouvre la salle des trophées. */
+function ProgressStrip() {
+  const { ui: u } = useT();
+  const rank = useRank();
+  const openPanel = useStore((st) => st.openPanel);
+  return (
+    <button
+      type="button"
+      className={`${ui.label} ${s.strip}`}
+      onClick={() => openPanel({ kind: 'trophies' })}
+    >
+      <span className={s.stripRank}>
+        <Diamond size={9} />
+        {u('progress.rank', { n: rank.code, name: rank.name })}
+        <span className={s.dim}>· {u('progress.count', { n: rank.count, total: rank.total })}</span>
+      </span>
+      <span className={s.dim}>{u('progress.strip')} →</span>
+    </button>
   );
 }

@@ -109,3 +109,37 @@ boot.embark: { fr: Embarquer, en: Board }
 boot.enter: { fr: Entrée, en: Enter }
 boot.skip: { fr: Passer, en: Skip }
 boot.classic: { fr: Préférer le mode classique, en: Prefer classic mode }
+hud.rank: { fr: 'Rang {n}', en: 'Rank {n}' }
+hud.achievements:
+  {
+    fr: 'Succès : {n} sur {total}. Ouvrir la salle des trophées',
+    en: 'Achievements: {n} of {total}. Open the trophy room',
+  }
+trophies.title: { fr: 'Salle des trophées', en: 'Trophy room' }
+trophies.intro:
+  {
+    fr: 'Les succès récompensent la curiosité, pas le temps passé. Ta progression est gardée sur cet appareil.',
+    en: 'Achievements reward curiosity, not time spent. Your progress is saved on this device.',
+  }
+trophies.ranks: { fr: 'Rangs', en: 'Ranks' }
+trophies.list: { fr: 'Succès', en: 'Achievements' }
+trophies.secret: { fr: 'Succès secret', en: 'Secret achievement' }
+trophies.secretHow: { fr: 'Continue d’explorer le vaisseau.', en: 'Keep exploring the ship.' }
+trophies.unlocked: { fr: 'Débloqué', en: 'Unlocked' }
+trophies.reset: { fr: 'Réinitialiser la progression', en: 'Reset progress' }
+trophies.resetConfirm: { fr: 'Confirmer la réinitialisation', en: 'Confirm reset' }
+toast.unlocked: { fr: 'Succès débloqué', en: 'Achievement unlocked' }
+toast.open: { fr: 'Voir', en: 'View' }
+rank.new: { fr: 'Nouveau rang', en: 'New rank' }
+rank.continue: { fr: 'Continuer', en: 'Continue' }
+rank.next: { fr: 'Prochain · {name} · {xp} XP', en: 'Next · {name} · {xp} XP' }
+rank.max: { fr: 'Rang maximum atteint', en: 'Highest rank reached' }
+progress.rank: { fr: 'Rang {n} · {name}', en: 'Rank {n} · {name}' }
+progress.count: { fr: '{n} / {total} succès', en: '{n} / {total} achievements' }
+progress.strip:
+  { fr: 'Ta progression te suit dans le vaisseau', en: 'Your progress follows you aboard' }
+scope.ship: { fr: 'Vaisseau', en: 'Ship' }
+scope.hud: { fr: 'HUD', en: 'HUD' }
+machines.terminal: { fr: 'Terminal de bord', en: 'Ship terminal' }
+machines.build: { fr: 'Build {commit} · {date}', en: 'Build {commit} · {date}' }
+machines.gitlog: { fr: 'Historique du vaisseau', en: 'Ship history' }

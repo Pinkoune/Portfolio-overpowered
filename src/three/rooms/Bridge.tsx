@@ -27,7 +27,13 @@ export function Bridge({ active }: { active: boolean }) {
       <mesh material={flat(hull.h800)} position={[0, 0.05, -2.8]} rotation={[0, Math.PI / 6, 0]}>
         <cylinderGeometry args={[2.6, 2.7, 0.1, 6]} />
       </mesh>
-      <Penguin position={[-0.3, 0.1, -2.8]} rotation={[0, 0.2, 0]} platform scale={0.62} />
+      <Penguin
+        onClick={() => useStore.getState().emit('penguin.click')}
+        position={[-0.3, 0.1, -2.8]}
+        rotation={[0, 0.2, 0]}
+        platform
+        scale={0.62}
+      />
 
       {/* Console droite : fiche pilote */}
       <group position={[2.4, 0, -2.6]} rotation={[0, -0.35, 0]}>

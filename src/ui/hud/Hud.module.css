@@ -65,13 +65,8 @@
 
 .brand {
   position: absolute;
-  left: 32px;
-  top: 34px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  letter-spacing: 0.22em;
+  left: 28px;
+  top: 22px;
 }
 
 .title {
@@ -267,9 +262,13 @@
 
 /* ---------- Mobile (maquette H1) ---------- */
 @media (max-width: 720px) {
-  .brand,
   .title {
     display: none;
+  }
+
+  .brand {
+    left: 12px;
+    top: 72px;
   }
 
   .controls {

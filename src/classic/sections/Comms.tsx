@@ -1,5 +1,6 @@
 import { content } from '../../content/index.ts';
 import { useT } from '../../i18n/useT.ts';
+import { useStore } from '../../state/store.ts';
 import { ButtonLink } from '../../ui/primitives.tsx';
 import { ui } from '../../ui/styles.ts';
 import s from '../classic.module.css';
@@ -11,6 +12,7 @@ const sourceUrl = content.projects.find((p) => p.id === 'portfolio')?.links.repo
 /** Comms · contact (LinkedIn, GitHub), puis pied de page. */
 export function Comms() {
   const { t, ui: u } = useT();
+  const emit = useStore((st) => st.emit);
   return (
     <footer id="comms" className={s.comms} aria-labelledby="comms-title">
       <div className={s.commsMain}>
@@ -24,7 +26,11 @@ export function Comms() {
         <ul className={s.actions}>
           {content.profile.links.map((link, i) => (
             <li key={link.id}>
-              <ButtonLink variant={i === 0 ? 'holo' : 'secondary'} href={link.url}>
+              <ButtonLink
+                variant={i === 0 ? 'holo' : 'secondary'}
+                href={link.url}
+                onClick={() => emit('link.open')}
+              >
                 {link.label} · {link.handle} ↗
               </ButtonLink>
             </li>

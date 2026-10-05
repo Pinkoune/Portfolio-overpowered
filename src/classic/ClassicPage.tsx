@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useT } from '../i18n/useT.ts';
 import { useStore } from '../state/store.ts';
+import { ToastStack } from '../ui/game/ToastStack.tsx';
 import { PanelHost } from '../ui/panels/PanelHost.tsx';
 import s from './classic.module.css';
 import { Header } from './Header.tsx';
@@ -18,6 +19,12 @@ import { Quarters } from './sections/Quarters.tsx';
  */
 export function ClassicPage({ can3d, failed }: { can3d: boolean; failed: boolean }) {
   const { ui } = useT();
+  // La célébration plein écran est réservée au vaisseau ; ici, le toast et la bande de rang suffisent.
+  const rankUp = useStore((st) => st.rankUp);
+  const dismissRankUp = useStore((st) => st.dismissRankUp);
+  useEffect(() => {
+    if (rankUp !== null) dismissRankUp();
+  }, [rankUp, dismissRankUp]);
 
   // En arrivant depuis le vaisseau, on se place sur la section de la salle quittée.
   useEffect(() => {
@@ -49,6 +56,7 @@ export function ClassicPage({ can3d, failed }: { can3d: boolean; failed: boolean
       </main>
       <Comms />
       <PanelHost placement="center" />
+      <ToastStack />
     </div>
   );
 }

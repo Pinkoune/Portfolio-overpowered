@@ -46,6 +46,20 @@ export function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
   const travel = useRef<Travel | null>(null);
   const target = useRef(roomPose(room).target.clone());
   const baseFov = fovFor(aspect);
+  /** Zoom à la molette (0 → 1), remis à zéro à chaque changement de salle. */
+  const zoom = useRef(0);
+
+  useEffect(() => {
+    const onWheel = (e: WheelEvent) => {
+      const { stage, panel, traveling, room: here, emit } = useStore.getState();
+      if (stage !== 'aboard' || panel || traveling) return;
+      zoom.current = MathUtils.clamp(zoom.current - e.deltaY * 0.0012, 0, 1);
+      // « Spaghettification » : zoomer au maximum vers la Pupille, depuis le pont.
+      if (zoom.current >= 0.98 && here === 'bridge') emit('blackhole.zoom');
+    };
+    window.addEventListener('wheel', onWheel, { passive: true });
+    return () => window.removeEventListener('wheel', onWheel);
+  }, []);
 
   // Arrivée à bord : la caméra prend place dans la salle courante.
   useEffect(() => {
@@ -68,6 +82,7 @@ export function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
   useEffect(() => {
     if (stage !== 'aboard') return;
     if (room === settled.current && !travel.current) return;
+    zoom.current = 0;
     const from = travel.current?.to ?? settled.current;
     const { setFade, setTraveling } = useStore.getState();
     if (reducedMotion) {
@@ -150,6 +165,12 @@ export function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
     target.current.lerp(restTarget, damp);
     camera.position.lerp(restPosition, damp);
     camera.lookAt(target.current);
+    // Zoom : on resserre le champ (jusqu'à 18°) vers la baie.
+    const fov = MathUtils.lerp(baseFov, 18, zoom.current);
+    if (Math.abs(camera.fov - fov) > 0.01) {
+      camera.fov = MathUtils.lerp(camera.fov, fov, reducedMotion ? 1 : 0.12);
+      camera.updateProjectionMatrix();
+    }
   });
 
   return null;
