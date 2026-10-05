@@ -2,8 +2,11 @@ import { ROOM_IDS, type RoomId } from '../content/schema.ts';
 import { useStore } from '../state/store.ts';
 import { CameraRig } from './CameraRig.tsx';
 import { HotspotProjector } from './HotspotLayer.tsx';
+import { IntroDirector } from './IntroDirector.tsx';
 import { roomX } from './layout.ts';
 import { BlackHole } from './objects/BlackHole.tsx';
+import { ExteriorShip } from './objects/ExteriorShip.tsx';
+import { PostFx } from './objects/PostFx.tsx';
 import { Corridor, RoomShell } from './objects/RoomShell.tsx';
 import { Starfield } from './objects/Starfield.tsx';
 import { Arsenal } from './rooms/Arsenal.tsx';
@@ -41,9 +44,18 @@ function Lights() {
   );
 }
 
-export function Scene({ reducedMotion }: { reducedMotion: boolean }) {
+export function Scene({
+  reducedMotion,
+  shortIntro,
+  lite,
+}: {
+  reducedMotion: boolean;
+  shortIntro: boolean;
+  lite: boolean;
+}) {
   const room = useStore((s) => s.room);
   const traveling = useStore((s) => s.traveling);
+  const aboard = useStore((s) => s.stage === 'aboard');
 
   return (
     <>
@@ -51,19 +63,32 @@ export function Scene({ reducedMotion }: { reducedMotion: boolean }) {
       <HotspotProjector />
       <BlackHole reducedMotion={reducedMotion} />
       <Starfield />
-      <Lights />
-      <Corridor length={doorsX[doorsX.length - 1]!} doorsX={doorsX} />
-      {ROOM_IDS.map((id) => {
-        const Room = ROOMS[id];
-        const active = id === room && !traveling;
-        return (
-          <group key={id} position={[roomX(id), 0, 0]}>
-            <RoomShell />
-            <RoomDoors room={id} active={active} />
-            <Room active={active} reducedMotion={reducedMotion} />
-          </group>
-        );
-      })}
+      <PostFx lite={lite} />
+
+      {/* Approche : le vaisseau vu de l'extérieur ; les salles sont masquées. */}
+      {!aboard && (
+        <>
+          <IntroDirector short={shortIntro || reducedMotion} reducedMotion={reducedMotion} />
+          <ExteriorShip />
+          <hemisphereLight args={[0xb9b6e8, 0x24122a, 0.6]} />
+        </>
+      )}
+
+      <group visible={aboard}>
+        <Lights />
+        <Corridor length={doorsX[doorsX.length - 1]!} doorsX={doorsX} />
+        {ROOM_IDS.map((id) => {
+          const Room = ROOMS[id];
+          const active = aboard && id === room && !traveling;
+          return (
+            <group key={id} position={[roomX(id), 0, 0]}>
+              <RoomShell />
+              <RoomDoors room={id} active={active} />
+              <Room active={active} reducedMotion={reducedMotion} />
+            </group>
+          );
+        })}
+      </group>
     </>
   );
 }

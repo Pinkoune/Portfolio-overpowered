@@ -1,0 +1,134 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+}
+
+/* ---------- Flash du sas ---------- */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: var(--pk-pink);
+  animation: flash 300ms var(--pk-ease-io) both;
+}
+
+.flash[data-reduced='true'] {
+  background: var(--pk-void);
+  animation-duration: 600ms;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Fondu au noir ---------- */
+.fade {
+  position: absolute;
+  inset: 0;
+  background: var(--pk-void);
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+
+.fade[data-on='true'] {
+  opacity: 1;
+}
+
+/* ---------- Traits de vitesse (coursive, 400 – 1 200 ms) ---------- */
+.speed span {
+  position: absolute;
+  left: -30%;
+  width: 26%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 184, 213, 0.55), transparent);
+  opacity: 0;
+  animation: streak 800ms linear 400ms both;
+}
+
+@keyframes streak {
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(520%);
+  }
+}
+
+/* ---------- Carton de salle (1 000 – 1 400 ms, puis retrait) ---------- */
+.card {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translate(-50%, -50%);
+  animation: card 2000ms linear both;
+}
+
+.code {
+  color: var(--pk-pink);
+}
+
+.name {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1;
+  animation: track 400ms var(--pk-ease-out) 1000ms both;
+}
+
+.rule {
+  width: 120px;
+  height: 1px;
+  background: var(--pk-pink);
+  transform-origin: center;
+  animation: rule 400ms var(--pk-ease-out) 1000ms both;
+}
+
+@keyframes card {
+  0%,
+  48% {
+    opacity: 0;
+  }
+  52%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes track {
+  from {
+    letter-spacing: 0.6em;
+  }
+  to {
+    letter-spacing: 0.3em;
+  }
+}
+
+@keyframes rule {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    display: none;
+  }
+}

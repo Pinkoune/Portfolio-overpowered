@@ -84,3 +84,16 @@ pupil.text:
   en: >-
     The black hole the PK-01 orbits. Its accretion disc is faceted, pink on the approaching side,
     amber on the receding one. Try not to stare at it for too long.
+boot.sequence: { fr: "PK-01 // Séquence d'approche", en: 'PK-01 // Approach sequence' }
+boot.orbit: { fr: 'Orbite 03 · 0,42 c', en: 'Orbit 03 · 0.42 c' }
+boot.signal: { fr: Signal détecté, en: Signal detected }
+boot.subtitle: { fr: 'Portfolio de {name} · {role}', en: "{name}'s portfolio · {role}" }
+boot.online: { fr: Systèmes en ligne, en: Systems online }
+boot.log1: { fr: Amarrage au signal PK-01, en: Docking with PK-01 signal }
+boot.log2: { fr: Calibrage du disque d'accrétion, en: Calibrating the accretion disc }
+boot.log3: { fr: Réveil du pilote, en: Waking the pilot }
+boot.log4: { fr: Café du pilote, en: Pilot's coffee }
+boot.embark: { fr: Embarquer, en: Board }
+boot.enter: { fr: Entrée, en: Enter }
+boot.skip: { fr: Passer, en: Skip }
+boot.classic: { fr: Préférer le mode classique, en: Prefer classic mode }

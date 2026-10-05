@@ -4,7 +4,7 @@ import { AdditiveBlending, BufferGeometry, Float32BufferAttribute, type Group } 
 import { content } from '../../content/index.ts';
 import { useStore } from '../../state/store.ts';
 import { Hotspot } from '../Hotspot.tsx';
-import { accent, flat, glow, hull } from '../models/materials.ts';
+import { accent, flat, hull } from '../models/materials.ts';
 
 /** Échelle de la carte holographique : orbite du contenu → rayon dans la salle. */
 const SCALE = 0.17;
@@ -45,7 +45,7 @@ export function StarMap({ active, reducedMotion }: { active: boolean; reducedMot
       <mesh material={flat(hull.h700)} position={[0, 0.4, 0]}>
         <cylinderGeometry args={[1.3, 1.45, 0.8, 6]} />
       </mesh>
-      <mesh material={glow(accent.holo)} position={[0, 0.81, 0]}>
+      <mesh material={flat(hull.h800, accent.holo, 0.45)} position={[0, 0.81, 0]}>
         <cylinderGeometry args={[1.0, 1.0, 0.02, 6]} />
       </mesh>
       <mesh position={[0, 1.45, 0]}>
@@ -53,7 +53,7 @@ export function StarMap({ active, reducedMotion }: { active: boolean; reducedMot
         <meshBasicMaterial
           color={accent.holo}
           transparent
-          opacity={0.05}
+          opacity={0.025}
           blending={AdditiveBlending}
           depthWrite={false}
           side={2}

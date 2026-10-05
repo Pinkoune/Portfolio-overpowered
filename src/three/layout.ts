@@ -1,4 +1,4 @@
-import { CatmullRomCurve3, Vector3 } from 'three';
+import { CatmullRomCurve3, MathUtils, Vector3 } from 'three';
 import { ROOM_IDS, type RoomId } from '../content/schema.ts';
 
 /*
@@ -52,26 +52,48 @@ export function roomPose(id: RoomId): CameraPose {
   };
 }
 
+/** Au-delà de cet écart, on coupe dans la coursive (fondu noir) au lieu de tout parcourir. */
+export const FAR_JUMP = 2;
+
 /**
  * Trajet caméra entre deux salles : recul par la porte arrière, coursive, entrée dans la salle
- * d'arrivée (DA Motion, « Transition caméra entre deux salles »).
+ * d'arrivée (DA Motion, « II · Transition »). Pour un saut lointain, deux segments : sortie de la
+ * salle de départ, puis entrée dans celle d'arrivée ; la coupe a lieu à mi-parcours, au noir.
  */
-export function travelPath(from: Vector3, to: RoomId): CatmullRomCurve3 {
+export function travelPath(from: Vector3, to: RoomId, far = false): CatmullRomCurve3[] {
   const end = roomPose(to).position;
+  const dir = Math.sign(end.x - from.x) || 1;
   const y = EYE_HEIGHT + 0.05;
-  const points = [
+  const exit = [
     from.clone(),
     new Vector3(from.x, y, ROOM.halfDepth + 0.2),
-    new Vector3(from.x + Math.sign(end.x - from.x) * 1.5, y, CORRIDOR.z),
-    new Vector3(end.x - Math.sign(end.x - from.x) * 1.5, y, CORRIDOR.z),
+    new Vector3(from.x + dir * 2.5, y, CORRIDOR.z),
+  ];
+  const entry = [
+    new Vector3(end.x - dir * 2.5, y, CORRIDOR.z),
     new Vector3(end.x, y, ROOM.halfDepth + 0.2),
     end.clone(),
   ];
-  return new CatmullRomCurve3(points, false, 'centripetal');
+  if (far) {
+    return [
+      new CatmullRomCurve3(exit, false, 'centripetal'),
+      new CatmullRomCurve3(entry, false, 'centripetal'),
+    ];
+  }
+  return [new CatmullRomCurve3([...exit, ...entry], false, 'centripetal')];
 }
 
-/** Durée du trajet (s) : 1,6 s d'une salle à sa voisine, un peu plus pour les sauts lointains. */
+/** Durée du trajet (s) : 1,6 s (DA), un peu plus quand on parcourt deux salles. */
 export function travelDuration(from: RoomId, to: RoomId): number {
   const gap = Math.abs(roomIndex(to) - roomIndex(from));
-  return gap === 0 ? 0 : 1.6 + Math.min(gap - 1, 4) * 0.3;
+  if (gap === 0) return 0;
+  return gap > FAR_JUMP ? 1.6 : 1.6 + (gap - 1) * 0.3;
+}
+
+/** Champ vertical : 45° (DA), élargi en portrait pour garder la salle dans le cadre. */
+export function fovFor(aspect: number) {
+  const halfWidth = 4.2;
+  const distance = 3.4 + ROOM.halfDepth;
+  const needed = (2 * Math.atan(halfWidth / distance / aspect) * 180) / Math.PI;
+  return MathUtils.clamp(needed, 45, 72);
 }

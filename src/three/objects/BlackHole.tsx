@@ -1,6 +1,7 @@
 import { useFrame, useThree } from '@react-three/fiber';
 import { useMemo } from 'react';
 import { ShaderMaterial, Vector2, Vector3 } from 'three';
+import { introFx } from '../intro.ts';
 import { BLACKHOLE } from '../layout.ts';
 import { blackholeFragment, blackholeVertex } from './blackholeShader.ts';
 
@@ -29,6 +30,7 @@ export function BlackHole({ reducedMotion = false }: { reducedMotion?: boolean }
           uFacet: { value: 1 },
           uStars: { value: 0 },
           uGlow: { value: 1 },
+          uReveal: { value: 1 },
         },
       }),
     [reducedMotion],
@@ -38,6 +40,7 @@ export function BlackHole({ reducedMotion = false }: { reducedMotion?: boolean }
   useFrame(({ camera, clock }) => {
     const u = material.uniforms;
     u.uTime!.value = clock.elapsedTime;
+    u.uReveal!.value = introFx.reveal;
     gl.getDrawingBufferSize(buffer);
     (u.uRes!.value as Vector2).copy(buffer);
 
