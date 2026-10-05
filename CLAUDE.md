@@ -45,9 +45,13 @@ contenu, sans 3D) est toujours disponible.
   basse synthétisée tant que le riff `public/audio/bass-riff.mp3` n'existe pas.
 - **TypeScript 6.0.x** (et non 7) : typescript-eslint ne supporte pas encore TS ≥ 6.1.
 - **Mode au démarrage** (`src/app/capabilities.ts`) : 3D par défaut ; classique d'office sans WebGL ou sur
-  appareil faible (`deviceMemory`/`hardwareConcurrency` ≤ 2). Le choix explicite du visiteur
-  (`preferredMode`, persisté) l'emporte, sauf si WebGL manque. La 3D est un `lazy()` : three.js n'est
-  téléchargé qu'à l'embarquement.
+  appareil faible = rendu WebGL logiciel (SwiftShader, llvmpipe…) ou `deviceMemory` ≤ 2. **Ne pas utiliser
+  `hardwareConcurrency`** : Safari iOS, Firefox anti-pistage et Brave le plafonnent à 2 (bug corrigé après
+  la phase 3 : des machines récentes arrivaient en classique). Le choix explicite du visiteur
+  (`preferredMode`, persisté) l'emporte toujours : le bouton « Embarquer en 3D » n'est jamais désactivé.
+  Si la 3D ne démarre pas (contexte WebGL refusé, chunk introuvable), `Failsafe` (error boundary) remet le
+  classique pour la visite (`threeFailed`) avec un bandeau explicatif. La 3D est un `lazy()` : three.js
+  n'est téléchargé qu'à l'embarquement.
 - **Pas de drei** : `Html` de drei crée une racine React par hotspot (erreurs `removeChild` au démontage).
   Les hotspots sont des boutons DOM dans l'arbre principal (`HotspotLayer`), positionnés à chaque image
   par `HotspotProjector` depuis un registre d'ancres 3D (`three/hotspots.ts`).

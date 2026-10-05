@@ -58,6 +58,9 @@ interface SettingsSlice {
   /** Choix explicite du visiteur ; null = décidé selon les capacités de l'appareil. */
   preferredMode: Mode | null;
   setPreferredMode: (mode: Mode) => void;
+  /** La 3D a échoué au démarrage pendant cette visite (WebGL refusé, chargement impossible). */
+  threeFailed: boolean;
+  setThreeFailed: (failed: boolean) => void;
 }
 
 interface NavSlice {
@@ -90,7 +93,13 @@ export const useStore = create<Store>()(
       setLang: (lang) => set({ lang }),
       preferredMode: null,
       setPreferredMode: (preferredMode) =>
-        set({ preferredMode, panel: null, ...(preferredMode === '3d' && bootState) }),
+        set({
+          preferredMode,
+          panel: null,
+          ...(preferredMode === '3d' && { ...bootState, threeFailed: false }),
+        }),
+      threeFailed: false,
+      setThreeFailed: (threeFailed) => set({ threeFailed }),
 
       ...bootState,
       embarking: false,

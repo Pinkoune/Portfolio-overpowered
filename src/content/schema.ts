@@ -186,6 +186,8 @@ export const UI_KEYS = [
   'panel.prev',
   'panel.next',
   'mode.unavailable',
+  'mode.failed',
+  'mode.failedHint',
   'hud.map',
   'hud.classic',
   'hud.prev',

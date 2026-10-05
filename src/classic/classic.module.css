@@ -199,6 +199,22 @@
   }
 }
 
+/* ---------- Bandeau « la 3D n'a pas pu démarrer » ---------- */
+.notice {
+  max-width: calc(var(--pk-maxw) + 2 * var(--pk-gutter));
+  margin: 16px auto 0;
+  padding: 14px var(--pk-gutter);
+  border-left: 2px solid var(--pk-amber);
+  background: var(--pk-hull-800);
+  font-size: 15px;
+  color: var(--pk-text-dim);
+}
+
+.notice strong {
+  color: var(--pk-text);
+  font-weight: 500;
+}
+
 /* ---------- Sections ---------- */
 .main,
 .comms {
