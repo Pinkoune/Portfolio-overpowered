@@ -1,0 +1,62 @@
+# Identité, présentation et liens de contact.
+# Chaque texte affiché a ses deux langues côte à côte : fr et en.
+name: Jérémy Barcelo
+alias: Pinkoune
+location: Toulouse
+role:
+  fr: DevOps & plateforme
+  en: DevOps & platform engineering
+tagline:
+  fr: DevOps & plateforme, en orbite.
+  en: DevOps & platform, in orbit.
+intro:
+  fr: >-
+    Étudiant en MSc Pro à Epitech Toulouse (diplôme en septembre 2027) et alternant DevOps /
+    plateforme chez Capgemini depuis janvier 2025. Je construis des pipelines fiables et, le soir,
+    des vaisseaux.
+  en: >-
+    MSc Pro student at Epitech Toulouse (graduating in September 2027) and DevOps / platform
+    apprentice at Capgemini since January 2025. I build reliable pipelines by day and spaceships
+    by night.
+about:
+  - fr: >-
+      Je travaille dans une équipe plateforme : migrer des chaînes Jenkins vers GitLab CI, faire
+      tourner Kubernetes, décrire l'infrastructure en Terraform et la livrer avec ArgoCD. J'aime
+      quand une mise en production devient un non-événement.
+    en: >-
+      I work in a platform team: migrating Jenkins pipelines to GitLab CI, running Kubernetes,
+      describing infrastructure in Terraform and shipping it with ArgoCD. I like it when a
+      production release becomes a non-event.
+  - fr: >-
+      À la maison, un serveur Proxmox me sert de terrain d'essai. En dehors des écrans : basse,
+      moto, jeux vidéo, et une fascination tenace pour les trous noirs.
+    en: >-
+      At home, a Proxmox server is my test bench. Away from screens: bass guitar, motorcycles,
+      video games, and a stubborn fascination with black holes.
+facts:
+  - label: { fr: Formation, en: Education }
+    value: { fr: MSc Pro · Epitech Toulouse · 2027, en: MSc Pro · Epitech Toulouse · 2027 }
+  - label: { fr: Alternance, en: Apprenticeship }
+    value: { fr: DevOps / plateforme · Capgemini, en: DevOps / platform · Capgemini }
+  - label: { fr: Base, en: Based in }
+    value: { fr: 'Toulouse', en: 'Toulouse, France' }
+links:
+  - id: linkedin
+    label: LinkedIn
+    handle: jeremy-barcelo
+    url: https://www.linkedin.com/in/jeremy-barcelo-8465671b0/
+  - id: github
+    label: GitHub
+    handle: Pinkoune
+    url: https://github.com/Pinkoune
+seo:
+  title:
+    fr: Pinkoune · Jérémy Barcelo, DevOps & plateforme
+    en: Pinkoune · Jérémy Barcelo, DevOps & platform
+  description:
+    fr: >-
+      Portfolio de Jérémy Barcelo, alternant DevOps / plateforme à Toulouse : projets, compétences,
+      homelab et parcours, à bord d'un vaisseau en orbite autour d'un trou noir.
+    en: >-
+      Portfolio of Jérémy Barcelo, DevOps / platform apprentice in Toulouse: projects, skills,
+      homelab and background, aboard a ship orbiting a black hole.

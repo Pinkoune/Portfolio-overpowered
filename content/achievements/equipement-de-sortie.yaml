@@ -1,0 +1,7 @@
+order: 14
+scope: quarters
+name: { fr: Équipement de sortie, en: Riding gear }
+how: { fr: Inspecter le casque de moto., en: Inspect the motorcycle helmet. }
+flavor: { fr: 'Visière fermée, cerveau en mode avion.', en: 'Visor down, brain in airplane mode.' }
+xp: 25
+trigger: { event: helmet.click }

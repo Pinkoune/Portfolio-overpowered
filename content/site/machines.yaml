@@ -1,0 +1,62 @@
+# Salle des machines : homelab + DevOps, dont la chaîne de livraison de ce portfolio.
+# projects = slugs de content/projects/ mis en avant dans cette salle.
+intro:
+  fr: >-
+    Ce portfolio est aussi un projet DevOps : chaque modification passe par la même chaîne
+    automatisée, du commit au déploiement.
+  en: >-
+    This portfolio is also a DevOps project: every change goes through the same automated
+    pipeline, from commit to deployment.
+projects:
+  - portfolio
+  - homelab
+pipeline:
+  - id: lint
+    name: { fr: Lint & format, en: Lint & format }
+    tool: ESLint · Prettier
+    text:
+      fr: Style et règles d'architecture (la 3D et le mode classique ne s'importent jamais).
+      en: Style and architecture rules (3D and classic mode never import each other).
+  - id: typecheck
+    name: { fr: Typage, en: Typecheck }
+    tool: TypeScript strict
+    text:
+      fr: Le contenu, l'interface et la 3D partagent les mêmes types.
+      en: Content, UI and 3D share the same types.
+  - id: content
+    name: { fr: Validation du contenu, en: Content validation }
+    tool: Zod
+    text:
+      fr: Chaque fichier YAML est validé ; une traduction manquante bloque la livraison.
+      en: Every YAML file is validated; a missing translation blocks the release.
+  - id: test
+    name: { fr: Tests, en: Tests }
+    tool: Vitest
+    text:
+      fr: Logique testée hors navigateur — contenu, langues, progression.
+      en: Logic tested outside the browser — content, languages, progression.
+  - id: build
+    name: { fr: Build, en: Build }
+    tool: Vite
+    text:
+      fr: Bundle statique ; la 3D est chargée à la demande.
+      en: Static bundle; the 3D is loaded on demand.
+  - id: deploy
+    name: { fr: Déploiement, en: Deploy }
+    tool: GitHub Actions · Pages
+    text:
+      fr: Chaque push sur main est publié automatiquement.
+      en: Every push to main is published automatically.
+hosting:
+  - id: pages
+    title: { fr: Phase A · GitHub Pages, en: Phase A · GitHub Pages }
+    status: live
+    text:
+      fr: Site statique déployé par GitHub Actions à chaque push sur main.
+      en: Static site deployed by GitHub Actions on every push to main.
+  - id: homelab
+    title: { fr: Phase B · Homelab, en: Phase B · Homelab }
+    status: planned
+    text:
+      fr: Image Docker multi-stage publiée sur GHCR, servie depuis le homelab Proxmox derrière un reverse proxy.
+      en: Multi-stage Docker image published to GHCR, served from the Proxmox homelab behind a reverse proxy.

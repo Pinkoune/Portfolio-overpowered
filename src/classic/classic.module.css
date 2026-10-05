@@ -1,0 +1,776 @@
+/* Mode classique — maquettes G (desktop) et H4 (mobile) de design/Pinkoune Écrans. */
+
+.page {
+  min-height: 100vh;
+  background: var(--pk-void);
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 10;
+  padding: 12px 16px;
+  background: var(--pk-holo);
+  color: var(--pk-void);
+  font-family: var(--pk-font-hud);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.skip:focus {
+  top: 12px;
+  color: var(--pk-void);
+}
+
+.main:focus {
+  outline: none;
+}
+
+.dim {
+  color: var(--pk-text-dim);
+}
+
+.pink {
+  color: var(--pk-pink);
+}
+
+.holoText {
+  color: var(--pk-holo);
+}
+
+.lead {
+  max-width: 64ch;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--pk-text-dim);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- En-tête ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px var(--pk-gutter);
+  border-bottom: 1px solid var(--pk-line-soft);
+  background: rgba(7, 6, 13, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pk-text);
+  font-size: 16px;
+  letter-spacing: 0.22em;
+}
+
+.brand:hover {
+  color: var(--pk-text);
+}
+
+.nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  white-space: nowrap;
+  color: var(--pk-text-dim);
+  letter-spacing: 0.18em;
+  padding: 8px 0;
+}
+
+.nav a:hover,
+.nav a[aria-current] {
+  color: var(--pk-text);
+}
+
+.nav a[aria-current] {
+  box-shadow: inset 0 -1px 0 var(--pk-pink);
+}
+
+.headerTools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boardDesktop button,
+.menu > button {
+  white-space: nowrap;
+}
+
+@media (max-width: 1400px) {
+  /* Place comptée en desktop : le libellé « bientôt » reste lisible par les lecteurs d'écran. */
+  .boardDesktop .soon {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+.soon {
+  padding: 2px 6px;
+  border: 1px solid currentColor;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.menuButton {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--pk-line);
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+
+.menuButton span,
+.menuButton span::before,
+.menuButton span::after {
+  display: block;
+  width: 16px;
+  height: 1px;
+  background: var(--pk-text);
+  content: '';
+}
+
+.menuButton span {
+  position: relative;
+}
+
+.menuButton span::before {
+  position: absolute;
+  top: -5px;
+}
+
+.menuButton span::after {
+  position: absolute;
+  top: 5px;
+  width: 10px;
+}
+
+.menu {
+  position: fixed;
+  inset: 77px 0 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px var(--pk-gutter);
+  background: var(--pk-void);
+  overflow-y: auto;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--pk-line-soft);
+  color: var(--pk-text);
+}
+
+.menu a span:first-child {
+  color: var(--pk-text-dim);
+}
+
+.menu a span:last-child {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 1240px) {
+  .nav {
+    display: none;
+  }
+  .menuButton {
+    display: grid;
+  }
+}
+
+@media (max-width: 720px) {
+  .boardDesktop {
+    display: none;
+  }
+}
+
+/* ---------- Sections ---------- */
+.main,
+.comms {
+  max-width: calc(var(--pk-maxw) + 2 * var(--pk-gutter));
+  margin: 0 auto;
+  padding: 0 var(--pk-gutter);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 96px 0 24px;
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--pk-line);
+}
+
+.sectionTitle {
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+}
+
+.sectionCode {
+  color: var(--pk-text-dim);
+}
+
+.sectionIntro {
+  max-width: 64ch;
+  color: var(--pk-text-dim);
+}
+
+.subhead {
+  color: var(--pk-text-dim);
+  margin-top: 8px;
+}
+
+/* ---------- Hero (Pont) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 520px);
+  gap: 48px;
+  align-items: center;
+  padding: 96px 0 24px;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.heroTitle {
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.02;
+  letter-spacing: 0.04em;
+  text-wrap: balance;
+}
+
+.heroFigure {
+  aspect-ratio: 520 / 440;
+  overflow: hidden;
+  background: #000;
+}
+
+.heroFigure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 360px) 1fr;
+  gap: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--pk-line-soft);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.facts dt {
+  color: var(--pk-text-dim);
+}
+
+.facts dd {
+  margin-top: 4px;
+}
+
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 64ch;
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding-top: 48px;
+  }
+}
+
+/* ---------- Projets (Carte stellaire) ---------- */
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
+  gap: 20px;
+}
+
+.projectCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--pk-line-soft);
+  transition: border-color var(--pk-dur-fast) var(--pk-ease-out);
+}
+
+.projectCard:hover,
+.projectCard:focus-within {
+  border-color: var(--pk-line);
+}
+
+.projectCard > :first-child {
+  aspect-ratio: auto;
+  height: 200px;
+}
+
+.projectBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px 24px;
+}
+
+.projectTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.projectTitle {
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
+
+.stretched {
+  all: unset;
+  cursor: pointer;
+}
+
+/* Toute la carte est cliquable, mais un seul élément focusable. */
+.stretched::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.stretched:focus-visible {
+  outline: none;
+}
+
+.stretched:focus-visible::after {
+  outline: 2px solid var(--pk-holo);
+  outline-offset: 3px;
+}
+
+.projectSummary {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--pk-text-dim);
+}
+
+.stackLine {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+.archives {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 24px;
+  border: 1px dashed var(--pk-line);
+}
+
+.archives h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--pk-text-dim);
+}
+
+.archiveRow {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  width: 100%;
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid var(--pk-line-soft);
+  background: none;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.archiveRow span:first-child {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.archiveRow:hover span:first-child {
+  color: var(--pk-pink-soft);
+}
+
+@media (max-width: 720px) {
+  .archiveRow {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* ---------- Arsenal ---------- */
+.racks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 20px;
+}
+
+.rack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--pk-line-soft);
+}
+
+.rack header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rack header p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.rackTitle {
+  font-size: 16px;
+  letter-spacing: 0.1em;
+}
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 9px 0;
+  border-top: 1px solid var(--pk-line-soft);
+  font-size: 15px;
+}
+
+.skillNote {
+  display: block;
+  font-size: 13px;
+  color: var(--pk-text-dim);
+}
+
+/* ---------- Salle des machines ---------- */
+.pipeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px 16px;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 28px;
+}
+
+/* Le filet relie les losanges, comme le plan du vaisseau. */
+.step::before {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: -16px;
+  height: 1px;
+  background: var(--pk-line);
+  content: '';
+}
+
+.step:last-child::before {
+  right: 0;
+}
+
+.stepMarker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  background: var(--pk-void);
+}
+
+.stepName {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.stepText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--pk-text-dim);
+}
+
+.machinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 900px) {
+  .machinesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hosting {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.hosting > li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--pk-line-soft);
+}
+
+.hosting strong {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.hosting p {
+  font-size: 15px;
+}
+
+.featuredButton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.featuredButton:hover strong {
+  color: var(--pk-pink-soft);
+}
+
+/* ---------- Journal de bord ---------- */
+.timeline {
+  margin-left: 5px;
+  border-left: 1px solid var(--pk-line);
+}
+
+.entry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 72ch;
+  padding: 0 0 36px 28px;
+}
+
+.entryMarker {
+  position: absolute;
+  left: -6px;
+  top: 3px;
+  display: grid;
+  place-items: center;
+  width: 11px;
+  height: 11px;
+  background: var(--pk-void);
+}
+
+.entryTitle {
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+}
+
+.entryHighlights {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.entryHighlights li::before {
+  margin-right: 10px;
+  color: var(--pk-pink);
+  content: '›';
+}
+
+/* ---------- Quartiers ---------- */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+/* Jaquette originale : aplats et facettes dans la teinte du jeu, aucun visuel officiel. */
+.cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  aspect-ratio: 3 / 4;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid var(--pk-line-soft);
+  background:
+    linear-gradient(160deg, transparent 0 55%, rgba(7, 6, 13, 0.85) 85%),
+    conic-gradient(
+      from 210deg at 70% 30%,
+      color-mix(in srgb, var(--cover) 70%, var(--pk-void)) 0 25%,
+      color-mix(in srgb, var(--cover) 35%, var(--pk-void)) 0 50%,
+      color-mix(in srgb, var(--cover) 18%, var(--pk-void)) 0 75%,
+      color-mix(in srgb, var(--cover) 50%, var(--pk-void)) 0
+    );
+  transform: rotate(var(--tilt));
+  transition: transform var(--pk-dur) var(--pk-ease-out);
+}
+
+.cover:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.coverTitle {
+  font-size: 15px;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+}
+
+.coverGenre {
+  font-size: 9px;
+  color: var(--pk-text-dim);
+}
+
+.coverNote {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--pk-text-dim);
+}
+
+.passions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 20px;
+}
+
+.passions li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border-top: 1px solid var(--pk-amber);
+}
+
+.passions strong {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.passions p {
+  font-size: 15px;
+}
+
+/* ---------- Comms ---------- */
+.comms {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 96px;
+  padding-bottom: 48px;
+}
+
+.commsMain {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 72px;
+  border-top: 1px solid var(--pk-line-soft);
+}
+
+.commsTitle {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+}
+
+.colophon a {
+  color: var(--pk-text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

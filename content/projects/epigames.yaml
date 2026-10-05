@@ -1,0 +1,32 @@
+order: 2
+title: EpiGames
+tagline:
+  fr: Portail multigaming pour ma promo
+  en: Multi-game portal for my class
+summary:
+  fr: Un portail façon Steam Big Picture qui réunit les jeux créés par les étudiants de ma promo.
+  en: A Steam Big Picture-style portal gathering the games built by students in my class.
+description:
+  - fr: >-
+      EpiGames rassemble la bibliothèque des jeux du groupe, les profils des joueurs, un forum
+      (général, plus un espace bugs / features par jeu), les amis et la présence en ligne.
+    en: >-
+      EpiGames brings together the group's game library, player profiles, a forum (general, plus
+      a bugs / features board per game), friends and online presence.
+  - fr: >-
+      Firebase Auth, Firestore et Realtime Database, avec des règles de sécurité écrites à la main.
+      Le site est déployé sur GitHub Pages par GitHub Actions.
+    en: >-
+      Firebase Auth, Firestore and Realtime Database, with hand-written security rules. The site
+      is deployed to GitHub Pages by GitHub Actions.
+highlights:
+  - { fr: Interface façon console de salon, en: Living-room console-style interface }
+  - { fr: Présence en ligne en temps réel, en: Real-time online presence }
+  - { fr: Règles de sécurité Firestore / RTDB, en: Firestore / RTDB security rules }
+  - { fr: CI/CD GitHub Actions vers GitHub Pages, en: GitHub Actions CI/CD to GitHub Pages }
+stack: [Firebase Auth, Firestore, Realtime Database, GitHub Actions, GitHub Pages]
+context: perso
+status: live # TODO: vérifier le statut
+links:
+  repo: https://github.com/Pinkoune/EpiGames
+todo: [media, demo, year]

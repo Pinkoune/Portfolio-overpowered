@@ -1,0 +1,11 @@
+kind: education
+start: 2024-09 # TODO: vérifier le mois de rentrée
+end: 2027-09
+title:
+  fr: Mastère / MSc Pro
+  en: Master's / MSc Pro
+organization: Epitech
+location: Toulouse
+summary:
+  fr: Cursus par projets, en alternance à partir de janvier 2025.
+  en: Project-based programme, as an apprentice from January 2025.

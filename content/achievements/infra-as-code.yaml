@@ -1,0 +1,15 @@
+order: 9
+scope: machines
+name: { fr: Infra as Code, en: Infra as Code }
+how:
+  {
+    fr: Lancer le terraform apply de la salle des machines.,
+    en: Run the terraform apply in the engine room.,
+  }
+flavor:
+  {
+    fr: 'Apply complete! Resources: 1 added, 0 changed, 0 destroyed.',
+    en: 'Apply complete! Resources: 1 added, 0 changed, 0 destroyed.',
+  }
+xp: 75
+trigger: { event: machines.apply }

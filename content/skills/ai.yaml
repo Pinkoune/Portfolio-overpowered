@@ -1,0 +1,14 @@
+# TODO: niveaux proposés par Claude, à valider par Jérémy.
+order: 6
+code: MOD-06
+name: { fr: IA, en: AI }
+description:
+  fr: L'IA comme outil, avec des garde-fous.
+  en: AI as a tool, with guardrails.
+skills:
+  - name: Claude Code
+    level: 4
+    note: { fr: Développement assisté par agents, en: Agent-assisted development }
+  - name: deident
+    level: 4
+    note: { fr: Anonymiser avant de partager avec une IA, en: Anonymise before sharing with an AI }

@@ -1,0 +1,14 @@
+# name peut être un texte simple (nom propre) ou { fr, en } quand il se traduit.
+order: 7
+code: MOD-07
+name: { fr: Méthodes & savoir-être, en: Methods & soft skills }
+description:
+  fr: Ce qui ne se voit pas dans un diff.
+  en: What doesn't show up in a diff.
+skills:
+  - name: Agile / Scrum
+  - name: { fr: Autonomie, en: Autonomy }
+  - name: { fr: Persévérance, en: Perseverance }
+  - name: { fr: Rigueur, en: Rigour }
+  - name: { fr: Adaptabilité, en: Adaptability }
+  - name: { fr: Patience, en: Patience }

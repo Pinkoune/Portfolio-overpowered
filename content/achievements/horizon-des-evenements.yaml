@@ -1,0 +1,15 @@
+order: 3
+scope: bridge
+name: { fr: Horizon des événements, en: Event horizon }
+how:
+  {
+    fr: Fixer la Pupille 10 s sans bouger la souris.,
+    en: Stare at the Pupil for 10 s without moving the mouse.,
+  }
+flavor:
+  {
+    fr: Tu as fixé la Pupille 10 s. Elle t'a fixé aussi.,
+    en: You stared at the Pupil for 10 s. It stared back.,
+  }
+xp: 100
+trigger: { event: blackhole.stare }

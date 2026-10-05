@@ -1,0 +1,8 @@
+order: 10
+scope: machines
+name: { fr: git blame, en: git blame }
+how: { fr: Trouver le commit le plus ancien du vaisseau., en: Find the ship's oldest commit. }
+flavor: { fr: C'était lui. C'est toujours lui., en: It was him. It's always him. }
+xp: 75
+secret: true
+trigger: { event: machines.oldest-commit }

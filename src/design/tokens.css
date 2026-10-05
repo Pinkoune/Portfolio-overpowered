@@ -1,0 +1,80 @@
+/*
+ * Design tokens Pinkoune — repris de design/Pinkoune DA.dc.html (« tokens.css · pour Claude Code »),
+ * complétés par l'échelle typographique et les durées de design/Pinkoune Motion.dc.html.
+ * Miroir TypeScript pour la 3D : src/design/tokens.ts.
+ */
+:root {
+  /* Fonds & structure */
+  --pk-void: #07060d;
+  --pk-hull-900: #0d0c17;
+  --pk-hull-800: #151426;
+  --pk-hull-700: #201f36;
+  --pk-hull-600: #2e2c4a;
+  --pk-line: #3b3960; /* traits 1 px, pistes de barres — jamais pour du texte */
+  --pk-line-soft: #22213a; /* séparateurs discrets */
+
+  /* Texte */
+  --pk-text: #eeecf5; /* 17,6:1 sur Vide */
+  --pk-text-dim: #a29fbd; /* 7,9:1 sur Vide */
+
+  /* Accents — un seul par composant */
+  --pk-pink: #ff5fa2; /* identité, XP, rang, CTA principal */
+  --pk-pink-soft: #ffb8d5;
+  --pk-pink-deep: #b8286a;
+  --pk-amber: #ffb547; /* récompense, trou noir */
+  --pk-core: #fff2dc;
+  --pk-holo: #5ce1e6; /* hologrammes, focus clavier, liens */
+  --pk-holo-wash: rgba(92, 225, 230, 0.18);
+  --pk-panel: rgba(13, 12, 23, 0.82);
+
+  /* Géométrie */
+  --pk-space: 8px;
+  --pk-cut: 10px;
+  --pk-cut-sm: 8px;
+  --pk-cut-lg: 12px;
+  --pk-radius: 0;
+  --pk-gutter: 64px;
+  --pk-maxw: 1168px;
+
+  /* Typographie */
+  --pk-font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --pk-font-hud: 'Martian Mono Variable', 'Martian Mono', ui-monospace, monospace;
+  --pk-font-body: 'Instrument Sans Variable', 'Instrument Sans', system-ui, sans-serif;
+  --pk-fs-display: 96px;
+  --pk-fs-h1: 48px;
+  --pk-fs-h2: 24px;
+  --pk-fs-h3: 15px;
+  --pk-fs-label: 11px;
+  --pk-fs-hud: 20px;
+  --pk-fs-body: 17px;
+
+  /* Motion */
+  --pk-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --pk-ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --pk-ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pk-dur-fast: 140ms;
+  --pk-dur: 280ms;
+  --pk-dur-slow: 560ms;
+  --pk-dur-cine: 1800ms;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --pk-gutter: 20px;
+    --pk-fs-display: 48px;
+    --pk-fs-h1: 32px;
+    --pk-fs-h2: 20px;
+    --pk-fs-h3: 14px;
+    --pk-fs-hud: 16px;
+    --pk-fs-body: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pk-dur-fast: 0ms;
+    --pk-dur: 0ms;
+    --pk-dur-slow: 0ms;
+    --pk-dur-cine: 200ms;
+  }
+}

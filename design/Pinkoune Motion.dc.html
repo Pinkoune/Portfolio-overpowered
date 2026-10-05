@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&family=Instrument+Sans:wght@400..700&display=swap">
+<script src="./pinkoune-3d.js"></script>
+<script src="./pk-motion.js"></script>
+<style>
+body{margin:0;background:#07060D;color:#EEECF5;-webkit-font-smoothing:antialiased}
+a{color:#5CE1E6;text-decoration:none}a:hover{color:#FFB8D5}
+</style>
+</helmet>
+
+<div style="width:1440px;margin:0 auto;background:#07060D;font-family:'Instrument Sans',sans-serif;color:#EEECF5">
+
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:22px 64px;border-bottom:1px solid #22213A;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase">
+  <div style="display:flex;align-items:center;gap:14px"><span style="width:9px;height:9px;background:#FF5FA2;transform:rotate(45deg);display:block"></span><span>Pinkoune · Système de design</span></div>
+  <div style="display:flex;gap:32px"><a href="Pinkoune DA.dc.html" style="color:#A29FBD">01 Identité</a><a href="Pinkoune Écrans.dc.html" style="color:#A29FBD">02 Écrans</a><a href="Pinkoune Motion.dc.html" style="color:#EEECF5">03 Motion</a></div>
+</nav>
+
+<section style="padding:96px 64px 72px;display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end;border-bottom:1px solid #22213A">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">03 — Motion</div>
+    <h1 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:56px;line-height:1.02;letter-spacing:.06em;text-transform:uppercase">Inertie &amp; précision</h1>
+  </div>
+  <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">La caméra a de la masse : elle accélère et freine lentement. L'interface n'en a pas : elle se trace d'un trait, du point vers la ligne puis vers la surface. Les démos ci-dessous tournent en boucle ; un clic les met en pause.</p>
+</section>
+
+<!-- TOKENS -->
+<section data-screen-label="Tokens motion" style="padding:72px 64px;border-bottom:1px solid #22213A;display:grid;grid-template-columns:1fr 1fr;gap:64px">
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Durées</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#22213A;border:1px solid #22213A">
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Martian Mono',monospace;font-size:22px">140</span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-dur-fast</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Survol, focus, bascules.</span></div>
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Martian Mono',monospace;font-size:22px">280</span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-dur</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Lignes, toasts, onglets.</span></div>
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Martian Mono',monospace;font-size:22px">560</span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-dur-slow</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Panneaux, titres de salle.</span></div>
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Martian Mono',monospace;font-size:22px">1 800</span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-dur-cine</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Caméra entre deux salles.</span></div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Courbes</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#22213A;border:1px solid #22213A">
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:10px">
+        <svg viewBox="0 0 100 60" width="100%" height="60"><path d="M0 60 C16 0 30 0 100 0" fill="none" stroke="#FF5FA2" stroke-width="1.5"></path></svg>
+        <span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-ease-out</span><span style="font-family:'Martian Mono',monospace;font-size:10px;color:#A29FBD">cubic-bezier(.16,1,.3,1)</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Toute entrée d'UI.</span>
+      </div>
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:10px">
+        <svg viewBox="0 0 100 60" width="100%" height="60"><path d="M0 60 C65 60 35 0 100 0" fill="none" stroke="#FF5FA2" stroke-width="1.5"></path></svg>
+        <span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-ease-io</span><span style="font-family:'Martian Mono',monospace;font-size:10px;color:#A29FBD">cubic-bezier(.65,0,.35,1)</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Caméra, sorties, trajets.</span>
+      </div>
+      <div style="background:#07060D;padding:18px;display:flex;flex-direction:column;gap:10px">
+        <svg viewBox="0 0 100 60" width="100%" height="60"><path d="M0 60 C20 60 30 -18 100 0" fill="none" stroke="#FF5FA2" stroke-width="1.5"></path></svg>
+        <span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#FF5FA2">--pk-ease-back</span><span style="font-family:'Martian Mono',monospace;font-size:10px;color:#A29FBD">cubic-bezier(.34,1.56,.64,1)</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Losanges uniquement.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I INTRO -->
+<section data-screen-label="I Intro" style="padding:96px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div style="display:flex;flex-direction:column;gap:12px"><div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">I · 7,0 s · une seule fois par visite</div><h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:36px;letter-spacing:.08em;text-transform:uppercase">Intro · approche du vaisseau</h2></div>
+    <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#A29FBD">Passer · Espace ou clic</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A"><pk-blackhole static="" cx="3" style="position:absolute;inset:0"></pk-blackhole><div style="position:absolute;inset:0;display:grid;place-items:center;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.24em;color:#EEECF5">SIGNAL DÉTECTÉ_</div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">0,4 s</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Noir, étoiles, une ligne de texte. Grondement grave en fondu.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A"><pk-blackhole static="" scale="0.35" style="position:absolute;inset:0"></pk-blackhole></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">1,8 s</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">La Pupille s'allume, anneau après anneau, de l'intérieur vers l'extérieur.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A"><pk-blackhole static="" scale="0.55" cx="0.42" style="position:absolute;inset:0"></pk-blackhole><pk-ship static="" scale="0.5" ry="-1.1" style="position:absolute;left:120px;top:0;width:130px;height:90px"></pk-ship></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">3,4 s</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Le PK-01 entre par la droite. Dolly arrière, fov 50 → 42.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A"><pk-blackhole static="" scale="0.9" cx="0.25" cy="0.35" style="position:absolute;inset:0"></pk-blackhole><pk-ship static="" scale="1.3" ry="-0.5" rx="0.2" style="position:absolute;inset:0"></pk-ship></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">5,2 s</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">La caméra rattrape le vaisseau et vise le hangar, l'anneau défile devant.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;outline:1px solid #22213A;background:radial-gradient(60% 70% at 50% 50%,#FFE6F0,#FF5FA2 45%,#3A1030 100%);display:grid;place-items:center"><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.24em;color:#07060D">PK-01 · PONT</span></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">6,6 s</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Flash rose 300 ms dans le sas, ouverture sur le pont. Le HUD se trace.</span></div>
+  </div>
+  <div style="position:relative;height:64px;border-top:1px solid #3B3960;margin-top:8px">
+    <sc-for list="{{ introTrack }}" as="s" hint-placeholder-count="5">
+      <div style="position:absolute;left:{{ s.l }};width:{{ s.w }};top:{{ s.y }};height:20px;background:{{ s.c }};display:flex;align-items:center;padding:0 8px;box-sizing:border-box;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#07060D;white-space:nowrap;overflow:hidden">{{ s.t }}</div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;font-size:14px;line-height:1.55;color:#A29FBD">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">Caméra</span>Spline CatmullRom 4 points, durée 6,2 s, ease-io. Roulis max 4°. Le trou noir reste dans le tiers gauche.</div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">Chargement</span>Les assets se chargent pendant la séquence. Si ce n'est pas fini à 6,2 s, la caméra boucle en orbite lente autour du vaisseau.</div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">Retour</span>Visiteur connu (localStorage) : version courte de 2 s, directement plan 4 → pont.</div>
+  </div>
+</section>
+
+<!-- II TRANSITION -->
+<section data-screen-label="II Transition" style="padding:96px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:12px"><div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">II · 1,6 s</div><h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:36px;letter-spacing:.08em;text-transform:uppercase">Transition caméra entre deux salles</h2></div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A"><pk-blackhole static="" scale="0.7" cx="0.6" cy="0.6" style="position:absolute;inset:0"></pk-blackhole><div style="position:absolute;left:22px;top:62px;width:20px;height:20px;border:1px solid #5CE1E6;transform:rotate(45deg);background:rgba(92,225,230,.3)"></div><div style="position:absolute;left:14px;top:54px;width:36px;height:36px;border:1px solid rgba(92,225,230,.5);transform:rotate(45deg)"></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">0 – 150 ms</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Clic sur la porte : le losange se remplit et émet un écho.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A"><pk-blackhole static="" scale="0.7" cx="0.75" cy="0.55" style="position:absolute;inset:0;opacity:.6"></pk-blackhole><svg viewBox="0 0 248 150" width="100%" height="150" style="position:absolute;inset:0"><polygon points="0,0 60,20 60,130 0,150" fill="#201F36"></polygon></svg></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">150 – 400 ms</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Le HUD s'efface (sauf le plan). La caméra pivote vers la porte.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#0B0A15;outline:1px solid #22213A"><svg viewBox="0 0 248 150" width="100%" height="150" style="position:absolute;inset:0"><polygon points="0,0 248,0 160,52 88,52" fill="#151426"></polygon><polygon points="0,150 248,150 160,98 88,98" fill="#201F36"></polygon><polygon points="0,0 88,52 88,98 0,150" fill="#1A1830"></polygon><polygon points="248,0 160,52 160,98 248,150" fill="#0F0E1C"></polygon><rect x="88" y="52" width="72" height="46" fill="#07060D"></rect><line x1="0" y1="150" x2="88" y2="98" stroke="#FF5FA2" stroke-width="1.5"></line><line x1="248" y1="150" x2="160" y2="98" stroke="#FF5FA2" stroke-width="1.5"></line><line x1="30" y1="18" x2="60" y2="35" stroke="#EEECF5" stroke-opacity=".4"></line><line x1="210" y1="130" x2="185" y2="114" stroke="#EEECF5" stroke-opacity=".4"></line><line x1="20" y1="120" x2="55" y2="100" stroke="#EEECF5" stroke-opacity=".4"></line></svg></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">400 – 1 200 ms</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Coursive : travelling avant, fov 45 → 55 → 45, traits de vitesse.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#151426;outline:1px solid #22213A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.24em;color:#5CE1E6">PK-02</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:30px;letter-spacing:.3em;margin-right:-.3em">LABO</span><span style="width:60px;height:1px;background:#EEECF5"></span></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">1 000 – 1 400 ms</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Carton de salle : espacement .6 → .3 em, filet qui s'étire.</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><div style="height:150px;position:relative;overflow:hidden;background:#151426;outline:1px solid #22213A"><pk-penguin static="" pose="pointe-d" view="0.45" style="position:absolute;left:40px;top:40px;width:90px;height:110px"></pk-penguin><div style="position:absolute;right:14px;top:22px;width:96px;bottom:22px;border:1px solid rgba(92,225,230,.4);background:rgba(13,12,23,.8)"></div><div style="position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px"><span style="width:5px;height:5px;border:1px solid #EEECF5;transform:rotate(45deg)"></span><span style="width:6px;height:6px;background:#FF5FA2;transform:rotate(45deg)"></span><span style="width:5px;height:5px;border:1px solid #3B3960;transform:rotate(45deg)"></span><span style="width:5px;height:5px;border:1px solid #3B3960;transform:rotate(45deg)"></span></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">1 200 – 1 600 ms</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">Le HUD revient, le losange actif glisse sur le plan. Pinkoune désigne le terminal.</span></div>
+  </div>
+  <div style="position:relative;height:64px;border-top:1px solid #3B3960;margin-top:8px">
+    <sc-for list="{{ transTrack }}" as="s" hint-placeholder-count="5">
+      <div style="position:absolute;left:{{ s.l }};width:{{ s.w }};top:{{ s.y }};height:20px;background:{{ s.c }};display:flex;align-items:center;padding:0 8px;box-sizing:border-box;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#07060D;white-space:nowrap;overflow:hidden">{{ s.t }}</div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;font-size:14px;line-height:1.55;color:#A29FBD">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">Trajet</span>Chaque salle a un point caméra et un point d'entrée. Trajet = porte → coursive → entrée, ease-io sur la position, ease-out sur la cible.</div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">Saut lointain</span>Plus de 2 salles d'écart : on coupe dans la coursive (fondu noir 200 ms) au lieu de tout parcourir.</div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">Son</span>Whoosh filtré passe-bas pendant la coursive, « clac » métallique à l'arrivée.</div>
+  </div>
+</section>
+
+<!-- III-V DEMOS -->
+<section data-screen-label="III Panneau" style="padding:96px 64px;border-bottom:1px solid #22213A;display:grid;grid-template-columns:640px 1fr;gap:64px;align-items:start">
+  <pk-demo type="panel" style="display:block;position:relative;overflow:hidden;background:#0B0A14;cursor:pointer;width:640px;height:382px;outline:1px solid #22213A"></pk-demo>
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px"><div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">III · 1,1 s ouverture · 0,6 s fermeture</div><h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:32px;letter-spacing:.08em;text-transform:uppercase">Apparition d'un panneau holo</h2></div>
+    <p style="margin:0;font-size:15px;line-height:1.6;color:#A29FBD">Point → ligne → surface. Le panneau naît du projecteur dans la scène, jamais du bord de l'écran.</p>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ panelSpec }}" as="r" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:110px 1fr 120px;gap:16px;padding:11px 0;border-bottom:1px solid #22213A;font-size:14px;line-height:1.4"><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">{{ r.t }}</span><span>{{ r.d }}</span><span style="font-family:'Martian Mono',monospace;font-size:10px;color:#A29FBD">{{ r.e }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="IV Toast" style="padding:96px 64px;border-bottom:1px solid #22213A;display:grid;grid-template-columns:640px 1fr;gap:64px;align-items:start">
+  <pk-demo type="toast" style="display:block;position:relative;overflow:hidden;background:#0B0A14;cursor:pointer;width:640px;height:382px;outline:1px solid #22213A"></pk-demo>
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px"><div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">IV · reste 4 s · empilable × 3</div><h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:32px;letter-spacing:.08em;text-transform:uppercase">Succès débloqué + gain d'XP</h2></div>
+    <p style="margin:0;font-size:15px;line-height:1.6;color:#A29FBD">Le toast arrive, le compteur s'incrémente, puis l'XP vole jusqu'à la barre. La barre montre d'abord le gain en rose clair, puis se remplit.</p>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ toastSpec }}" as="r" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:110px 1fr 120px;gap:16px;padding:11px 0;border-bottom:1px solid #22213A;font-size:14px;line-height:1.4"><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">{{ r.t }}</span><span>{{ r.d }}</span><span style="font-family:'Martian Mono',monospace;font-size:10px;color:#A29FBD">{{ r.e }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="V Rang" style="padding:96px 64px;border-bottom:1px solid #22213A;display:grid;grid-template-columns:640px 1fr;gap:64px;align-items:start">
+  <pk-demo type="rank" style="display:block;position:relative;overflow:hidden;background:#0B0A14;cursor:pointer;width:640px;height:382px;outline:1px solid #22213A"></pk-demo>
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px"><div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">V · 2,4 s + attente</div><h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:32px;letter-spacing:.08em;text-transform:uppercase">Montée de rang</h2></div>
+    <p style="margin:0;font-size:15px;line-height:1.6;color:#A29FBD">Déclenchée quand la barre d'XP touche 100 %, après le toast. Seul moment où l'ambre occupe le centre de l'écran.</p>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ rankSpec }}" as="r" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:110px 1fr 120px;gap:16px;padding:11px 0;border-bottom:1px solid #22213A;font-size:14px;line-height:1.4"><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">{{ r.t }}</span><span>{{ r.d }}</span><span style="font-family:'Martian Mono',monospace;font-size:10px;color:#A29FBD">{{ r.e }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Accessibilité motion" style="padding:72px 64px 140px;display:grid;grid-template-columns:420px 1fr;gap:64px">
+  <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:28px;letter-spacing:.08em;text-transform:uppercase">Réduire les animations</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;font-size:15px;line-height:1.55;color:#A29FBD">
+    <span>prefers-reduced-motion : intro remplacée par un fondu de 600 ms sur le pont.</span>
+    <span>Transitions de salle : coupe + fondu 200 ms, pas de travelling.</span>
+    <span>Panneaux, toasts, rang : opacité seule, mêmes durées.</span>
+    <span>Le disque tourne 4× plus lentement, Pinkoune garde sa respiration.</span>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  track(total, rows) {
+    return rows.map(([a, b, t, c, row]) => ({ l: (a / total * 100) + '%', w: ((b - a) / total * 100) + '%', t, c, y: (12 + row * 26) + 'px' }));
+  }
+  renderVals() {
+    const P = '#FF5FA2', S = '#FFB8D5', A = '#FFB547', H = '#5CE1E6', W = '#EEECF5';
+    return {
+      introTrack: this.track(7, [
+        [0, 1, 'Noir + signal', W, 0], [1, 3, 'Pupille s’allume', A, 0], [3, 6.2, 'Approche caméra', P, 0],
+        [2.4, 5, 'Vaisseau entre', S, 1], [6.2, 7, 'Flash + HUD', H, 1]
+      ]),
+      transTrack: this.track(1600, [
+        [0, 150, 'Clic', H, 0], [150, 400, 'HUD off', W, 0], [400, 1200, 'Coursive', P, 0],
+        [200, 1200, 'Caméra ease-io', S, 1], [1000, 1400, 'Carton', A, 1], [1200, 1600, 'HUD on', H, 0]
+      ]),
+      panelSpec: [
+        { t: '0–160', d: 'Losange au projecteur, scale 0 → 1', e: 'ease-back' },
+        { t: '160–400', d: 'Ligne horizontale, scaleX 0 → 1', e: 'ease-out' },
+        { t: '400–680', d: 'Cadre, clip-path inset 50 % → 0', e: 'ease-out' },
+        { t: '600–760', d: 'Coins en équerre, opacité', e: 'linéaire' },
+        { t: '680–1100', d: 'Contenu en cascade de 70 ms, titre tapé', e: 'ease-out' },
+        { t: '700–1400', d: 'Balayage de scan, une seule passe', e: 'linéaire' },
+        { t: 'Fermeture', d: 'Ordre inverse, 0,6 s au total', e: 'ease-io' }
+      ],
+      toastSpec: [
+        { t: '300–750', d: 'Entrée depuis la droite, clip + 48 px', e: 'ease-out' },
+        { t: '450–900', d: 'Losange ambre pivote 225° → 45°', e: 'ease-back' },
+        { t: '1000', d: 'Compteur 07 → 08, flash ambre 300 ms', e: '—' },
+        { t: '1200–1750', d: '« +100 XP » vole vers la barre (courbe)', e: 'ease-io' },
+        { t: '1700–2400', d: 'Gain rose clair, puis remplissage + compteur', e: 'ease-out' },
+        { t: '4800–5100', d: 'Sortie, 30 px + opacité', e: 'ease-io' }
+      ],
+      rankSpec: [
+        { t: '0–400', d: 'Voile Vide à 86 %, la scène continue derrière', e: 'ease-io' },
+        { t: '400–1140', d: '3 losanges concentriques, 135° → 45°', e: 'ease-back' },
+        { t: '950–1500', d: 'Onde de choc ambre × 4', e: 'ease-out' },
+        { t: '1100–1800', d: 'Titre, espacement .7 → .12 em', e: 'ease-out' },
+        { t: '1700–2450', d: 'Récompenses puis bouton', e: 'ease-out' },
+        { t: 'Fermeture', d: 'Entrée ou clic, tout en 400 ms', e: 'ease-io' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

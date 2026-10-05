@@ -1,0 +1,21 @@
+# Projet secondaire : archived: true le place dans la ceinture « Archives ».
+order: 100
+title: LibGDX Fighter # TODO: nom réel du projet
+tagline:
+  fr: Jeu de combat 2D en Java
+  en: 2D fighting game in Java
+summary:
+  fr: Jeu de combat 2D en Java avec LibGDX, multijoueur local, réalisé en duo en 3 semaines.
+  en: 2D fighting game in Java with LibGDX, local multiplayer, built as a pair in 3 weeks.
+description:
+  - fr: >-
+      Un jeu de combat 2D en multijoueur local, développé en duo en trois semaines avec LibGDX,
+      avec des tests unitaires sur la logique de jeu.
+    en: >-
+      A local-multiplayer 2D fighting game, built as a pair in three weeks with LibGDX, with unit
+      tests on the game logic.
+stack: [Java, LibGDX, JUnit]
+context: epitech # TODO: vérifier le contexte
+team: { fr: Duo · 3 semaines, en: Pair · 3 weeks }
+status: done
+archived: true

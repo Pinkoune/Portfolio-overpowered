@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:absolute;inset:0;pointer-events:none;font-family:'Martian Mono',monospace;color:#EEECF5">
+  <div style="position:absolute;left:32px;top:28px;display:flex;align-items:center;gap:16px;pointer-events:auto">
+    <div style="width:46px;height:46px;display:grid;place-items:center;flex:none"><div style="width:32px;height:32px;border:1px solid #FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><div style="width:23px;height:23px;background:#FF5FA2;display:grid;place-items:center"><span style="transform:rotate(-45deg);font-size:11px;font-weight:500;color:#07060D">{{ rank }}</span></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:270px">
+      <div style="display:flex;justify-content:space-between;gap:16px;white-space:nowrap;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span>{{ rankName }}</span><span style="color:#A29FBD">{{ xp }}</span></div>
+      <div style="height:3px;background:rgba(59,57,96,.8);position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:{{ xpW }};background:#FF5FA2"></div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:50%;top:34px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A29FBD;white-space:nowrap"><span style="width:24px;height:1px;background:#3B3960"></span><span>{{ code }}</span><span style="color:#EEECF5">{{ roomName }}</span><span style="width:24px;height:1px;background:#3B3960"></span></div>
+  <div style="position:absolute;right:32px;top:28px;display:flex;align-items:center;gap:8px;pointer-events:auto">
+    <div style="height:38px;border:1px solid #3B3960;display:flex;align-items:center;gap:10px;padding:0 12px;box-sizing:border-box;font-size:12px;letter-spacing:.1em;background:rgba(7,6,13,.4)"><span style="width:9px;height:9px;background:#FFB547;transform:rotate(45deg);display:block"></span>{{ ach }}</div>
+    <div style="width:38px;height:38px;border:1px solid #3B3960;display:flex;align-items:flex-end;justify-content:center;gap:3px;padding-bottom:11px;box-sizing:border-box;background:rgba(7,6,13,.4)"><span style="width:2px;height:8px;background:#EEECF5;display:block"></span><span style="width:2px;height:14px;background:#EEECF5;display:block"></span><span style="width:2px;height:10px;background:#EEECF5;display:block"></span><span style="width:2px;height:5px;background:#EEECF5;display:block"></span></div>
+    <div style="display:flex;border:1px solid #3B3960;font-size:11px;letter-spacing:.16em;height:38px;box-sizing:border-box;background:rgba(7,6,13,.4)"><span style="padding:0 11px;display:grid;place-items:center;background:#EEECF5;color:#07060D">FR</span><span style="padding:0 11px;display:grid;place-items:center;color:#A29FBD">EN</span></div>
+    <div style="height:38px;border:1px solid #3B3960;display:flex;align-items:center;padding:0 14px;box-sizing:border-box;font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:rgba(7,6,13,.4)">Mode classique</div>
+  </div>
+  <div style="position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:820px;pointer-events:auto">
+    <div style="position:absolute;left:50px;right:50px;top:8px;height:1px;background:#3B3960"></div>
+    <div style="position:relative;display:grid;grid-template-columns:repeat(7,1fr)">
+      <sc-for list="{{ rooms }}" as="r" hint-placeholder-count="7">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+          <div style="width:17px;height:17px;display:grid;place-items:center;background:#07060D">
+            <sc-if value="{{ r.active }}"><div style="width:11px;height:11px;background:#FF5FA2;transform:rotate(45deg);outline:1px solid #FF5FA2;outline-offset:3px"></div></sc-if>
+            <sc-if value="{{ r.visited }}"><div style="width:10px;height:10px;border:1px solid #EEECF5;transform:rotate(45deg);box-sizing:border-box"></div></sc-if>
+            <sc-if value="{{ r.todo }}"><div style="width:10px;height:10px;border:1px solid #3B3960;transform:rotate(45deg);box-sizing:border-box"></div></sc-if>
+          </div>
+          <sc-if value="{{ r.active }}"><span style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#EEECF5">{{ r.name }}</span></sc-if>
+          <sc-if value="{{ r.idle }}"><span style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">{{ r.name }}</span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:800},&quot;room&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;},&quot;visited&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:7,&quot;tsType&quot;:&quot;number&quot;},&quot;rank&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;05&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rankName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pilote&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;xp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1 240 / 1 400&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;xpPct&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:65,&quot;min&quot;:0,&quot;max&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;ach&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;07/24&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const names = ['Pont', 'Labo', 'Armurerie', 'Archives', 'Hangar', 'Trophées', 'Com'];
+    const room = this.props.room ?? 0, visited = this.props.visited ?? 2;
+    const rooms = names.map((name, i) => {
+      const active = i === room, vis = !active && i < visited;
+      return { name, active, visited: vis, todo: !active && !vis, idle: !active };
+    });
+    return {
+      rooms,
+      code: 'PK-0' + (room + 1),
+      roomName: names[room],
+      rank: this.props.rank ?? '05',
+      rankName: this.props.rankName ?? 'Pilote',
+      xp: this.props.xp ?? '1 240 / 1 400',
+      xpW: (this.props.xpPct ?? 65) + '%',
+      ach: this.props.ach ?? '07/24'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+kind: work
+start: '2023'
+end: '2024'
+title:
+  fr: Technicien SAV
+  en: After-sales technician
+organization: Experis
+location: Lisses
+summary:
+  fr: Diagnostic et réparation de postes de travail.
+  en: Diagnosing and repairing workstations.
+highlights:
+  - fr: Création d'une application interne pour accélérer la production
+    en: Built an internal application to speed up production
+tags: [Support, Hardware]

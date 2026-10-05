@@ -1,0 +1,74 @@
+# Les 7 salles du vaisseau PK-01. L'ordre et les identifiants sont fixés par le code.
+# name = nom à bord ; label = nom simple utilisé dans le mode classique ;
+# penguin = réplique de Pinkoune à l'arrivée (2 lignes max, il tutoie).
+rooms:
+  - id: bridge
+    code: PK-01
+    name: { fr: Pont, en: Bridge }
+    label: { fr: À propos, en: About }
+    intro:
+      fr: Le poste de commande, face à la Pupille. C'est ici qu'on fait connaissance.
+      en: The command deck, facing the Pupil. This is where we get acquainted.
+    penguin:
+      fr: Bienvenue à bord ! Moi c'est Pinkoune, je pilote. Jérémy, lui, fait tourner l'infra.
+      en: Welcome aboard! I'm Pinkoune, I fly this thing. Jérémy keeps the infra running.
+  - id: starmap
+    code: PK-02
+    name: { fr: Carte stellaire, en: Star map }
+    label: { fr: Projets, en: Projects }
+    intro:
+      fr: Chaque projet est une planète en orbite autour de la Pupille. Les archives forment la ceinture extérieure.
+      en: Every project is a planet orbiting the Pupil. The archives make up the outer belt.
+    penguin:
+      fr: Touche une planète pour lire sa fiche. Tout est en staging, promis.
+      en: Tap a planet to read its file. Everything's on staging, promise.
+  - id: arsenal
+    code: PK-03
+    name: { fr: Arsenal, en: Armory }
+    label: { fr: Compétences, en: Skills }
+    intro:
+      fr: L'équipement du bord. Chaque mod indique son niveau de maîtrise, de 1 à 5.
+      en: The ship's gear. Each mod shows its mastery level, from 1 to 5.
+    penguin:
+      fr: Le râtelier est bien rempli. Ne touche pas au terraform apply sans moi.
+      en: The rack is well stocked. Don't touch the terraform apply without me.
+  - id: machines
+    code: PK-04
+    name: { fr: Salle des machines, en: Engine room }
+    label: { fr: DevOps, en: DevOps }
+    intro:
+      fr: Ce qui fait tourner le vaisseau, y compris la chaîne qui a livré cette page.
+      en: What keeps the ship running, including the pipeline that shipped this page.
+    penguin:
+      fr: Ici ça ronronne. Si ça bipe, c'est que la CI a trouvé un truc.
+      en: It hums in here. If something beeps, the CI found something.
+  - id: logbook
+    code: PK-05
+    name: { fr: Journal de bord, en: Logbook }
+    label: { fr: Parcours, en: Background }
+    intro:
+      fr: Les étapes du voyage, de la plus récente à la première.
+      en: The journey so far, most recent first.
+    penguin:
+      fr: Ici on garde tout. Même les logs de 2020.
+      en: We keep everything here. Even the 2020 logs.
+  - id: quarters
+    code: PK-06
+    name: { fr: Quartiers, en: Quarters }
+    label: { fr: Perso, en: Personal }
+    intro:
+      fr: La partie privée du vaisseau. Une basse, un casque, une étagère de jeux.
+      en: The private part of the ship. A bass, a helmet, a shelf of games.
+    penguin:
+      fr: Fais comme chez toi. Mais ne règle pas la basse, elle est juste.
+      en: Make yourself at home. Just don't retune the bass, it's fine.
+  - id: comms
+    code: PK-07
+    name: { fr: Comms, en: Comms }
+    label: { fr: Contact, en: Contact }
+    intro:
+      fr: Pour envoyer un signal à Jérémy.
+      en: To send Jérémy a signal.
+    penguin:
+      fr: Un message ? Les antennes sont chaudes.
+      en: Got a message? The antennas are warm.

@@ -1,0 +1,210 @@
+.dialog {
+  width: min(640px, calc(100vw - 32px));
+  max-height: min(860px, calc(100dvh - 32px));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--pk-text);
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgba(7, 6, 13, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.dialog[open] {
+  animation: open var(--pk-dur-slow) var(--pk-ease-out);
+}
+
+/* Ouverture : le cadre se déplie depuis la ligne centrale (point → ligne → surface). */
+@keyframes open {
+  from {
+    clip-path: inset(50% 0 50% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  background: rgba(13, 12, 23, 0.94);
+  border: 1px solid rgba(92, 225, 230, 0.35);
+  backdrop-filter: blur(16px);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px 0;
+}
+
+.room {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--pk-holo);
+}
+
+.close {
+  background: none;
+  border: 0;
+  color: var(--pk-text-dim);
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.close:hover {
+  color: var(--pk-text);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--pk-holo);
+  outline-offset: 3px;
+}
+
+.rule {
+  height: 1px;
+  margin: 12px 24px 0;
+  background: rgba(92, 225, 230, 0.35);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px 8px;
+  overflow-y: auto;
+}
+
+.capture {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+}
+
+.capture[data-empty] {
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(135deg, #151426 0 8px, #111020 8px 16px);
+  color: var(--pk-text-dim);
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+}
+
+.tagline {
+  color: var(--pk-text-dim);
+  letter-spacing: 0.16em;
+}
+
+.text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #c9c6dc;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.meta dt {
+  color: var(--pk-text-dim);
+  font-size: 10px;
+}
+
+.meta dd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.highlights li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px 22px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--pk-text-dim);
+}
+
+.pager button {
+  all: unset;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--pk-text);
+}
+
+.pager button:focus-visible {
+  outline: 2px solid var(--pk-holo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open] {
+    animation: fade 0.2s linear;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  /* Mobile : panneau en feuille depuis le bas (maquette H2). */
+  .dialog {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 88dvh;
+    margin: auto 0 0;
+  }
+}

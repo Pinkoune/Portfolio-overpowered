@@ -1,0 +1,16 @@
+# TODO: niveaux proposés par Claude, à valider par Jérémy.
+order: 3
+code: MOD-03
+name: { fr: Systèmes & réseaux, en: Systems & networking }
+description:
+  fr: Les fondations, du BTS SIO au homelab.
+  en: The foundations, from my BTS SIO to the homelab.
+skills:
+  - { name: Linux, level: 4 }
+  - { name: Proxmox, level: 4 }
+  - { name: WireGuard, level: 3 }
+  - name: Reverse proxy
+    level: 3
+    note: { fr: SWAG / nginx, en: SWAG / nginx }
+  - { name: Windows Server, level: 3 }
+  - { name: Cisco, level: 2 }

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&family=Instrument+Sans:wght@400..700&display=swap">
+<script src="./pinkoune-3d.js"></script>
+<style>
+body{margin:0;background:#050409;color:#EEECF5;-webkit-font-smoothing:antialiased}
+a{color:#5CE1E6;text-decoration:none}a:hover{color:#FFB8D5}
+</style>
+</helmet>
+
+<div style="width:2720px;background:#050409;padding:80px 64px 160px;font-family:'Instrument Sans',sans-serif;color:#EEECF5;display:flex;flex-direction:column;gap:96px">
+
+<header style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #22213A;padding-bottom:32px">
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">Pinkoune · 02 — Écrans clés</div>
+    <h1 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:56px;letter-spacing:.06em;text-transform:uppercase">Maquettes</h1>
+  </div>
+  <div style="display:flex;gap:32px;font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase"><a href="Pinkoune DA.dc.html" style="color:#A29FBD">01 Identité</a><a href="Pinkoune Écrans.dc.html" style="color:#EEECF5">02 Écrans</a><a href="Pinkoune Motion.dc.html" style="color:#A29FBD">03 Motion</a><span style="color:#A29FBD">Desktop 1280 × 800 · Mobile 390 × 844</span></div>
+</header>
+
+<!-- ROW 1 -->
+<div style="display:grid;grid-template-columns:1280px 1280px;gap:96px">
+
+<!-- A INTRO -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">A</span><span>Chargement / intro</span><span style="color:#A29FBD">État « prêt » après 100 %</span></div>
+  <div data-screen-label="A Intro" style="width:1280px;height:800px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A">
+    <pk-blackhole cx="0.5" cy="0.22" scale="0.95" tilt="0.17" style="position:absolute;inset:0"></pk-blackhole>
+    <pk-ship scale="0.7" ry="-0.95" rx="0.25" style="position:absolute;left:800px;top:60px;width:420px;height:280px"></pk-ship>
+    <div style="position:absolute;left:40px;top:34px;display:flex;gap:24px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#A29FBD"><span style="color:#EEECF5">PK-01 // Séquence d'approche</span><span>Orbite 03 · 0,42 c</span></div>
+    <div style="position:absolute;left:0;right:0;top:170px;display:flex;flex-direction:column;align-items:center;gap:26px">
+      <div style="width:52px;height:52px;display:grid;place-items:center"><div style="width:36px;height:36px;border:1px solid #FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><div style="width:14px;height:14px;background:#FF5FA2"></div></div></div>
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:76px;letter-spacing:.3em;margin-right:-.3em;text-transform:uppercase;line-height:1">Pinkoune</div>
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#A29FBD">Portfolio de Jérémy Barcelo · DevOps &amp; plateforme</div>
+      <div style="width:380px;display:flex;flex-direction:column;gap:10px;margin-top:22px">
+        <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase"><span>Systèmes en ligne</span><span style="color:#FF5FA2">100 %</span></div>
+        <div style="height:2px;background:#FF5FA2"></div>
+      </div>
+      <button style="all:unset;cursor:pointer;margin-top:8px;display:flex;align-items:center;gap:14px;background:#FF5FA2;color:#07060D;font-family:'Martian Mono',monospace;font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:16px 28px;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)">Embarquer<span style="border:1px solid #07060D;padding:2px 6px;font-size:10px;letter-spacing:.1em">Entrée</span></button>
+    </div>
+    <div style="position:absolute;left:40px;bottom:36px;display:flex;flex-direction:column;gap:7px;font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">
+      <span>&gt; Amarrage au signal PK-01 ........ OK</span>
+      <span>&gt; Calibrage du disque d'accrétion .. OK</span>
+      <span>&gt; Réveil du pilote .................. OK</span>
+      <span style="color:#EEECF5">&gt; Café du pilote ................... OK_</span>
+    </div>
+    <div style="position:absolute;right:40px;bottom:36px;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase"><span style="color:#A29FBD">Son activé · casque conseillé</span><a href="#G" style="color:#EEECF5;border-bottom:1px solid #3B3960;padding-bottom:3px">Préférer le mode classique</a></div>
+  </div>
+</div>
+
+<!-- B PONT -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">B</span><span>Le pont · à propos</span><span style="color:#A29FBD">Arrivée, Pinkoune salue</span></div>
+  <div data-screen-label="B Pont" style="width:1280px;height:800px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A">
+    <pk-blackhole cx="0.58" cy="0.62" scale="0.85" tilt="0.18" style="position:absolute;inset:0"></pk-blackhole>
+    <svg viewBox="0 0 1280 800" width="1280" height="800" style="position:absolute;inset:0">
+      <polygon points="0,0 1280,0 1030,90 250,90" fill="#151426"></polygon>
+      <polygon points="0,0 250,90 130,220 0,250" fill="#201F36"></polygon>
+      <polygon points="1280,0 1280,250 1150,220 1030,90" fill="#0D0C17"></polygon>
+      <polygon points="0,250 130,220 130,470 0,560" fill="#251F3D"></polygon>
+      <polygon points="1280,250 1280,560 1150,470 1150,220" fill="#151426"></polygon>
+      <polygon points="250,560 1030,560 1070,605 210,605" fill="#3A2F52"></polygon>
+      <polygon points="0,560 130,470 250,560 210,605 0,700" fill="#1A1830"></polygon>
+      <polygon points="1280,560 1150,470 1030,560 1070,605 1280,700" fill="#0F0E1C"></polygon>
+      <polygon points="0,700 210,605 1070,605 1280,700 1280,800 0,800" fill="#0B0A15"></polygon>
+      <polygon points="420,650 860,650 920,720 360,720" fill="#201F36"></polygon>
+      <polygon points="360,720 920,720 900,800 380,800" fill="#151426"></polygon>
+      <polygon points="700,662 822,662 838,702 690,702" fill="rgba(92,225,230,.16)" stroke="#5CE1E6" stroke-width="1"></polygon>
+      <polygon points="458,662 560,662 552,702 442,702" fill="rgba(255,95,162,.12)" stroke="#3B3960" stroke-width="1"></polygon>
+      <polygon points="30,300 100,285 100,470 30,500" fill="#0D0C17" stroke="#3B3960" stroke-width="1"></polygon>
+      <polygon points="1180,285 1250,300 1250,500 1180,470" fill="#07060D" stroke="#3B3960" stroke-width="1"></polygon>
+      <polygon points="250,90 1030,90 1150,220 1150,470 1030,560 250,560 130,470 130,220" fill="none" stroke="#FF5FA2" stroke-opacity=".55" stroke-width="1.5"></polygon>
+      <line x1="210" y1="605" x2="1070" y2="605" stroke="#FF5FA2" stroke-width="1.5"></line>
+      <line x1="360" y1="720" x2="920" y2="720" stroke="#FF5FA2" stroke-width="1.5"></line>
+    </svg>
+    <pk-penguin pose="salut" view="-0.2" warm="" style="position:absolute;left:530px;top:452px;width:200px;height:260px"></pk-penguin>
+
+    <div style="position:absolute;left:930px;top:200px;display:flex;align-items:center;gap:12px">
+      <div style="width:8px;height:8px;background:#FFB547;transform:rotate(45deg)"></div><div style="width:48px;height:1px;background:#FFB547"></div>
+      <div style="display:flex;flex-direction:column;gap:4px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FFB547">La Pupille</span><span style="color:#EEECF5">Trou noir · 4,1 M☉</span></div>
+    </div>
+    <div style="position:absolute;left:52px;top:372px;display:flex;align-items:center;gap:10px">
+      <div style="width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center"><div style="width:6px;height:6px;background:#5CE1E6"></div></div>
+      <div style="display:flex;flex-direction:column;gap:3px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#5CE1E6">PK-02</span><span>Labo</span></div>
+    </div>
+    <div style="position:absolute;right:52px;top:372px;display:flex;align-items:center;gap:10px;flex-direction:row-reverse">
+      <div style="width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center"><div style="width:6px;height:6px;background:#5CE1E6"></div></div>
+      <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#5CE1E6">PK-03</span><span>Armurerie</span></div>
+    </div>
+    <div style="position:absolute;left:752px;top:600px;display:flex;align-items:center;gap:10px">
+      <div style="width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:rgba(7,6,13,.6)"><div style="width:6px;height:6px;background:#5CE1E6"></div></div>
+      <div style="display:flex;flex-direction:column;gap:3px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#5CE1E6">Inspecter · E</span><span>Fiche pilote</span></div>
+    </div>
+
+    <div style="position:absolute;left:40px;bottom:126px;width:390px;background:rgba(13,12,23,.88);border:1px solid #3B3960;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#FF5FA2"><span style="width:7px;height:7px;background:#FF5FA2;transform:rotate(45deg)"></span>Pinkoune · pilote</div>
+      <p style="margin:0;font-size:16px;line-height:1.5">Bienvenue à bord ! Moi c'est Pinkoune, je pilote. Jérémy, lui, fait tourner l'infra. On visite ?</p>
+      <div style="display:flex;gap:18px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span style="display:flex;gap:8px;align-items:center"><span style="border:1px solid #EEECF5;padding:1px 5px;font-size:9px">Entrée</span>Oui, chef</span><span style="color:#A29FBD">Je me débrouille</span></div>
+    </div>
+    <dc-import name="Pinkoune HUD" room="{{ 0 }}" visited="{{ 1 }}" rank="01" rank-name="Passager clandestin" xp="50 / 150" xp-pct="{{ 33 }}" ach="01/24" hint-size="1280px,800px" style="position:absolute;inset:0"></dc-import>
+  </div>
+</div>
+</div>
+
+<!-- ROW 2 -->
+<div style="display:grid;grid-template-columns:1280px 1280px;gap:96px">
+
+<!-- C LABO -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">C</span><span>Salle ouverte · Labo</span><span style="color:#A29FBD">Panneau holographique projets</span></div>
+  <div data-screen-label="C Labo" style="width:1280px;height:800px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A">
+    <svg viewBox="0 0 1280 800" width="1280" height="800" style="position:absolute;inset:0">
+      <polygon points="0,0 1280,0 1100,80 180,80" fill="#0D0C17"></polygon>
+      <polygon points="180,80 1100,80 1100,480 180,480" fill="#151426"></polygon>
+      <polygon points="0,0 180,80 180,480 0,620" fill="#201F36"></polygon>
+      <polygon points="1280,0 1100,80 1100,480 1280,620" fill="#0D0C17"></polygon>
+      <polygon points="0,620 180,480 1100,480 1280,620 1280,800 0,800" fill="#0B0A15"></polygon>
+      <polygon points="230,150 300,110 370,150 370,230 300,270 230,230" fill="#07060D" stroke="#2E2C4A" stroke-width="6"></polygon>
+      <polygon points="290,330 470,330 430,550 330,550" fill="rgba(92,225,230,.07)"></polygon>
+      <polygon points="300,560 340,540 420,540 460,560 420,580 340,580" fill="#2E2C4A"></polygon>
+      <polygon points="300,560 340,580 420,580 460,560 460,600 420,620 340,620 300,600" fill="#201F36"></polygon>
+      <polygon points="340,540 420,540 460,560 420,580 340,580 300,560" fill="none" stroke="#5CE1E6" stroke-width="1"></polygon>
+      <line x1="180" y1="480" x2="1100" y2="480" stroke="#FF5FA2" stroke-width="1.5"></line>
+      <line x1="0" y1="620" x2="180" y2="480" stroke="#3B3960" stroke-width="1"></line>
+    </svg>
+    <pk-blackhole cx="0.5" cy="0.5" scale="1.4" tilt="0.2" style="position:absolute;left:233px;top:112px;width:134px;height:156px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></pk-blackhole>
+    <pk-ship scale="1.25" ry="-0.5" rx="0.3" style="position:absolute;left:240px;top:300px;width:280px;height:200px;opacity:.9"></pk-ship>
+    <pk-penguin pose="pointe-d" view="0.45" warm="" style="position:absolute;left:470px;top:432px;width:200px;height:270px"></pk-penguin>
+
+    <div style="position:absolute;right:40px;top:92px;width:520px;bottom:120px;background:rgba(13,12,23,.86);border:1px solid rgba(92,225,230,.35);box-sizing:border-box;padding:22px 24px;display:flex;flex-direction:column;gap:16px">
+      <div style="position:absolute;left:-1px;top:-1px;width:16px;height:16px;border-left:2px solid #5CE1E6;border-top:2px solid #5CE1E6"></div>
+      <div style="position:absolute;right:-1px;top:-1px;width:16px;height:16px;border-right:2px solid #5CE1E6;border-top:2px solid #5CE1E6"></div>
+      <div style="position:absolute;left:-1px;bottom:-1px;width:16px;height:16px;border-left:2px solid #5CE1E6;border-bottom:2px solid #5CE1E6"></div>
+      <div style="position:absolute;right:-1px;bottom:-1px;width:16px;height:16px;border-right:2px solid #5CE1E6;border-bottom:2px solid #5CE1E6"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase"><span style="display:flex;align-items:center;gap:10px;color:#5CE1E6"><span style="width:7px;height:7px;background:#5CE1E6;transform:rotate(45deg)"></span>PK-02 · Labo · Projets</span><span style="color:#A29FBD">Fermer · Échap</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #3B3960;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">
+        <span style="padding:10px 0;border-bottom:2px solid #5CE1E6;margin-bottom:-1px;color:#EEECF5">01 Orbital</span><span style="padding:10px 0;color:#A29FBD">02 Pingu CI</span><span style="padding:10px 0;color:#A29FBD">03 Nébuleuse</span><span style="padding:10px 0;color:#A29FBD">04 PK-01</span>
+      </div>
+      <div style="height:170px;flex:none;background:repeating-linear-gradient(135deg,#151426 0 8px,#111020 8px 16px);display:grid;place-items:center;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;color:#A29FBD;text-transform:uppercase">capture · Orbital</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:30px;letter-spacing:.06em;text-transform:uppercase;line-height:1.05">Orbital</div>
+        <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#A29FBD">Plateforme de déploiement GitOps</div>
+      </div>
+      <p style="margin:0;font-size:15px;line-height:1.55;color:#C9C6DC;text-wrap:pretty">Un portail interne où chaque équipe déploie son service sur Kubernetes en une merge request. ArgoCD synchronise, Terraform provisionne, personne ne touche à kubectl en prod.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">
+        <div style="display:flex;flex-direction:column;gap:5px"><span style="color:#A29FBD">Rôle</span><span>Infra &amp; CI</span></div>
+        <div style="display:flex;flex-direction:column;gap:5px"><span style="color:#A29FBD">Année</span><span>2025</span></div>
+        <div style="display:flex;flex-direction:column;gap:5px"><span style="color:#A29FBD">Statut</span><span style="display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;background:#5CE1E6;transform:rotate(45deg)"></span>En orbite</span></div>
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;gap:10px">
+          <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 14px;border:1px solid #3B3960">Code source ↗</span>
+          <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 4px;color:#5CE1E6;display:flex;gap:8px;align-items:center"><span style="border:1px solid #5CE1E6;padding:1px 5px;font-size:9px">D</span>Démo</span>
+        </div>
+        <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;color:#A29FBD">‹ 01 / 04 ›</span>
+      </div>
+    </div>
+    <dc-import name="Pinkoune HUD" room="{{ 1 }}" visited="{{ 1 }}" rank="03" rank-name="Cadet" xp="520 / 800" xp-pct="{{ 30 }}" ach="04/24" hint-size="1280px,800px" style="position:absolute;inset:0"></dc-import>
+  </div>
+</div>
+
+<!-- D HUD -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">D</span><span>HUD · anatomie</span><span style="color:#A29FBD">Composant Pinkoune HUD</span></div>
+  <div data-screen-label="D HUD" style="width:1280px;height:800px;position:relative;overflow:hidden;background:#0B0A14;outline:1px solid #22213A;background-image:linear-gradient(#131222 1px,transparent 1px),linear-gradient(90deg,#131222 1px,transparent 1px);background-size:40px 40px">
+    <dc-import name="Pinkoune HUD" room="{{ 3 }}" visited="{{ 5 }}" hint-size="1280px,800px" style="position:absolute;inset:0"></dc-import>
+    <div style="position:absolute;left:40px;bottom:126px;width:330px;background:rgba(13,12,23,.88);border:1px solid #3B3960;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#FF5FA2"><span style="width:7px;height:7px;background:#FF5FA2;transform:rotate(45deg)"></span>Pinkoune · pilote</div>
+      <p style="margin:0;font-size:15px;line-height:1.5">Les Archives. Ici on garde tout, même les logs de 2019.</p>
+    </div>
+    <div style="position:absolute;left:140px;top:86px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">1</span></div>
+    <div style="position:absolute;left:629px;top:62px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">2</span></div>
+    <div style="position:absolute;left:906px;top:80px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">3</span></div>
+    <div style="position:absolute;left:972px;top:80px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">4</span></div>
+    <div style="position:absolute;left:1040px;top:80px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">5</span></div>
+    <div style="position:absolute;left:1162px;top:80px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">6</span></div>
+    <div style="position:absolute;left:629px;top:690px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">7</span></div>
+    <div style="position:absolute;left:380px;top:556px;width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center;background:#0B0A14"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;color:#5CE1E6">8</span></div>
+
+    <div style="position:absolute;left:300px;right:300px;top:170px;display:grid;grid-template-columns:1fr 1fr;gap:22px 40px">
+      <sc-for list="{{ hudLegend }}" as="l" hint-placeholder-count="8">
+        <div style="display:flex;gap:14px">
+          <span style="font-family:'Martian Mono',monospace;font-size:11px;color:#5CE1E6;width:14px;flex:none">{{ l.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:13px;letter-spacing:.12em;text-transform:uppercase">{{ l.t }}</span><span style="font-size:13px;line-height:1.45;color:#A29FBD">{{ l.d }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="position:absolute;left:300px;right:300px;top:520px;border-top:1px solid #3B3960;padding-top:16px;display:flex;gap:24px;flex-wrap:wrap;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#A29FBD">
+      <span><span style="color:#EEECF5">1–7</span> salles</span><span><span style="color:#EEECF5">M</span> menu</span><span><span style="color:#EEECF5">S</span> son</span><span><span style="color:#EEECF5">L</span> langue</span><span><span style="color:#EEECF5">C</span> classique</span><span><span style="color:#EEECF5">E</span> inspecter</span><span><span style="color:#EEECF5">Échap</span> fermer</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ROW 3 -->
+<div style="display:grid;grid-template-columns:1280px 1280px;gap:96px">
+
+<!-- E SUCCES -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">E</span><span>Succès débloqué</span><span style="color:#A29FBD">Toast + gain d'XP · reste 4 s</span></div>
+  <div data-screen-label="E Succès" style="width:1280px;height:800px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A">
+    <pk-blackhole cx="0.5" cy="0.5" scale="1.5" tilt="0.18" style="position:absolute;inset:0"></pk-blackhole>
+    <svg viewBox="0 0 1280 800" width="1280" height="800" style="position:absolute;inset:0">
+      <polygon points="0,640 1280,640 1280,800 0,800" fill="#0B0A15"></polygon>
+      <polygon points="0,600 1280,600 1280,640 0,640" fill="#3A2F52"></polygon>
+      <line x1="0" y1="640" x2="1280" y2="640" stroke="#FF5FA2" stroke-width="1.5"></line>
+    </svg>
+    <dc-import name="Pinkoune HUD" room="{{ 0 }}" visited="{{ 3 }}" rank="05" rank-name="Pilote" xp="1 340 / 1 400" xp-pct="{{ 72 }}" ach="08/24" hint-size="1280px,800px" style="position:absolute;inset:0"></dc-import>
+    <div style="position:absolute;left:94px;top:84px;font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.14em;color:#FF5FA2">+100 XP</div>
+    <div style="position:absolute;right:32px;top:84px;width:400px;background:rgba(13,12,23,.92);border:1px solid #3B3960;box-sizing:border-box">
+      <div style="height:2px;background:#FFB547"></div>
+      <div style="display:flex;gap:18px;padding:18px 20px 18px 18px;align-items:center">
+        <div style="width:54px;height:54px;flex:none;display:grid;place-items:center"><div style="width:38px;height:38px;border:1px solid #FFB547;transform:rotate(45deg);display:grid;place-items:center"><div style="width:20px;height:20px;background:#FFB547"></div></div></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase"><span style="color:#FFB547">Succès débloqué</span><span style="color:#FFB547">+100 XP</span></div>
+          <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:17px;letter-spacing:.08em;text-transform:uppercase">Horizon des événements</div>
+          <div style="font-size:14px;line-height:1.45;color:#A29FBD">Tu as fixé la Pupille 10 s. Elle t'a fixé aussi.</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:10px 20px;border-top:1px solid #22213A;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD"><span>08 / 24 · Pont 3 / 4</span><span>Voir · T</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- F RANG -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">F</span><span>Montée de rang</span><span style="color:#A29FBD">Plein écran, bloque l'input 1,2 s</span></div>
+  <div data-screen-label="F Rang" style="width:1280px;height:800px;position:relative;overflow:hidden;background:#07060D;outline:1px solid #22213A">
+    <pk-blackhole cx="0.5" cy="0.5" scale="1.2" tilt="0.18" glow="1.4" style="position:absolute;inset:0;opacity:.35"></pk-blackhole>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px">
+      <div style="width:240px;height:240px;display:grid;place-items:center;position:relative">
+        <div style="position:absolute;width:168px;height:168px;border:1px solid rgba(255,181,71,.3);transform:rotate(45deg)"></div>
+        <div style="position:absolute;width:128px;height:128px;border:1px solid #FFB547;transform:rotate(45deg)"></div>
+        <div style="position:absolute;width:88px;height:88px;background:#FFB547;transform:rotate(45deg)"></div>
+        <span style="position:relative;font-family:'Martian Mono',monospace;font-size:26px;font-weight:500;color:#07060D">06</span>
+      </div>
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#FFB547">Nouveau rang</div>
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:92px;line-height:1;letter-spacing:.12em;margin-right:-.12em;text-transform:uppercase">Capitaine</div>
+      <div style="display:flex;gap:28px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD"><span style="display:flex;gap:8px;align-items:center"><span style="width:6px;height:6px;background:#FF5FA2;transform:rotate(45deg)"></span>Salle des trophées débloquée</span><span style="display:flex;gap:8px;align-items:center"><span style="width:6px;height:6px;background:#FF5FA2;transform:rotate(45deg)"></span>Pinkoune gagne une cape</span></div>
+      <button style="all:unset;cursor:pointer;margin-top:14px;display:flex;align-items:center;gap:14px;background:#FF5FA2;color:#07060D;font-family:'Martian Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:14px 24px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)">Continuer<span style="border:1px solid #07060D;padding:2px 6px;font-size:10px">Entrée</span></button>
+    </div>
+    <pk-penguin pose="salut" view="0.35" warm="" style="position:absolute;left:110px;top:430px;width:240px;height:320px"></pk-penguin>
+    <div style="position:absolute;right:40px;bottom:36px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">Prochain · Empereur · 2 000 XP</div>
+  </div>
+</div>
+</div>
+
+<!-- ROW 4 : CLASSIQUE + MOBILE -->
+<div style="display:grid;grid-template-columns:1280px 1280px;gap:96px;align-items:start">
+
+<!-- G CLASSIQUE DESKTOP -->
+<div id="G" style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">G</span><span>Mode classique · desktop</span><span style="color:#A29FBD">Sans WebGL, images précalculées</span></div>
+  <div data-screen-label="G Classique" style="width:1280px;position:relative;background:#07060D;outline:1px solid #22213A">
+    <div style="position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 56px;border-bottom:1px solid #22213A;background:rgba(7,6,13,.92)">
+      <div style="display:flex;align-items:center;gap:12px;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:16px;letter-spacing:.22em;text-transform:uppercase"><span style="width:10px;height:10px;background:#FF5FA2;transform:rotate(45deg)"></span>Pinkoune</div>
+      <div style="display:flex;gap:28px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD"><span style="color:#EEECF5">À propos</span><span>Projets</span><span>Stack</span><span>Parcours</span><span>Hangar</span><span>Contact</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div style="display:flex;border:1px solid #3B3960;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;height:36px;box-sizing:border-box"><span style="padding:0 10px;display:grid;place-items:center;background:#EEECF5;color:#07060D">FR</span><span style="padding:0 10px;display:grid;place-items:center;color:#A29FBD">EN</span></div>
+        <span style="height:36px;box-sizing:border-box;display:flex;align-items:center;padding:0 14px;border:1px solid #FF5FA2;color:#FF5FA2;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase">Embarquer en 3D</span>
+      </div>
+    </div>
+
+    <section style="display:grid;grid-template-columns:1fr 520px;gap:48px;padding:96px 56px 88px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">Jérémy Barcelo · Toulouse</div>
+        <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:60px;line-height:1.02;letter-spacing:.04em;text-transform:uppercase">DevOps &amp; plateforme, en orbite.</h2>
+        <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:560px;text-wrap:pretty">Étudiant en MSc Pro à Epitech Toulouse (diplôme en septembre 2027) et alternant DevOps / plateforme chez Capgemini depuis janvier 2025. Je construis des pipelines fiables et, le soir, des vaisseaux.</p>
+        <div style="display:flex;gap:12px">
+          <span style="background:#FF5FA2;color:#07060D;font-family:'Martian Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px 22px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)">Voir les projets</span>
+          <span style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 21px;border:1px solid #3B3960">Envoyer un signal</span>
+        </div>
+      </div>
+      <div style="height:440px;position:relative;overflow:hidden;background:#000">
+        <pk-blackhole static="" cx="0.5" cy="0.62" scale="1.05" tilt="0.2" style="position:absolute;inset:0"></pk-blackhole>
+        <pk-penguin static="" pose="salut" view="-0.3" warm="" style="position:absolute;left:150px;top:170px;width:220px;height:280px"></pk-penguin>
+        <span style="position:absolute;left:14px;bottom:12px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#A29FBD">Rendu fixe · hero.webp</span>
+      </div>
+    </section>
+
+    <div style="margin:0 56px;padding:18px 22px;border:1px solid #22213A;display:flex;align-items:center;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase">
+      <span style="display:flex;align-items:center;gap:14px"><span style="width:9px;height:9px;background:#FF5FA2;transform:rotate(45deg)"></span>Rang 05 · Pilote<span style="color:#A29FBD">· 07 / 24 succès</span></span>
+      <span style="color:#A29FBD">Ta progression te suit dans le vaisseau →</span>
+    </div>
+
+    <section style="padding:96px 56px 40px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #3B3960;padding-bottom:18px"><h3 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:36px;letter-spacing:.08em;text-transform:uppercase">Projets</h3><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#A29FBD">PK-02 · LABO</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+          <div style="border:1px solid #22213A;display:flex;flex-direction:column" style-hover="border-color:#3B3960">
+            <div style="height:200px;background:repeating-linear-gradient(135deg,#151426 0 8px,#111020 8px 16px);display:grid;place-items:center;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;color:#A29FBD;text-transform:uppercase">capture · {{ p.name }}</div>
+            <div style="padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:20px;letter-spacing:.08em;text-transform:uppercase">{{ p.name }}</span><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">{{ p.year }}</span></div>
+              <p style="margin:0;font-size:15px;line-height:1.55;color:#A29FBD">{{ p.desc }}</p>
+              <div style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#EEECF5">{{ p.tags }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:72px 56px 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #3B3960;padding-bottom:18px"><h3 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:36px;letter-spacing:.08em;text-transform:uppercase">Stack</h3><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#A29FBD">PK-03</span></div>
+        <sc-for list="{{ stack }}" as="s" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:baseline">
+            <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">{{ s.cat }}</span>
+            <span style="font-size:16px;line-height:1.5">{{ s.items }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #3B3960;padding-bottom:18px"><h3 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:36px;letter-spacing:.08em;text-transform:uppercase">Parcours</h3><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#A29FBD">PK-04</span></div>
+        <div style="display:flex;flex-direction:column;gap:0;border-left:1px solid #3B3960;margin-left:5px">
+          <div style="position:relative;padding:0 0 28px 28px;display:flex;flex-direction:column;gap:6px"><span style="position:absolute;left:-6px;top:4px;width:10px;height:10px;background:#FF5FA2;transform:rotate(45deg)"></span><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;color:#FF5FA2">JANV. 2025 → AUJOURD'HUI</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:16px;letter-spacing:.08em;text-transform:uppercase">Alternant DevOps / plateforme · Capgemini</span><span style="font-size:15px;line-height:1.5;color:#A29FBD">CI/CD, Kubernetes, infrastructure as code pour des équipes produit.</span></div>
+          <div style="position:relative;padding:0 0 28px 28px;display:flex;flex-direction:column;gap:6px"><span style="position:absolute;left:-6px;top:4px;width:10px;height:10px;border:1px solid #EEECF5;background:#07060D;transform:rotate(45deg);box-sizing:border-box"></span><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;color:#A29FBD">→ SEPT. 2027</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:16px;letter-spacing:.08em;text-transform:uppercase">MSc Pro · Epitech Toulouse</span><span style="font-size:15px;line-height:1.5;color:#A29FBD">Mastère orienté projets, cloud et architecture.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin:72px 56px 0;padding:72px 0;border-top:1px solid #22213A;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">PK-07 · Salle de com</div>
+        <h3 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;letter-spacing:.06em;text-transform:uppercase">Envoyer un signal</h3>
+        <div style="display:flex;gap:28px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.08em"><span style="color:#5CE1E6">contact@pinkoune.dev</span><span>GitHub · Pinkoune</span><span>LinkedIn</span></div>
+      </div>
+      <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">© 2026 Pinkoune · fait main à Toulouse</span>
+    </section>
+  </div>
+</div>
+
+<!-- MOBILE -->
+<div style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:baseline;gap:16px;font-family:'Martian Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#FF5FA2">H</span><span>Mobile</span><span style="color:#A29FBD">HUD replié · panneaux en feuille · menu plein écran</span></div>
+  <div style="display:grid;grid-template-columns:repeat(3,390px);gap:55px 55px">
+
+    <!-- M1 -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div data-screen-label="H1 Mobile pont" style="width:390px;height:844px;position:relative;overflow:hidden;background:#07060D;border-radius:44px;outline:1px solid #2E2C4A">
+        <pk-blackhole cx="0.5" cy="0.6" scale="0.75" tilt="0.18" style="position:absolute;inset:0"></pk-blackhole>
+        <svg viewBox="0 0 390 844" width="390" height="844" style="position:absolute;inset:0">
+          <polygon points="0,610 390,580 390,844 0,844" fill="#0B0A15"></polygon>
+          <polygon points="50,650 340,630 360,700 30,720" fill="#201F36"></polygon>
+          <line x1="30" y1="720" x2="360" y2="700" stroke="#FF5FA2" stroke-width="1.5"></line>
+          <line x1="0" y1="610" x2="390" y2="580" stroke="#3B3960" stroke-width="1"></line>
+        </svg>
+        <pk-penguin pose="idle" view="-0.25" warm="" style="position:absolute;left:115px;top:470px;width:160px;height:210px"></pk-penguin>
+        <div style="position:absolute;left:20px;right:20px;top:58px;display:flex;align-items:center;gap:12px;font-family:'Martian Mono',monospace">
+          <div style="width:36px;height:36px;display:grid;place-items:center;flex:none"><div style="width:25px;height:25px;background:#FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><span style="transform:rotate(-45deg);font-size:10px;font-weight:500;color:#07060D">05</span></div></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:3px;font-size:10px;letter-spacing:.16em;text-transform:uppercase"><span>Pilote</span><span style="color:#A29FBD">1 340 / 1 400</span></div>
+          <div style="height:44px;border:1px solid #3B3960;display:flex;align-items:center;gap:8px;padding:0 12px;box-sizing:border-box;font-size:11px;background:rgba(7,6,13,.5)"><span style="width:8px;height:8px;background:#FFB547;transform:rotate(45deg)"></span>08</div>
+          <div style="width:44px;height:44px;border:1px solid #3B3960;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;box-sizing:border-box;background:rgba(7,6,13,.5)"><span style="width:16px;height:1px;background:#EEECF5"></span><span style="width:16px;height:1px;background:#EEECF5"></span><span style="width:16px;height:1px;background:#EEECF5"></span></div>
+        </div>
+        <div style="position:absolute;left:20px;right:20px;top:112px;height:2px;background:rgba(59,57,96,.8)"><div style="width:72%;height:2px;background:#FF5FA2"></div></div>
+        <div style="position:absolute;left:20px;right:20px;top:130px;background:rgba(13,12,23,.94);border:1px solid #3B3960">
+          <div style="height:2px;background:#FFB547"></div>
+          <div style="display:flex;gap:14px;padding:12px 14px;align-items:center">
+            <div style="width:30px;height:30px;flex:none;display:grid;place-items:center"><div style="width:20px;height:20px;background:#FFB547;transform:rotate(45deg)"></div></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#FFB547">Succès · +100 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Horizon des événements</span></div>
+          </div>
+        </div>
+        <div style="position:absolute;left:20px;right:20px;bottom:132px;background:rgba(13,12,23,.9);border:1px solid #3B3960;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#FF5FA2">◆ Pinkoune</div>
+          <p style="margin:0;font-size:15px;line-height:1.45">Glisse pour changer de salle. Touche-moi pour un salut.</p>
+        </div>
+        <div style="position:absolute;left:20px;right:20px;bottom:40px;display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border:1px solid #3B3960;display:grid;place-items:center;font-family:'Martian Mono',monospace;font-size:16px;flex:none">‹</div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:9px">
+            <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase">PK-01 · Pont</span>
+            <div style="display:flex;gap:9px;align-items:center"><span style="width:8px;height:8px;background:#FF5FA2;transform:rotate(45deg)"></span><span style="width:6px;height:6px;border:1px solid #EEECF5;transform:rotate(45deg)"></span><span style="width:6px;height:6px;border:1px solid #EEECF5;transform:rotate(45deg)"></span><span style="width:6px;height:6px;border:1px solid #3B3960;transform:rotate(45deg)"></span><span style="width:6px;height:6px;border:1px solid #3B3960;transform:rotate(45deg)"></span><span style="width:6px;height:6px;border:1px solid #3B3960;transform:rotate(45deg)"></span><span style="width:6px;height:6px;border:1px solid #3B3960;transform:rotate(45deg)"></span></div>
+          </div>
+          <div style="width:44px;height:44px;border:1px solid #3B3960;display:grid;place-items:center;font-family:'Martian Mono',monospace;font-size:16px;flex:none">›</div>
+        </div>
+      </div>
+      <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">H1 · Pont + toast</span>
+    </div>
+
+    <!-- M2 -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div data-screen-label="H2 Mobile panneau" style="width:390px;height:844px;position:relative;overflow:hidden;background:#151426;border-radius:44px;outline:1px solid #2E2C4A">
+        <pk-ship scale="1.1" ry="-0.5" rx="0.3" style="position:absolute;left:10px;top:70px;width:240px;height:170px"></pk-ship>
+        <pk-penguin pose="pointe-d" view="0.45" warm="" style="position:absolute;left:220px;top:60px;width:150px;height:200px"></pk-penguin>
+        <div style="position:absolute;left:0;right:0;top:250px;bottom:0;background:#0D0C17;border-top:1px solid rgba(92,225,230,.45);padding:12px 20px 28px;display:flex;flex-direction:column;gap:14px">
+          <div style="width:40px;height:3px;background:#3B3960;align-self:center"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase"><span style="color:#5CE1E6">◆ PK-02 · Labo</span><span style="width:44px;height:44px;display:grid;place-items:center;border:1px solid #3B3960;font-size:14px;color:#EEECF5">×</span></div>
+          <div style="display:flex;gap:18px;border-bottom:1px solid #3B3960;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;overflow:hidden">
+            <span style="padding:10px 0;border-bottom:2px solid #5CE1E6;margin-bottom:-1px">01 Orbital</span><span style="padding:10px 0;color:#A29FBD">02 Pingu CI</span><span style="padding:10px 0;color:#A29FBD">03 Nébuleuse</span><span style="padding:10px 0;color:#A29FBD">04 PK-01</span>
+          </div>
+          <div style="height:150px;flex:none;background:repeating-linear-gradient(135deg,#151426 0 8px,#111020 8px 16px);display:grid;place-items:center;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#A29FBD;text-transform:uppercase">capture · Orbital</div>
+          <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:26px;letter-spacing:.06em;text-transform:uppercase;line-height:1">Orbital</div>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:#C9C6DC">Chaque équipe déploie son service sur Kubernetes en une merge request. ArgoCD synchronise, Terraform provisionne.</p>
+          <div style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase">Kubernetes · ArgoCD · Terraform</div>
+          <div style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <span style="height:48px;display:grid;place-items:center;border:1px solid #3B3960;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase">Code ↗</span>
+            <span style="height:48px;display:grid;place-items:center;border:1px solid #5CE1E6;color:#5CE1E6;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase">Démo</span>
+          </div>
+        </div>
+      </div>
+      <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">H2 · Panneau en feuille (glisser vers le bas pour fermer)</span>
+    </div>
+
+    <!-- M3 -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div data-screen-label="H3 Mobile menu" style="width:390px;height:844px;position:relative;overflow:hidden;background:#07060D;border-radius:44px;outline:1px solid #2E2C4A;padding:58px 20px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A29FBD">Plan du vaisseau</span><span style="width:44px;height:44px;display:grid;place-items:center;border:1px solid #3B3960;font-size:16px">×</span></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px;border:1px solid #22213A">
+          <div style="width:40px;height:40px;display:grid;place-items:center;flex:none"><div style="width:27px;height:27px;background:#FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:10px;font-weight:500;color:#07060D">05</span></div></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase"><span>Pilote</span><span style="color:#A29FBD">1 340 / 1 400</span></div><div style="height:2px;background:#22213A"><div style="width:72%;height:2px;background:#FF5FA2"></div></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ mRooms }}" as="r" hint-placeholder-count="7">
+            <div style="height:52px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #1A1930">
+              <span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.14em;color:#A29FBD;width:44px">{{ r.code }}</span>
+              <span style="flex:1;font-family:Archivo,sans-serif;font-stretch:125%;font-size:15px;letter-spacing:.1em;text-transform:uppercase">{{ r.name }}</span>
+              <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#A29FBD">{{ r.state }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">
+          <span style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1px solid #3B3960">Son<span style="color:#FF5FA2">On</span></span>
+          <span style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1px solid #3B3960">Langue<span><span>FR</span><span style="color:#A29FBD"> / EN</span></span></span>
+          <span style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1px solid #3B3960">Succès<span style="color:#FFB547">08/24</span></span>
+          <span style="height:48px;display:flex;align-items:center;justify-content:center;padding:0 14px;border:1px solid #EEECF5">Mode classique</span>
+        </div>
+      </div>
+      <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">H3 · Menu plein écran</span>
+    </div>
+
+    <!-- M4 -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div data-screen-label="H4 Mobile classique" style="width:390px;height:844px;position:relative;overflow:hidden;background:#07060D;border-radius:44px;outline:1px solid #2E2C4A">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:54px 20px 14px;border-bottom:1px solid #22213A">
+          <div style="display:flex;align-items:center;gap:10px;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:14px;letter-spacing:.2em;text-transform:uppercase"><span style="width:9px;height:9px;background:#FF5FA2;transform:rotate(45deg)"></span>Pinkoune</div>
+          <div style="display:flex;gap:8px"><span style="height:44px;padding:0 12px;display:grid;place-items:center;border:1px solid #FF5FA2;color:#FF5FA2;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em">3D</span><span style="width:44px;height:44px;border:1px solid #3B3960;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;box-sizing:border-box"><span style="width:16px;height:1px;background:#EEECF5"></span><span style="width:16px;height:1px;background:#EEECF5"></span><span style="width:16px;height:1px;background:#EEECF5"></span></span></div>
+        </div>
+        <div style="padding:32px 20px 0;display:flex;flex-direction:column;gap:18px">
+          <div style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#FF5FA2">Jérémy Barcelo · Toulouse</div>
+          <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:34px;line-height:1.05;letter-spacing:.03em;text-transform:uppercase">DevOps &amp; plateforme, en orbite.</h2>
+          <p style="margin:0;font-size:16px;line-height:1.55;color:#A29FBD">MSc Pro à Epitech Toulouse, alternant DevOps / plateforme chez Capgemini depuis janvier 2025.</p>
+          <span style="height:50px;display:grid;place-items:center;background:#FF5FA2;color:#07060D;font-family:'Martian Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)">Voir les projets</span>
+          <div style="height:230px;position:relative;overflow:hidden;background:#000;margin-top:6px">
+            <pk-blackhole static="" cx="0.5" cy="0.6" scale="1.1" tilt="0.2" style="position:absolute;inset:0"></pk-blackhole>
+            <pk-penguin static="" pose="salut" view="-0.3" warm="" style="position:absolute;left:105px;top:60px;width:140px;height:180px"></pk-penguin>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #3B3960;padding-bottom:12px;margin-top:14px"><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:22px;letter-spacing:.08em;text-transform:uppercase">Projets</span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;color:#A29FBD">PK-02</span></div>
+        </div>
+      </div>
+      <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">H4 · Mode classique</span>
+    </div>
+
+    <div style="grid-column:span 2;border-top:1px solid #3B3960;padding-top:22px;display:flex;flex-direction:column;gap:14px;align-self:start">
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:15px;letter-spacing:.14em;text-transform:uppercase">Règles mobile</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;font-size:14px;line-height:1.5;color:#A29FBD">
+        <span>Cibles tactiles 44 px minimum, marges latérales 20 px.</span>
+        <span>Le HUD garde rang, XP, succès et menu. Son, langue et Mode classique passent dans le menu.</span>
+        <span>Panneaux holo en feuille du bas, 70 % de la hauteur. Glisser vers le bas pour fermer.</span>
+        <span>Navigation par balayage horizontal + flèches. Les losanges indiquent la position.</span>
+        <span>DPR plafonné à 1,5, ombres coupées, 30 fps si la batterie est faible.</span>
+        <span>Sans WebGL ou avec « réduire les animations » : Mode classique proposé d'office.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hudLegend: [
+        { n: '1', t: 'Rang + XP', d: 'Losange de rang, nom, barre 3 px. Le gain s’affiche en rose clair avant de se remplir.' },
+        { n: '2', t: 'Salle courante', d: 'Code secteur + nom. Seul élément centré en haut.' },
+        { n: '3', t: 'Succès', d: 'Compteur ambre. Ouvre la Salle des trophées.' },
+        { n: '4', t: 'Son', d: 'Égaliseur animé quand le son joue, barres à plat en muet.' },
+        { n: '5', t: 'Langue', d: 'FR / EN, bascule instantanée sans recharger la scène.' },
+        { n: '6', t: 'Mode classique', d: 'Bascule vers la page scrollable. La progression est gardée.' },
+        { n: '7', t: 'Plan du vaisseau', d: '7 losanges reliés : plein = ici, contour = visité, gris = jamais vu.' },
+        { n: '8', t: 'Compagnon', d: 'Bulle de Pinkoune, 2 lignes max, se ferme seule après 6 s.' }
+      ],
+      projects: [
+        { name: 'Orbital', year: '2025', desc: 'Plateforme de déploiement GitOps : un service en prod en une merge request.', tags: 'Kubernetes · ArgoCD · Terraform' },
+        { name: 'Pingu CI', year: '2025', desc: 'Runners GitLab autoscalés qui s’éteignent tout seuls quand personne ne pousse.', tags: 'GitLab CI · Go · AWS' },
+        { name: 'Nébuleuse', year: '2024', desc: 'Tableau de bord d’observabilité qui transforme les métriques en carte du ciel.', tags: 'Prometheus · Grafana · TypeScript' },
+        { name: 'PK-01', year: '2026', desc: 'Ce portfolio : un vaisseau low-poly en three.js, déployé par sa propre CI.', tags: 'three.js · Vite · Docker' }
+      ],
+      stack: [
+        { cat: 'Infra', items: 'Kubernetes, Docker, Terraform, Ansible, Linux' },
+        { cat: 'CI/CD', items: 'GitLab CI, GitHub Actions, ArgoCD' },
+        { cat: 'Cloud', items: 'AWS, Azure' },
+        { cat: 'Code', items: 'Go, Python, Bash, TypeScript, three.js' }
+      ],
+      mRooms: [
+        { code: 'PK-01', name: 'Pont', state: 'Ici' },
+        { code: 'PK-02', name: 'Labo', state: 'Visité' },
+        { code: 'PK-03', name: 'Armurerie', state: 'Visité' },
+        { code: 'PK-04', name: 'Archives', state: '—' },
+        { code: 'PK-05', name: 'Hangar', state: '—' },
+        { code: 'PK-06', name: 'Trophées', state: 'Rang 06' },
+        { code: 'PK-07', name: 'Salle de com', state: '—' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

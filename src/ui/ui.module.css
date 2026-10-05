@@ -1,0 +1,248 @@
+/* ---------- Typo ---------- */
+.label {
+  font-family: var(--pk-font-hud);
+  font-stretch: 87.5%;
+  font-size: var(--pk-fs-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.kicker {
+  composes: label;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: var(--pk-pink);
+}
+
+.display {
+  font-family: var(--pk-font-display);
+  font-stretch: 125%;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* ---------- Losange ---------- */
+.diamond {
+  display: inline-block;
+  flex: none;
+  width: var(--size, 9px);
+  height: var(--size, 9px);
+  transform: rotate(45deg);
+  background: var(--color, var(--pk-pink));
+}
+
+.diamond[data-variant='outline'] {
+  background: transparent;
+  border: 1px solid var(--color, var(--pk-text));
+}
+
+.diamond[data-variant='locked'] {
+  background: transparent;
+  border: 1px solid var(--pk-line);
+}
+
+/* ---------- Boutons ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 13px 21px;
+  border: 1px solid var(--pk-line);
+  background: transparent;
+  color: var(--pk-text);
+  font-family: var(--pk-font-hud);
+  font-stretch: 87.5%;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    border-color var(--pk-dur-fast) var(--pk-ease-out),
+    background var(--pk-dur-fast) var(--pk-ease-out),
+    color var(--pk-dur-fast) var(--pk-ease-out);
+}
+
+.button:hover {
+  border-color: var(--pk-text);
+  color: var(--pk-text);
+}
+
+.button[data-variant='primary'] {
+  border: 0;
+  padding: 14px 22px;
+  background: var(--pk-pink);
+  color: var(--pk-void);
+  font-weight: 500;
+  clip-path: polygon(
+    var(--pk-cut) 0,
+    100% 0,
+    100% calc(100% - var(--pk-cut)),
+    calc(100% - var(--pk-cut)) 100%,
+    0 100%,
+    0 var(--pk-cut)
+  );
+}
+
+.button[data-variant='primary']:hover {
+  background: var(--pk-pink-soft);
+  color: var(--pk-void);
+}
+
+.button[data-variant='accent'] {
+  border-color: var(--pk-pink);
+  color: var(--pk-pink);
+}
+
+.button[data-variant='accent']:hover {
+  border-color: var(--pk-pink-soft);
+  color: var(--pk-pink-soft);
+}
+
+.button[data-variant='holo'] {
+  border-color: var(--pk-holo);
+  color: var(--pk-holo);
+}
+
+.button[data-variant='holo']:hover {
+  background: var(--pk-holo-wash);
+}
+
+.button[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-color: var(--pk-line);
+  color: var(--pk-text-dim);
+}
+
+.kbd {
+  border: 1px solid currentColor;
+  padding: 2px 6px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Tags ---------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  composes: label;
+  letter-spacing: 0.12em;
+  padding: 6px 10px;
+  border: 1px solid var(--pk-line);
+  color: var(--pk-text);
+}
+
+.tag[data-tone='holo'] {
+  border-color: var(--pk-holo);
+  color: var(--pk-holo);
+}
+
+.todo {
+  composes: label;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  padding: 3px 7px;
+  border: 1px dashed var(--pk-line);
+  color: var(--pk-text-dim);
+}
+
+.todo::before {
+  content: 'TODO';
+  color: var(--pk-amber);
+}
+
+/* ---------- Jauge de maîtrise ---------- */
+.gauge {
+  display: inline-flex;
+  gap: 7px;
+  padding: 0 2px;
+}
+
+/* ---------- Sélecteur de langue ---------- */
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--pk-line);
+  height: 40px;
+}
+
+.segmented button {
+  all: unset;
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  padding: 0 10px;
+  font-family: var(--pk-font-hud);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--pk-text-dim);
+  cursor: pointer;
+  transition:
+    background var(--pk-dur-fast) var(--pk-ease-out),
+    color var(--pk-dur-fast) var(--pk-ease-out);
+}
+
+.segmented button:hover {
+  color: var(--pk-text);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--pk-text);
+  color: var(--pk-void);
+}
+
+.segmented button:focus-visible {
+  outline: 2px solid var(--pk-holo);
+  outline-offset: 2px;
+}
+
+/* ---------- Cadre holographique (coins en équerre) ---------- */
+.holo {
+  position: relative;
+  background: var(--pk-panel);
+  border: 1px solid rgba(92, 225, 230, 0.35);
+  backdrop-filter: blur(16px);
+}
+
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 0 solid var(--pk-holo);
+  pointer-events: none;
+}
+
+.corner[data-pos='tl'] {
+  left: -1px;
+  top: -1px;
+  border-left-width: 2px;
+  border-top-width: 2px;
+}
+.corner[data-pos='tr'] {
+  right: -1px;
+  top: -1px;
+  border-right-width: 2px;
+  border-top-width: 2px;
+}
+.corner[data-pos='bl'] {
+  left: -1px;
+  bottom: -1px;
+  border-left-width: 2px;
+  border-bottom-width: 2px;
+}
+.corner[data-pos='br'] {
+  right: -1px;
+  bottom: -1px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}

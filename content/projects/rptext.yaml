@@ -1,0 +1,45 @@
+# Un fichier = un projet. Le nom du fichier (sans .yaml) sert d'identifiant.
+# Placement sur la carte stellaire : automatique ; surcharge possible avec
+# planet: { orbit, angle, size, color }.
+order: 1
+title: RPText
+tagline:
+  fr: RPG textuel multijoueur dans le navigateur
+  en: Multiplayer text RPG in the browser
+summary:
+  fr: Un RPG textuel esprit EPIC RPG, piloté par une barre de commande qui ouvre des fenêtres flottantes.
+  en: An EPIC RPG-style text RPG, driven by a command bar that opens floating windows.
+description:
+  - fr: >-
+      RPText se joue entièrement au clavier : une barre de commande ouvre des fenêtres flottantes
+      (inventaire, talents, combat…). Le combat est tactique et au tour par tour : le monstre
+      annonce son intention — attaquer, parer avec riposte ou interrompre — et le joueur adapte sa
+      réponse.
+    en: >-
+      RPText is played entirely from the keyboard: a command bar opens floating windows
+      (inventory, talents, combat…). Combat is tactical and turn-based: the monster announces its
+      intent — attack, parry with riposte, or interrupt — and the player adapts.
+  - fr: >-
+      Le jeu fonctionne en mode local sans backend, et passe en multijoueur via Firebase.
+    en: >-
+      The game runs locally with no backend, and switches to multiplayer through Firebase.
+highlights:
+  - {
+      fr: Combat à intentions annoncées (attaque / parade-riposte / interruption),
+      en: Telegraphed-intent combat (attack / parry-riposte / interrupt),
+    }
+  - {
+      fr: Arbres de talents par classe et six jauges de progression,
+      en: Per-class talent trees and six progression gauges,
+    }
+  - { fr: Saisons, en: Seasons }
+  - {
+      fr: 'Mode local hors ligne, multijoueur Firebase',
+      en: 'Offline local mode, Firebase multiplayer',
+    }
+stack: [Vite, React, TypeScript, Tailwind, Zustand, Firebase]
+context: perso
+status: wip # TODO: vérifier le statut
+links:
+  repo: https://github.com/Pinkoune/RPText
+todo: [media, demo, year]

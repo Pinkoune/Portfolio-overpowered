@@ -1,0 +1,7 @@
+order: 18
+scope: hud
+name: { fr: Personne ne vous entend, en: No one can hear you }
+how: { fr: Couper le son., en: Mute the sound. }
+flavor: { fr: "Dans l'espace, c'est réaliste.", en: "In space, that's realistic." }
+xp: 25
+trigger: { event: sound.mute }

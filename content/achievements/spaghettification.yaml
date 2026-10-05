@@ -1,0 +1,12 @@
+order: 5
+scope: bridge
+name: { fr: Spaghettification, en: Spaghettification }
+how: { fr: Zoomer au maximum vers le trou noir., en: Zoom all the way into the black hole. }
+flavor:
+  {
+    fr: Tu t'es étiré d'environ deux mètres. Ça te va bien.,
+    en: You stretched by about two metres. Suits you.,
+  }
+xp: 100
+secret: true
+trigger: { event: blackhole.zoom }

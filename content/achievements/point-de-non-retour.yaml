@@ -1,0 +1,7 @@
+order: 4
+scope: bridge
+name: { fr: Point de non-retour, en: Point of no return }
+how: { fr: Toucher le trou noir., en: Touch the black hole. }
+flavor: { fr: Rien n'en ressort. Pas même ton clic., en: Nothing comes out. Not even your click. }
+xp: 50
+trigger: { event: blackhole.click }

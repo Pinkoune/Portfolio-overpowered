@@ -1,0 +1,16 @@
+order: 101
+title: JobBoard
+tagline:
+  fr: Site d'offres d'emploi
+  en: Job listings website
+summary:
+  fr: Plateforme d'offres d'emploi en duo, Ruby on Rails côté API et Vue.js côté interface.
+  en: Job listings platform built as a pair, Ruby on Rails API and Vue.js front end.
+description:
+  - fr: Un site d'offres d'emploi réalisé en duo, avec une API Ruby on Rails, une interface Vue.js et une base MySQL.
+    en: A job listings website built as a pair, with a Ruby on Rails API, a Vue.js front end and a MySQL database.
+stack: [Ruby on Rails, Vue.js, MySQL]
+context: epitech # TODO: vérifier le contexte
+team: { fr: Duo, en: Pair }
+status: done
+archived: true

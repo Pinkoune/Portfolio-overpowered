@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&family=Instrument+Sans:wght@400..700&display=swap">
+<script src="./pinkoune-3d.js"></script>
+<style>
+body{margin:0;background:#07060D;color:#EEECF5;-webkit-font-smoothing:antialiased}
+a{color:#5CE1E6;text-decoration:none}a:hover{color:#FFB8D5}
+::selection{background:#FF5FA2;color:#07060D}
+</style>
+</helmet>
+
+<div style="width:1440px;margin:0 auto;background:#07060D;font-family:'Instrument Sans',sans-serif;color:#EEECF5">
+
+<nav style="display:flex;align-items:center;justify-content:space-between;padding:22px 64px;border-bottom:1px solid #22213A;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase">
+  <div style="display:flex;align-items:center;gap:14px"><span style="width:9px;height:9px;background:#FF5FA2;transform:rotate(45deg);display:block"></span><span>Pinkoune · Système de design</span></div>
+  <div style="display:flex;gap:32px"><a href="Pinkoune DA.dc.html" style="color:#EEECF5">01 Identité</a><a href="Pinkoune Écrans.dc.html" style="color:#A29FBD">02 Écrans</a><a href="Pinkoune Motion.dc.html" style="color:#A29FBD">03 Motion</a></div>
+</nav>
+
+<section data-screen-label="Couverture" style="position:relative;height:720px;overflow:hidden;border-bottom:1px solid #22213A">
+  <pk-blackhole cx="0.66" cy="0.5" scale="1.25" tilt="0.18" style="position:absolute;inset:0"></pk-blackhole>
+  <div style="position:absolute;left:64px;top:96px;display:flex;flex-direction:column;gap:28px;max-width:620px">
+    <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">Vaisseau PK-01 · Direction artistique v1.0</div>
+    <h1 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:120px;line-height:.95;letter-spacing:.04em;text-transform:uppercase">Pinkoune</h1>
+    <p style="margin:0;font-size:20px;line-height:1.55;color:#A29FBD;max-width:500px;text-wrap:pretty">Le portfolio de Jérémy Barcelo, en orbite. Un vaisseau low-poly, un trou noir facetté, un pingouin rose aux commandes.</p>
+  </div>
+  <div style="position:absolute;left:64px;bottom:56px;display:grid;grid-template-columns:repeat(6,auto);gap:40px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">
+    <a href="#moodboard" style="display:flex;flex-direction:column;gap:6px;color:#A29FBD"><span style="color:#EEECF5">01</span><span>Moodboard</span></a>
+    <a href="#palette" style="display:flex;flex-direction:column;gap:6px;color:#A29FBD"><span style="color:#EEECF5">02</span><span>Palette</span></a>
+    <a href="#typo" style="display:flex;flex-direction:column;gap:6px;color:#A29FBD"><span style="color:#EEECF5">03</span><span>Typographie</span></a>
+    <a href="#ui" style="display:flex;flex-direction:column;gap:6px;color:#A29FBD"><span style="color:#EEECF5">04</span><span>Composants</span></a>
+    <a href="#perso" style="display:flex;flex-direction:column;gap:6px;color:#A29FBD"><span style="color:#EEECF5">05</span><span>Personnage</span></a>
+    <a href="#progression" style="display:flex;flex-direction:column;gap:6px;color:#A29FBD"><span style="color:#EEECF5">06</span><span>Progression</span></a>
+  </div>
+  <div style="position:absolute;right:64px;bottom:56px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD;text-align:right;display:flex;flex-direction:column;gap:6px"><span style="color:#FFB547">◆ La Pupille</span><span>Trou noir · 4,1 M masses solaires</span></div>
+</section>
+
+<!-- 01 MOODBOARD -->
+<section id="moodboard" data-screen-label="01 Moodboard" style="padding:120px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:56px">
+  <header style="display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">01 — Moodboard</div>
+      <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Terminal en orbite</h2>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">Deux couches qui ne se mélangent pas. Le monde est en 3D low-poly : facettes plates, aucune texture, lumière émissive venue du trou noir. L'interface est un terminal fin et silencieux posé par-dessus : lignes de 1 px, losanges, capitales très espacées.</p>
+  </header>
+
+  <div style="display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:150px;gap:16px">
+    <div style="grid-column:span 7;grid-row:span 3;position:relative;background:#000;overflow:hidden">
+      <pk-blackhole scale="1.6" tilt="0.2" style="position:absolute;inset:0"></pk-blackhole>
+      <div style="position:absolute;left:20px;bottom:18px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase">La Pupille · disque facetté, Doppler rose / ambre</div>
+    </div>
+    <div style="grid-column:span 5;grid-row:span 2;position:relative;background:#0D0C17;overflow:hidden">
+      <pk-blackhole cx="0.12" cy="0.88" scale="0.7" tilt="0.25" glow="0.6" style="position:absolute;inset:0"></pk-blackhole>
+      <pk-ship scale="1.15" style="position:absolute;inset:0"></pk-ship>
+      <div style="position:absolute;left:20px;bottom:18px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase">Vaisseau PK-01 · anneau rotatif, coque hexagonale</div>
+    </div>
+    <div style="grid-column:span 2;grid-row:span 2;position:relative;background:#151426;overflow:hidden">
+      <pk-penguin spin="" platform="" dist="9.4" style="position:absolute;inset:0"></pk-penguin>
+    </div>
+    <div style="grid-column:span 3;grid-row:span 2;background:#0D0C17;border:1px solid #2E2C4A;padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative">
+      <div style="position:absolute;left:-1px;top:-1px;width:14px;height:14px;border-left:1px solid #5CE1E6;border-top:1px solid #5CE1E6"></div>
+      <div style="position:absolute;right:-1px;bottom:-1px;width:14px;height:14px;border-right:1px solid #5CE1E6;border-bottom:1px solid #5CE1E6"></div>
+      <div style="display:flex;align-items:center;gap:10px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#5CE1E6"><span style="width:7px;height:7px;border:1px solid #5CE1E6;transform:rotate(45deg);display:block"></span>Terminal · PK-02</div>
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:22px;letter-spacing:.1em;text-transform:uppercase">Labo</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD"><span>&gt; 04 projets chargés</span><span>&gt; pods: 4/4 running_</span></div>
+    </div>
+    <div style="grid-column:span 4;grid-row:span 1;display:flex">
+      <div style="flex:70;background:#07060D;border:1px solid #22213A"></div><div style="flex:14;background:#151426"></div><div style="flex:8;background:#2E2C4A"></div><div style="flex:4;background:#FF5FA2"></div><div style="flex:2;background:#FFB547"></div><div style="flex:2;background:#5CE1E6"></div>
+    </div>
+    <div style="grid-column:span 4;grid-row:span 1;border:1px solid #22213A;padding:20px 22px;display:flex;flex-wrap:wrap;align-content:center;gap:10px 22px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">
+      <span>Silence</span><span style="color:#FF5FA2">◆</span><span>Facettes</span><span style="color:#FF5FA2">◆</span><span>Lignes fines</span><span style="color:#FF5FA2">◆</span><span>Lumière émissive</span><span style="color:#FF5FA2">◆</span><span>Humour discret</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+    <div style="border-top:1px solid #FF5FA2;padding-top:20px;display:flex;flex-direction:column;gap:10px"><div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#FF5FA2">P1</div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:17px;letter-spacing:.08em;text-transform:uppercase">Le vide d'abord</div><p style="margin:0;font-size:15px;line-height:1.55;color:#A29FBD">Au moins 60 % de chaque écran reste noir. L'UI n'apparaît que quand on la sollicite.</p></div>
+    <div style="border-top:1px solid #FF5FA2;padding-top:20px;display:flex;flex-direction:column;gap:10px"><div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#FF5FA2">P2</div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:17px;letter-spacing:.08em;text-transform:uppercase">Une ligne, un pixel</div><p style="margin:0;font-size:15px;line-height:1.55;color:#A29FBD">Bordures 1 px, pas d'ombres portées, pas d'arrondis. Les coins sont coupés à 45°.</p></div>
+    <div style="border-top:1px solid #FF5FA2;padding-top:20px;display:flex;flex-direction:column;gap:10px"><div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#FF5FA2">P3</div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:17px;letter-spacing:.08em;text-transform:uppercase">Le losange ponctue</div><p style="margin:0;font-size:15px;line-height:1.55;color:#A29FBD">Puce, état, rang, point d'intérêt : tout repère est un losange. Plein = actif, vide = disponible.</p></div>
+    <div style="border-top:1px solid #FF5FA2;padding-top:20px;display:flex;flex-direction:column;gap:10px"><div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;color:#FF5FA2">P4</div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:17px;letter-spacing:.08em;text-transform:uppercase">La lumière vient de la Pupille</div><p style="margin:0;font-size:15px;line-height:1.55;color:#A29FBD">Contre-jours rose et ambre côté trou noir. Le cyan est réservé aux hologrammes.</p></div>
+  </div>
+</section>
+
+<!-- 02 PALETTE -->
+<section id="palette" data-screen-label="02 Palette" style="padding:120px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:56px">
+  <header style="display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">02 — Palette</div>
+      <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Vide, coque, lumière</h2>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">Chaque accent a un rôle. Rose : identité et progression. Ambre : récompense et trou noir. Cyan : hologrammes et interaction. Jamais deux accents sur un même composant, sauf le disque d'accrétion.</p>
+  </header>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Fonds &amp; structure</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#07060D;border:1px solid #2E2C4A"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Vide</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#07060D · --pk-void</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Fond spatial, body, letterbox.</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#0D0C17"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Coque 900</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#0D0C17 · --pk-hull-900</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Fond des panneaux (80 % + flou 16 px).</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#151426"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Coque 800</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#151426 · --pk-hull-800</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Facettes dans l'ombre, cartes.</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#201F36"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Coque 700</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#201F36 · --pk-hull-700</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Facettes éclairées, survol.</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#2E2C4A"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Coque 600</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#2E2C4A · --pk-hull-600</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Arêtes vives, séparateurs forts.</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#3B3960"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Ligne</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#3B3960 · --pk-line</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Traits 1 px, pistes de barres. Jamais pour du texte.</div></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:2fr 4fr;gap:16px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Texte</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#EEECF5"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Lumière stellaire</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#EEECF5 · --pk-text</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Titres, valeurs, texte principal. 17,6:1 sur Vide.</div></div>
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;background:#A29FBD"></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Poussière</div><div style="font-family:'Martian Mono',monospace;font-size:12px">#A29FBD · --pk-text-dim</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Texte secondaire, labels. 7,9:1 sur Vide.</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Accents</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;display:grid;grid-template-rows:3fr 1fr 1fr"><div style="background:#FF5FA2"></div><div style="background:#FFB8D5"></div><div style="background:#B8286A"></div></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#FF5FA2">Pinkoune</div><div style="font-family:'Martian Mono',monospace;font-size:12px;line-height:1.6">#FF5FA2 · --pk-pink<br>#FFB8D5 · --pk-pink-soft<br>#B8286A · --pk-pink-deep</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Marque, XP, rang, CTA principal. Texte Vide sur fond rose : 7,1:1.</div></div>
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;display:grid;grid-template-rows:3fr 1fr"><div style="background:#FFB547"></div><div style="background:#FFF2DC"></div></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#FFB547">Accrétion</div><div style="font-family:'Martian Mono',monospace;font-size:12px;line-height:1.6">#FFB547 · --pk-amber<br>#FFF2DC · --pk-core</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Disque du trou noir, succès débloqués, montée de rang. 11,5:1 sur Vide.</div></div>
+        <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;display:grid;grid-template-rows:3fr 1fr"><div style="background:#5CE1E6"></div><div style="background:#173C46"></div></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#5CE1E6">Holo</div><div style="font-family:'Martian Mono',monospace;font-size:12px;line-height:1.6">#5CE1E6 · --pk-holo<br>rgba(92,225,230,.18) · --pk-holo-wash</div><div style="font-size:14px;line-height:1.45;color:#A29FBD">Panneaux holographiques, focus clavier, liens, points d'intérêt.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Rampe du disque d'accrétion (intérieur → extérieur)</div>
+      <div style="height:56px;display:flex"><div style="flex:1;background:#FFF2DC"></div><div style="flex:1;background:#FFD08A"></div><div style="flex:1;background:#FFB547"></div><div style="flex:1;background:#FF8A78"></div><div style="flex:1;background:#FF5FA2"></div><div style="flex:1;background:#B8286A"></div><div style="flex:1;background:#4D1043"></div></div>
+      <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD"><span>FFF2DC</span><span>FFB547</span><span>FF5FA2</span><span>4D1043</span></div>
+      <p style="margin:0;font-size:14px;line-height:1.5;color:#A29FBD">Quantifiée en 11 anneaux × 60 secteurs pour l'effet facetté. Côté gauche ×1,8 (Doppler).</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Personnage (d'après ton avatar)</div>
+      <div style="height:56px;display:flex"><div style="flex:4;background:#FF9CCB"></div><div style="flex:2;background:#F0679F"></div><div style="flex:3;background:#FFF4F8"></div><div style="flex:1;background:#FFB547"></div><div style="flex:1;background:#FF7FB6"></div></div>
+      <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD"><span>Corps FF9CCB</span><span>Ailerons F0679F</span><span>Ventre FFF4F8</span><span>Bec FFB547 · Joues FF7FB6</span></div>
+      <p style="margin:0;font-size:14px;line-height:1.5;color:#A29FBD">Rose plus doux que l'accent UI : le pingouin reste lisible devant le disque rose sans s'y fondre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TYPO -->
+<section id="typo" data-screen-label="03 Typographie" style="padding:120px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:56px">
+  <header style="display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">03 — Typographie</div>
+      <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Large, espacé, net</h2>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">Trois familles Google Fonts, toutes variables. Archivo poussé à 125 % de largeur donne la carrure des titres. Martian Mono porte tout ce qui est chiffre, état ou commande. Instrument Sans reste discrète pour lire.</p>
+  </header>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div style="border:1px solid #22213A;padding:32px;display:flex;flex-direction:column;gap:28px;min-height:360px">
+      <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD"><span>Titres</span><span style="color:#FF5FA2">--pk-font-display</span></div>
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:96px;line-height:1;letter-spacing:.02em">Aa</div>
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:26px;line-height:1.15;letter-spacing:.08em;text-transform:uppercase">Horizon des événements</div>
+      <div style="margin-top:auto;font-size:14px;line-height:1.55;color:#A29FBD">Archivo · wdth 125 · 400 / 500 / 700<br>Toujours en capitales, tracking +0,04 à +0,14 em.</div>
+    </div>
+    <div style="border:1px solid #22213A;padding:32px;display:flex;flex-direction:column;gap:28px;min-height:360px">
+      <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD"><span>UI / HUD</span><span style="color:#FF5FA2">--pk-font-hud</span></div>
+      <div style="font-family:'Martian Mono',monospace;font-weight:400;font-size:96px;line-height:1">01</div>
+      <div style="font-family:'Martian Mono',monospace;font-size:15px;line-height:1.7;letter-spacing:.14em;text-transform:uppercase">XP 1 240 / 1 400<br><span style="color:#FF5FA2">◆</span> Rang 05 · Pilote<br><span style="color:#5CE1E6">&gt; kubectl get rooms_</span></div>
+      <div style="margin-top:auto;font-size:14px;line-height:1.55;color:#A29FBD">Martian Mono · wdth 87,5 · 300 / 400 / 500<br>Labels 11–12 px, capitales, tracking +0,18 em. Chiffres tabulaires.</div>
+    </div>
+    <div style="border:1px solid #22213A;padding:32px;display:flex;flex-direction:column;gap:28px;min-height:360px">
+      <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD"><span>Texte courant</span><span style="color:#FF5FA2">--pk-font-body</span></div>
+      <div style="font-family:'Instrument Sans',sans-serif;font-size:96px;line-height:1">Aa</div>
+      <p style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">Alternant DevOps chez Capgemini, j'automatise des plateformes le jour et je construis des vaisseaux la nuit.</p>
+      <div style="margin-top:auto;font-size:14px;line-height:1.55;color:#A29FBD">Instrument Sans · 400 / 500 / 600<br>Casse normale, interligne 1,6, 64 caractères max.</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 440px;gap:64px;align-items:start">
+    <div style="display:flex;flex-direction:column">
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;padding:0 0 12px;border-bottom:1px solid #3B3960;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD"><span>Token</span><span>Rendu</span><span>Desktop</span><span>Mobile</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">display</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:56px;line-height:1;letter-spacing:.04em;text-transform:uppercase">Pont</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">96 / 1.0 / .04em</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">48 / 1.0</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">h1</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:40px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Labo</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">48 / 1.05 / .06em</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">32 / 1.1</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">h2</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:24px;letter-spacing:.1em;text-transform:uppercase">Projets en cours</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">24 / 1.2 / .10em</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">20 / 1.2</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">h3</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase">Infrastructure</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">15 / 1.3 / .14em</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">14 / 1.3</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">label</span><span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase">Secteur PK-02 · Labo</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">11 / 1.4 / .20em</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">11 / 1.4</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">hud-value</span><span style="font-family:'Martian Mono',monospace;font-size:20px;letter-spacing:.06em">1 240 XP</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">20 / 1 / .06em</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">16 / 1</span></div>
+      <div style="display:grid;grid-template-columns:140px 1fr 180px 140px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid #22213A"><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#FF5FA2">body</span><span style="font-size:17px;line-height:1.6">Je conçois des pipelines qui ne réveillent personne à 3 h du matin.</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">17 / 1.6</span><span style="font-family:'Martian Mono',monospace;font-size:12px;color:#A29FBD">16 / 1.6</span></div>
+    </div>
+    <div style="background:#0D0C17;border:1px solid #22213A;padding:24px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Import</div>
+      <pre style="margin:0;font-family:'Martian Mono',monospace;font-size:11px;line-height:1.7;color:#EEECF5;white-space:pre-wrap;word-break:break-all">&lt;link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=Martian+Mono:wdth,wght@75..112.5,100..800&amp;family=Instrument+Sans:wght@400..700&amp;display=swap" rel="stylesheet"&gt;</pre>
+      <pre style="margin:0;font-family:'Martian Mono',monospace;font-size:11px;line-height:1.7;color:#A29FBD;white-space:pre-wrap">.display {
+  font-family: 'Archivo';
+  font-stretch: 125%;
+  text-transform: uppercase;
+}
+.hud {
+  font-family: 'Martian Mono';
+  font-stretch: 87.5%;
+  font-variant-numeric: tabular-nums;
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 04 COMPOSANTS -->
+<section id="ui" data-screen-label="04 Composants" style="padding:120px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:56px">
+  <header style="display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">04 — Composants</div>
+      <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Pièces détachées</h2>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">Rayon 0 partout. Coins coupés à 8 ou 12 px. Grille de 8 px. Les mêmes pièces servent au HUD 3D et au Mode classique.</p>
+  </header>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <!-- Losanges -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Losanges · états</div>
+      <div style="display:flex;align-items:center;gap:40px;height:72px;padding-left:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:18px"><span style="width:16px;height:16px;background:#FF5FA2;transform:rotate(45deg);display:block"></span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#A29FBD">ACTIF</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:18px"><span style="width:16px;height:16px;border:1px solid #EEECF5;transform:rotate(45deg);display:block;box-sizing:border-box"></span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#A29FBD">DISPO</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:18px"><span style="width:16px;height:16px;border:1px solid #FF5FA2;transform:rotate(45deg);display:grid;place-items:center;box-sizing:border-box"><span style="width:6px;height:6px;background:#FF5FA2;display:block"></span></span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#A29FBD">SÉLECTION</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:18px"><span style="width:16px;height:16px;border:1px dashed #3B3960;transform:rotate(45deg);display:block;box-sizing:border-box"></span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.16em;color:#A29FBD">VERROUILLÉ</span></div>
+      </div>
+    </div>
+    <!-- Boutons -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Boutons</div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <button style="all:unset;cursor:pointer;background:#FF5FA2;color:#07060D;font-family:'Martian Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px 22px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)" style-hover="background:#FFB8D5">Embarquer</button>
+        <button style="all:unset;cursor:pointer;color:#EEECF5;font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 21px;border:1px solid #3B3960" style-hover="border-color:#EEECF5">Mode classique</button>
+        <button style="all:unset;cursor:pointer;color:#5CE1E6;font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 4px;display:flex;align-items:center;gap:10px" style-hover="color:#EEECF5"><span style="border:1px solid currentColor;padding:2px 6px;font-size:10px">E</span>Inspecter</button>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#A29FBD">Primaire rose = une seule par écran. Raccourci clavier affiché dans une touche filaire.</div>
+    </div>
+    <!-- Contrôles HUD -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Contrôles HUD</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div style="display:flex;border:1px solid #3B3960;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em"><span style="padding:10px 12px;background:#EEECF5;color:#07060D">FR</span><span style="padding:10px 12px;color:#A29FBD">EN</span></div>
+        <div style="width:40px;height:38px;border:1px solid #3B3960;display:flex;align-items:flex-end;justify-content:center;gap:3px;padding-bottom:11px;box-sizing:border-box"><span style="width:2px;height:8px;background:#EEECF5;display:block"></span><span style="width:2px;height:14px;background:#EEECF5;display:block"></span><span style="width:2px;height:10px;background:#EEECF5;display:block"></span><span style="width:2px;height:5px;background:#EEECF5;display:block"></span></div>
+        <div style="width:40px;height:38px;border:1px solid #3B3960;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;box-sizing:border-box"><span style="width:16px;height:1px;background:#EEECF5;display:block"></span><span style="width:16px;height:1px;background:#EEECF5;display:block"></span><span style="width:10px;height:1px;background:#EEECF5;display:block;margin-left:-6px"></span></div>
+        <div style="height:38px;border:1px solid #3B3960;display:flex;align-items:center;gap:10px;padding:0 12px;box-sizing:border-box;font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.1em"><span style="width:9px;height:9px;background:#FFB547;transform:rotate(45deg);display:block"></span>07/24</div>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#A29FBD">Langue · son (égaliseur animé, barres à plat = muet) · menu · compteur de succès. Cibles 40 px desktop, 44 px mobile.</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+    <!-- XP + rang -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Rang + barre d'XP</div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <div style="width:52px;height:52px;display:grid;place-items:center;flex:none"><div style="width:36px;height:36px;border:1px solid #FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><div style="width:26px;height:26px;background:#FF5FA2;display:grid;place-items:center"><span style="transform:rotate(-45deg);font-family:'Martian Mono',monospace;font-size:12px;font-weight:500;color:#07060D">05</span></span></div></div></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span>Pilote</span><span style="color:#A29FBD">1 240 / 1 400</span></div>
+          <div style="height:3px;background:#22213A;position:relative"><div style="position:absolute;left:0;top:0;bottom:0;width:65%;background:#FF5FA2"></div><div style="position:absolute;left:65%;top:-3px;width:1px;height:9px;background:#FFB8D5"></div></div>
+          <div style="display:flex;justify-content:space-between"><span style="width:1px;height:4px;background:#3B3960"></span><span style="width:1px;height:4px;background:#3B3960"></span><span style="width:1px;height:4px;background:#3B3960"></span><span style="width:1px;height:4px;background:#3B3960"></span><span style="width:1px;height:4px;background:#3B3960"></span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Hotspot -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Point d'intérêt (dans la scène 3D)</div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:34px;height:34px;display:grid;place-items:center"><div style="width:22px;height:22px;border:1px solid #5CE1E6;transform:rotate(45deg);display:grid;place-items:center"><div style="width:6px;height:6px;background:#5CE1E6"></div></div></div>
+        <div style="width:36px;height:1px;background:#5CE1E6"></div>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5CE1E6">PK-03</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:15px;letter-spacing:.12em;text-transform:uppercase">Armurerie</span></div>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#A29FBD">Pulse lent (2,4 s). Au survol : la ligne s'allonge et le label apparaît.</div>
+    </div>
+    <!-- Tags -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Tags · stack</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase">
+        <span style="padding:6px 10px;border:1px solid #3B3960">Kubernetes</span><span style="padding:6px 10px;border:1px solid #3B3960">Terraform</span><span style="padding:6px 10px;border:1px solid #3B3960">GitLab CI</span><span style="padding:6px 10px;border:1px solid #5CE1E6;color:#5CE1E6">three.js</span><span style="padding:6px 10px;border:1px solid #3B3960">Go</span>
+      </div>
+      <div style="font-size:13px;line-height:1.5;color:#A29FBD">Tag cyan = filtre actif dans un panneau.</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:16px">
+    <!-- Panneau holo -->
+    <div style="border:1px solid #22213A;padding:28px;display:flex;flex-direction:column;gap:24px;background:#0B0A14">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Panneau holographique · anatomie</div>
+      <div style="position:relative;background:rgba(13,12,23,.82);border:1px solid rgba(92,225,230,.35);padding:22px 24px;display:flex;flex-direction:column;gap:16px">
+        <div style="position:absolute;left:-1px;top:-1px;width:16px;height:16px;border-left:2px solid #5CE1E6;border-top:2px solid #5CE1E6"></div>
+        <div style="position:absolute;right:-1px;top:-1px;width:16px;height:16px;border-right:2px solid #5CE1E6;border-top:2px solid #5CE1E6"></div>
+        <div style="position:absolute;left:-1px;bottom:-1px;width:16px;height:16px;border-left:2px solid #5CE1E6;border-bottom:2px solid #5CE1E6"></div>
+        <div style="position:absolute;right:-1px;bottom:-1px;width:16px;height:16px;border-right:2px solid #5CE1E6;border-bottom:2px solid #5CE1E6"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase"><span style="display:flex;align-items:center;gap:10px;color:#5CE1E6"><span style="width:7px;height:7px;background:#5CE1E6;transform:rotate(45deg);display:block"></span>PK-02 · Labo</span><span style="color:#A29FBD">Fermer · Échap</span></div>
+        <div style="height:1px;background:rgba(92,225,230,.35)"></div>
+        <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:26px;letter-spacing:.08em;text-transform:uppercase">Titre du panneau</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#A29FBD">Contenu en Instrument Sans. Largeur max 560 px desktop. Le fond laisse deviner la scène (80 %, flou 16 px).</p>
+        <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.2em;color:#A29FBD"><span>01 / 04</span><span>◇ ◆ ◇ ◇</span></div>
+      </div>
+    </div>
+    <!-- Tokens -->
+    <div style="background:#0D0C17;border:1px solid #22213A;padding:24px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">tokens.css · pour Claude Code</div>
+      <pre style="margin:0;font-family:'Martian Mono',monospace;font-size:11px;line-height:1.65;color:#EEECF5;white-space:pre">:root {
+  --pk-void:#07060D; --pk-hull-900:#0D0C17;
+  --pk-hull-800:#151426; --pk-hull-700:#201F36;
+  --pk-hull-600:#2E2C4A; --pk-line:#3B3960;
+  --pk-text:#EEECF5; --pk-text-dim:#A29FBD;
+  --pk-pink:#FF5FA2; --pk-pink-soft:#FFB8D5;
+  --pk-pink-deep:#B8286A; --pk-amber:#FFB547;
+  --pk-core:#FFF2DC; --pk-holo:#5CE1E6;
+  --pk-holo-wash:rgba(92,225,230,.18);
+  --pk-panel:rgba(13,12,23,.82);
+  --pk-space:8px; --pk-cut:10px; --pk-radius:0;
+  --pk-ease-out:cubic-bezier(.16,1,.3,1);
+  --pk-ease-io:cubic-bezier(.65,0,.35,1);
+  --pk-dur-fast:140ms; --pk-dur:280ms;
+  --pk-dur-slow:560ms; --pk-dur-cine:1800ms;
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PERSONNAGE -->
+<section id="perso" data-screen-label="05 Personnage" style="padding:120px 64px;border-bottom:1px solid #22213A;display:flex;flex-direction:column;gap:56px">
+  <header style="display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">05 — Personnage</div>
+      <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Pinkoune, pilote</h2>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">Ton avatar traduit en low-poly : un œuf, un ventre blanc, deux ailerons, un petit bec et de grands yeux ronds. Les rendus ci-dessous sont le vrai modèle three.js, construit uniquement avec des primitives (fichier pinkoune-3d.js).</p>
+  </header>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Turnaround · pose neutre</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="height:380px;background:#0D0C17;border:1px solid #22213A;position:relative;background-image:linear-gradient(#151426 1px,transparent 1px);background-size:100% 38px"><pk-penguin view="front" platform="" static="" style="position:absolute;inset:0"></pk-penguin></div><div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span>Face</span><span style="color:#A29FBD">0°</span></div></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="height:380px;background:#0D0C17;border:1px solid #22213A;position:relative;background-image:linear-gradient(#151426 1px,transparent 1px);background-size:100% 38px"><pk-penguin view="quart" platform="" static="" style="position:absolute;inset:0"></pk-penguin></div><div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span>Trois-quarts</span><span style="color:#A29FBD">40°</span></div></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="height:380px;background:#0D0C17;border:1px solid #22213A;position:relative;background-image:linear-gradient(#151426 1px,transparent 1px);background-size:100% 38px"><pk-penguin view="profile" platform="" static="" style="position:absolute;inset:0"></pk-penguin></div><div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span>Profil</span><span style="color:#A29FBD">90°</span></div></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><div style="height:380px;background:#0D0C17;border:1px solid #22213A;position:relative;background-image:linear-gradient(#151426 1px,transparent 1px);background-size:100% 38px"><pk-penguin view="back" platform="" static="" style="position:absolute;inset:0"></pk-penguin></div><div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase"><span>Dos</span><span style="color:#A29FBD">180°</span></div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD">Poses · en boucle</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:420px;background:#151426;position:relative;overflow:hidden"><pk-blackhole cx="0.5" cy="0.62" scale="0.9" glow="0.5" stars="0.6" style="position:absolute;inset:0;opacity:.55"></pk-blackhole><pk-penguin view="-0.25" pose="idle" platform="" style="position:absolute;inset:0"></pk-penguin></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:16px;letter-spacing:.12em;text-transform:uppercase">Idle</div><div style="font-size:14px;line-height:1.5;color:#A29FBD">Respiration 2,8 s : corps ±2,5 cm, ailerons ±3°, clignement toutes les 4 s. Par défaut partout.</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:420px;background:#151426;position:relative;overflow:hidden"><pk-blackhole cx="0.5" cy="0.62" scale="0.9" glow="0.5" stars="0.6" style="position:absolute;inset:0;opacity:.55"></pk-blackhole><pk-penguin view="-0.25" pose="salut" platform="" style="position:absolute;inset:0"></pk-penguin></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:16px;letter-spacing:.12em;text-transform:uppercase">Salut</div><div style="font-size:14px;line-height:1.5;color:#A29FBD">Aileron droit levé à 145°, battement 0,7 s × 3, tête inclinée. Arrivée sur le pont, clic sur Pinkoune.</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:420px;background:#151426;position:relative;overflow:hidden"><pk-blackhole cx="0.5" cy="0.62" scale="0.9" glow="0.5" stars="0.6" style="position:absolute;inset:0;opacity:.55"></pk-blackhole><pk-penguin view="0.3" pose="pointe" platform="" style="position:absolute;inset:0"></pk-penguin></div><div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:16px;letter-spacing:.12em;text-transform:uppercase">Pointe</div><div style="font-size:14px;line-height:1.5;color:#A29FBD">Aileron droit à l'horizontale, tête tournée de 23° vers la cible. Désigne un panneau ou une porte.</div></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div style="border-top:1px solid #3B3960;padding-top:20px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:15px;letter-spacing:.14em;text-transform:uppercase">Construction</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'Martian Mono',monospace;font-size:12px;line-height:1.5;color:#A29FBD">
+        <span><span style="color:#EEECF5">Corps</span> · Lathe 10 côtés, 8 points, h 1,86</span>
+        <span><span style="color:#EEECF5">Ventre</span> · Icosaèdre subdiv 1, écrasé 0,56 × 0,66 × 0,3</span>
+        <span><span style="color:#EEECF5">Yeux</span> · Icosaèdres subdiv 1 : blanc, pupille, reflet</span>
+        <span><span style="color:#EEECF5">Bec</span> · Cône 6 faces, court et écrasé</span>
+        <span><span style="color:#EEECF5">Ailerons</span> · Cône 4 faces, pivot à l'épaule</span>
+        <span><span style="color:#EEECF5">Joues</span> · Icosaèdre aplati, rose FF7FB6</span>
+        <span><span style="color:#EEECF5">Pattes</span> · Box 0,26 × 0,07 × 0,36</span>
+      </div>
+    </div>
+    <div style="border-top:1px solid #3B3960;padding-top:20px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:15px;letter-spacing:.14em;text-transform:uppercase">Rig &amp; budget</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'Martian Mono',monospace;font-size:12px;line-height:1.5;color:#A29FBD">
+        <span><span style="color:#EEECF5">Os</span> · root, body, head, flipper_L, flipper_R</span>
+        <span><span style="color:#EEECF5">Triangles</span> · ≈ 700 (cible &lt; 1 000)</span>
+        <span><span style="color:#EEECF5">Matériaux</span> · 6, MeshStandard flatShading</span>
+        <span><span style="color:#EEECF5">Échelle</span> · 1 unité = 1 m · hauteur 1,86</span>
+        <span><span style="color:#EEECF5">Lumière</span> · contre-jour rose + ambre, clé blanche</span>
+        <span><span style="color:#EEECF5">Export</span> · GLB, animations nommées</span>
+      </div>
+    </div>
+    <div style="border-top:1px solid #3B3960;padding-top:20px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:15px;letter-spacing:.14em;text-transform:uppercase">Voix</div>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#A29FBD">Fier de son vaisseau, un peu cabotin, phrases courtes. Il tutoie. Il ne parle jamais plus de deux lignes.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5">
+        <span>« Bienvenue à bord. Évite de fixer la Pupille, elle fixe en retour. »</span>
+        <span>« Le Labo, c'est par là. Touche à tout, c'est en staging. »</span>
+        <span>« Si tu te perds, suis les losanges. Moi je fais ça. »</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PROGRESSION -->
+<section id="progression" data-screen-label="06 Progression" style="padding:120px 64px 160px;display:flex;flex-direction:column;gap:56px">
+  <header style="display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Martian Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#FF5FA2">06 — Progression</div>
+      <h2 style="margin:0;font-family:Archivo,sans-serif;font-stretch:125%;font-weight:500;font-size:48px;line-height:1.05;letter-spacing:.06em;text-transform:uppercase">Rangs &amp; succès</h2>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#A29FBD;max-width:640px;text-wrap:pretty">Sept rangs, de passager clandestin à Empereur (le pingouin, pas le tyran). Les succès récompensent la curiosité, pas le temps passé. Progression sauvegardée en localStorage.</p>
+  </header>
+
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0;border-top:1px solid #3B3960">
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px"><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;border:1px solid #3B3960;transform:rotate(45deg)"></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">01 · 0 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3">Passager clandestin</span></div>
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px"><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;border:1px solid #FFB8D5;transform:rotate(45deg)"></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">02 · 150 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3">Mousse</span></div>
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px"><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;border:1px solid #FF5FA2;transform:rotate(45deg)"></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">03 · 400 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3">Cadet</span></div>
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px"><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;border:1px solid #FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><div style="width:8px;height:8px;background:#FF5FA2"></div></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">04 · 800 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3">Navigateur</span></div>
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px;position:relative"><div style="position:absolute;top:-2px;left:0;right:0;height:3px;background:#FF5FA2"></div><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;border:1px solid #FF5FA2;transform:rotate(45deg);display:grid;place-items:center"><div style="width:16px;height:16px;background:#FF5FA2"></div></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FF5FA2">05 · 1 200 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3">Pilote</span></div>
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px"><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;background:#FF5FA2;transform:rotate(45deg);outline:1px solid #FF5FA2;outline-offset:4px"></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">06 · 1 400 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3">Capitaine</span></div>
+    <div style="padding:24px 16px 0 0;display:flex;flex-direction:column;gap:14px"><div style="width:40px;height:40px;display:grid;place-items:center"><div style="width:26px;height:26px;background:#FFB547;transform:rotate(45deg);outline:1px solid #FFB547;outline-offset:4px"></div></div><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#A29FBD">07 · 2 000 XP</span><span style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.3;color:#FFB547">Empereur</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;justify-content:space-between;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A29FBD"><span>24 succès · 4 visibles par salle, 6 secrets</span><span>Total 2 150 XP</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#22213A;border:1px solid #22213A">
+      <sc-for list="{{ achievements }}" as="a" hint-placeholder-count="16">
+        <div style="background:#07060D;padding:20px;display:flex;flex-direction:column;gap:10px;min-height:120px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A29FBD">{{ a.room }}</span><span style="font-family:'Martian Mono',monospace;font-size:11px;color:#FFB547">+{{ a.xp }}</span></div>
+          <div style="font-family:Archivo,sans-serif;font-stretch:125%;font-size:14px;letter-spacing:.08em;text-transform:uppercase;line-height:1.3">{{ a.name }}</div>
+          <div style="font-size:13px;line-height:1.5;color:#A29FBD">{{ a.how }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      achievements: [
+        { room: 'Sas', name: 'Premier contact', how: 'Embarquer à bord du PK-01.', xp: 50 },
+        { room: 'Pont', name: 'Bonjour toi', how: 'Saluer Pinkoune en cliquant dessus.', xp: 50 },
+        { room: 'Pont', name: 'Horizon des événements', how: 'Fixer la Pupille 10 s sans bouger la souris.', xp: 100 },
+        { room: 'Pont', name: 'Spaghettification', how: 'Zoomer au maximum vers le trou noir.', xp: 100 },
+        { room: 'Labo', name: 'Revue de code', how: 'Ouvrir les 4 fiches projet.', xp: 150 },
+        { room: 'Labo', name: 'git blame', how: 'Trouver le commit le plus ancien du vaisseau.', xp: 75 },
+        { room: 'Armurerie', name: 'Inventaire complet', how: 'Inspecter chaque outil de la stack.', xp: 100 },
+        { room: 'Armurerie', name: 'Infra as Code', how: 'Lancer le terraform apply du râtelier.', xp: 75 },
+        { room: 'Archives', name: 'Lore master', how: 'Lire tout le journal de bord.', xp: 100 },
+        { room: 'Hangar', name: 'Insert coin', how: 'Lancer la borne d’arcade.', xp: 75 },
+        { room: 'Hangar', name: 'High score', how: 'Battre le score de Pinkoune à la borne.', xp: 150 },
+        { room: 'Com', name: 'Signal envoyé', how: 'Envoyer un message depuis la salle de com.', xp: 150 },
+        { room: 'Vaisseau', name: 'kubectl get rooms', how: 'Visiter les 7 salles.', xp: 200 },
+        { room: 'Vaisseau', name: 'Zéro downtime', how: 'Les 7 salles en moins de 2 min.', xp: 150 },
+        { room: 'HUD', name: 'Personne ne vous entend', how: 'Couper le son. Dans l’espace, c’est réaliste.', xp: 25 },
+        { room: 'HUD', name: 'Rétrocompatible', how: 'Ouvrir le Mode classique, puis revenir.', xp: 50 }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

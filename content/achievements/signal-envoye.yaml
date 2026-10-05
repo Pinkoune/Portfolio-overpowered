@@ -1,0 +1,8 @@
+order: 15
+scope: comms
+name: { fr: Signal envoyé, en: Signal sent }
+how: { fr: Ouvrir un canal vers LinkedIn ou GitHub., en: Open a channel to LinkedIn or GitHub. }
+flavor:
+  { fr: Le message est parti. Jérémy a les antennes., en: Message sent. Jérémy's antennas are up. }
+xp: 150
+trigger: { event: link.open }

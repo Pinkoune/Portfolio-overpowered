@@ -1,0 +1,61 @@
+# Microcopie de l'interface (boutons, libellés, accessibilité).
+# Les clés sont fixées par le code : la validation signale une clé manquante ou inconnue.
+# {n} est remplacé par une valeur (ex. un niveau).
+nav.skip: { fr: Aller au contenu, en: Skip to content }
+nav.primary: { fr: Navigation principale, en: Main navigation }
+nav.menu: { fr: Menu, en: Menu }
+nav.close: { fr: Fermer le menu, en: Close menu }
+lang.label: { fr: Langue, en: Language }
+mode.board: { fr: Embarquer en 3D, en: Board in 3D }
+mode.soon: { fr: Bientôt, en: Soon }
+hero.ctaProjects: { fr: Voir les projets, en: See the projects }
+hero.ctaContact: { fr: Envoyer un signal, en: Send a signal }
+hero.imageAlt:
+  fr: Rendu low-poly de la Pupille, un trou noir entouré d'un disque d'accrétion rose et ambre
+  en: Low-poly render of the Pupil, a black hole wrapped in a pink and amber accretion disc
+projects.open: { fr: Ouvrir la fiche, en: Open file }
+projects.archives: { fr: Archives, en: Archives }
+projects.archivesIntro:
+  fr: Projets plus anciens, en orbite lointaine.
+  en: Older projects, on a distant orbit.
+projects.repo: { fr: Code source, en: Source code }
+projects.demo: { fr: Démo, en: Demo }
+projects.stack: { fr: Stack, en: Stack }
+projects.highlights: { fr: Points clés, en: Highlights }
+projects.team: { fr: Équipe, en: Team }
+projects.year: { fr: Année, en: Year }
+projects.capture: { fr: Capture, en: Screenshot }
+projects.contextLabel: { fr: Contexte, en: Context }
+projects.statusLabel: { fr: Statut, en: Status }
+projects.prev: { fr: Projet précédent, en: Previous project }
+projects.next: { fr: Projet suivant, en: Next project }
+projects.context.perso: { fr: Perso, en: Personal }
+projects.context.epitech: { fr: Epitech, en: Epitech }
+projects.context.pro: { fr: Pro, en: Work }
+projects.status.live: { fr: En orbite, en: In orbit }
+projects.status.wip: { fr: En construction, en: Under construction }
+projects.status.poc: { fr: Prototype, en: Prototype }
+projects.status.done: { fr: Terminé, en: Completed }
+todo.demo: { fr: Démo à venir, en: Demo coming }
+todo.media: { fr: Captures à venir, en: Screenshots coming }
+todo.year: { fr: Année à préciser, en: Year to confirm }
+todo.repo: { fr: Dépôt à publier, en: Repo coming }
+skills.level: { fr: 'Niveau {n} sur 5', en: 'Level {n} of 5' }
+machines.pipeline: { fr: Chaîne de livraison, en: Delivery pipeline }
+machines.hosting: { fr: Hébergement, en: Hosting }
+machines.featured: { fr: En salle des machines, en: In the engine room }
+machines.status.live: { fr: En ligne, en: Live }
+machines.status.planned: { fr: Prévu, en: Planned }
+logbook.present: { fr: Aujourd'hui, en: Present }
+logbook.kind.work: { fr: Poste, en: Work }
+logbook.kind.education: { fr: Formation, en: Education }
+logbook.kind.internship: { fr: Stage, en: Internship }
+quarters.games: { fr: Étagère de jeux, en: Game shelf }
+quarters.passions: { fr: Hors ligne, en: Offline }
+comms.title: { fr: Envoyer un signal, en: Send a signal }
+comms.text:
+  fr: Le plus simple pour me joindre, c'est LinkedIn. Le code, lui, est sur GitHub.
+  en: The easiest way to reach me is LinkedIn. The code lives on GitHub.
+footer.made: { fr: Fait main à Toulouse, en: Handmade in Toulouse }
+footer.source: { fr: Code source du site, en: Site source code }
+dialog.close: { fr: Fermer, en: Close }

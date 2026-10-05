@@ -1,0 +1,45 @@
+# Quartiers : la partie perso. Les jeux apparaissent en texte (jaquettes stylisées originales),
+# jamais avec des visuels officiels. color = teinte de la jaquette générée (optionnelle).
+intro:
+  fr: Quand le vaisseau est en pilote automatique, voilà ce qui occupe l'équipage.
+  en: When the ship is on autopilot, this is what keeps the crew busy.
+games:
+  - name: Minecraft
+    genre: { fr: Bac à sable, en: Sandbox }
+    note:
+      { fr: Le serveur du homelab tourne pour les amis., en: The homelab server runs for friends. }
+    color: '#5CE1E6'
+  - name: Destiny
+    genre: { fr: FPS · science-fiction, en: Sci-fi FPS }
+    color: '#FFB547'
+  - name: Warframe
+    genre: { fr: Action · coopération, en: Co-op action }
+    color: '#FF8A78'
+  - name: League of Legends
+    genre: { fr: MOBA, en: MOBA }
+    color: '#FF5FA2'
+  - name: Final Fantasy XIV
+    genre: { fr: MMORPG, en: MMORPG }
+    color: '#FFB8D5'
+  - name: The Finals
+    genre: { fr: FPS · arène, en: Arena FPS }
+    color: '#FFD08A'
+  - name: Valheim
+    genre: { fr: Survie · coopération, en: Co-op survival }
+    color: '#A29FBD'
+passions:
+  - id: bass
+    title: { fr: Basse, en: Bass guitar }
+    text:
+      fr: La basse tient le groove sans se faire remarquer. Un peu comme une bonne plateforme.
+      en: The bass holds the groove without drawing attention. A bit like a good platform.
+  - id: moto
+    title: { fr: Moto, en: Motorcycles }
+    text:
+      fr: Casque, gants, petites routes. Le meilleur moyen de couper avec les écrans.
+      en: Helmet, gloves, back roads. The best way to step away from screens.
+  - id: space
+    title: { fr: Espace & trous noirs, en: Space & black holes }
+    text:
+      fr: D'où la Pupille, le trou noir autour duquel tourne ce vaisseau.
+      en: Hence the Pupil, the black hole this ship is orbiting.
