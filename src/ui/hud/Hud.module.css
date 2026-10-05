@@ -1,0 +1,253 @@
+/* HUD : terminal fin posé sur la scène. Le conteneur laisse passer les clics vers la 3D. */
+.hud {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  color: var(--pk-text);
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+.hud > :global(.visually-hidden) {
+  pointer-events: none;
+}
+
+.dim {
+  color: var(--pk-text-dim);
+}
+
+.brand {
+  position: absolute;
+  left: 32px;
+  top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateX(-50%);
+  letter-spacing: 0.24em;
+  white-space: nowrap;
+}
+
+.rule {
+  width: 24px;
+  height: 1px;
+  background: var(--pk-line);
+}
+
+.controls {
+  position: absolute;
+  right: 32px;
+  top: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.controls button {
+  background: rgba(7, 6, 13, 0.4);
+}
+
+/* ---------- Plan du vaisseau ---------- */
+.map {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  width: min(820px, calc(100vw - 64px));
+  display: flex;
+  align-items: flex-start;
+  transform: translateX(-50%);
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.track::before {
+  position: absolute;
+  left: calc(100% / 14);
+  right: calc(100% / 14);
+  top: 21px;
+  height: 1px;
+  background: var(--pk-line);
+  content: '';
+}
+
+.stop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 0 6px;
+  border: 0;
+  background: none;
+  color: var(--pk-text-dim);
+  cursor: pointer;
+}
+
+.stop[aria-current] {
+  color: var(--pk-text);
+}
+
+.stop:hover {
+  color: var(--pk-text);
+}
+
+.marker {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  background: var(--pk-void);
+}
+
+.marker[data-state='here']::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--pk-pink);
+  transform: rotate(45deg) scale(0.95);
+  content: '';
+}
+
+.name {
+  max-width: 11ch;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.arrow,
+.mobileName {
+  display: none;
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--pk-line);
+  background: rgba(7, 6, 13, 0.5);
+  color: var(--pk-text);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ---------- Bulle de Pinkoune ---------- */
+.companion {
+  position: absolute;
+  left: 32px;
+  bottom: 120px;
+  width: min(420px, calc(100vw - 64px));
+  padding: 16px 40px 16px 18px;
+  border: 1px solid var(--pk-line);
+  background: var(--pk-panel);
+  backdrop-filter: blur(16px);
+  animation: in var(--pk-dur) var(--pk-ease-out);
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: var(--pk-pink);
+  font-size: 10px;
+}
+
+.line {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.dismiss {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+  color: var(--pk-text-dim);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+@keyframes in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ---------- Mobile (maquette H1) ---------- */
+@media (max-width: 720px) {
+  .brand,
+  .title {
+    display: none;
+  }
+
+  .controls {
+    left: 20px;
+    right: 20px;
+    top: 16px;
+    justify-content: space-between;
+  }
+
+  .controls button {
+    min-height: 44px;
+  }
+
+  .map {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    width: auto;
+    transform: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .arrow {
+    display: grid;
+    place-items: center;
+  }
+
+  .track {
+    display: none;
+  }
+
+  .mobileName {
+    display: block;
+    flex: 1;
+    text-align: center;
+  }
+
+  .companion {
+    left: 20px;
+    right: 20px;
+    bottom: 84px;
+    width: auto;
+  }
+}

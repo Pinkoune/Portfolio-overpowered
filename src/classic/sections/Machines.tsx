@@ -1,5 +1,6 @@
-import { content, type Project } from '../../content/index.ts';
+import { content } from '../../content/index.ts';
 import { useT } from '../../i18n/useT.ts';
+import { useStore } from '../../state/store.ts';
 import { Diamond, Tags } from '../../ui/primitives.tsx';
 import { ui } from '../../ui/styles.ts';
 import s from '../classic.module.css';
@@ -10,8 +11,9 @@ const { machines } = content;
 const featured = machines.projects.map((slug) => content.projects.find((p) => p.id === slug)!);
 
 /** Salle des machines · DevOps & homelab, dont la chaîne de livraison de ce site. */
-export function Machines({ onOpen }: { onOpen: (project: Project) => void }) {
+export function Machines() {
   const { t, ui: u } = useT();
+  const openPanel = useStore((st) => st.openPanel);
   return (
     <section id="machines" className={s.section} aria-labelledby="machines-title">
       <SectionHeader room={roomById.machines} id="machines-title" />
@@ -59,7 +61,11 @@ export function Machines({ onOpen }: { onOpen: (project: Project) => void }) {
           <ul className={s.hosting}>
             {featured.map((project) => (
               <li key={project.id}>
-                <button type="button" className={s.featuredButton} onClick={() => onOpen(project)}>
+                <button
+                  type="button"
+                  className={s.featuredButton}
+                  onClick={() => openPanel({ kind: 'project', id: project.id })}
+                >
                   <strong className={ui.display}>{project.title}</strong>
                   <span className={s.dim}>{t(project.summary)}</span>
                 </button>

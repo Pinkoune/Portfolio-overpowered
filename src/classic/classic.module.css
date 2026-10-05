@@ -114,24 +114,6 @@
   white-space: nowrap;
 }
 
-@media (max-width: 1400px) {
-  /* Place comptée en desktop : le libellé « bientôt » reste lisible par les lecteurs d'écran. */
-  .boardDesktop .soon {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-  }
-}
-
-.soon {
-  padding: 2px 6px;
-  border: 1px solid currentColor;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-}
-
 .menuButton {
   display: none;
   width: 44px;

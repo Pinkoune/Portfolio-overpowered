@@ -1,0 +1,92 @@
+.hotspot {
+  --tone: var(--pk-holo);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 6px;
+  border: 0;
+  background: none;
+  color: var(--pk-text);
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hotspot[data-tone='amber'] {
+  --tone: var(--pk-amber);
+}
+
+.hotspot[data-side='left'] {
+  flex-direction: row-reverse;
+}
+
+.marker {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border: 1px solid var(--tone);
+  transform: rotate(45deg);
+  background: rgba(7, 6, 13, 0.55);
+  animation: pulse 2.4s var(--pk-ease-io) infinite;
+}
+
+.marker span {
+  width: 6px;
+  height: 6px;
+  background: var(--tone);
+}
+
+.line {
+  width: 18px;
+  height: 1px;
+  background: var(--tone);
+  transition: width var(--pk-dur) var(--pk-ease-out);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 8px;
+  background: rgba(7, 6, 13, 0.55);
+  text-align: left;
+  line-height: 1.3;
+}
+
+.hotspot[data-side='left'] .text {
+  text-align: right;
+}
+
+.code {
+  color: var(--tone);
+}
+
+.hotspot:hover .line,
+.hotspot:focus-visible .line {
+  width: 40px;
+}
+
+.hotspot:hover .marker,
+.hotspot:focus-visible .marker {
+  background: var(--tone);
+}
+
+.hotspot:focus-visible {
+  outline: 2px solid var(--pk-holo);
+  outline-offset: 2px;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+    border-color: color-mix(in srgb, var(--tone) 45%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marker {
+    animation: none;
+  }
+}

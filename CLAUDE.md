@@ -44,6 +44,16 @@ contenu, sans 3D) est toujours disponible.
 - **Son** (phase 5) : Web Audio maison, désactivé par défaut, sons CC0 listés dans `CREDITS.md` ; note de
   basse synthétisée tant que le riff `public/audio/bass-riff.mp3` n'existe pas.
 - **TypeScript 6.0.x** (et non 7) : typescript-eslint ne supporte pas encore TS ≥ 6.1.
+- **Mode au démarrage** (`src/app/capabilities.ts`) : 3D par défaut ; classique d'office sans WebGL ou sur
+  appareil faible (`deviceMemory`/`hardwareConcurrency` ≤ 2). Le choix explicite du visiteur
+  (`preferredMode`, persisté) l'emporte, sauf si WebGL manque. La 3D est un `lazy()` : three.js n'est
+  téléchargé qu'à l'embarquement.
+- **Pas de drei** : `Html` de drei crée une racine React par hotspot (erreurs `removeChild` au démontage).
+  Les hotspots sont des boutons DOM dans l'arbre principal (`HotspotLayer`), positionnés à chaque image
+  par `HotspotProjector` depuis un registre d'ancres 3D (`three/hotspots.ts`).
+- **Rendu** : `<Canvas flat>` (pas de tone mapping, comme la DA), DPR ≤ 1,75 desktop / 1,5 mobile.
+- ESLint : `react-hooks/immutability` désactivée dans `src/three/` (muter les objets three dans
+  `useFrame` est l'idiome R3F).
 
 ## Architecture
 
@@ -57,12 +67,19 @@ src/i18n/         lang.ts (pur) · useT.ts (hook)
 src/state/        store.ts (Zustand + persist) · safeStorage.ts (localStorage protégé)
 src/design/       tokens.css (DA) · tokens.ts (miroir pour la 3D)
 src/motion/       easings.ts (courbes et `seg()` de pk-motion.js)
-src/ui/           primitives.tsx (Diamond, Button, Tags, LevelGauge, LangSwitch…) · ProjectSheet (panneau holo)
+src/ui/           primitives.tsx (Diamond, Button, Tags, LevelGauge, LangSwitch…) · HoloPanel ·
+                  panels/PanelHost (contenu des panneaux, partagé 3D/classique) · hud/ · Hotspot · Loader
 src/classic/      mode classique (Header, sections/, SectionHeader)
-src/three/        (phase 2) scène R3F chargée en lazy
+src/three/        scène R3F chargée en lazy :
+                  ShipExperience (Canvas + HUD + panneaux, clavier, balayage, #/salle) · Scene · CameraRig
+                  layout.ts (plan : salles alignées sur X, coursive en z ≈ 7,4, Pupille en (6, 20, -340))
+                  objects/ (BlackHole + shader porté, Starfield avec lentille, RoomShell + Corridor,
+                  Penguin, Box) · models/ (penguin, ship, materials : portages de pinkoune-3d.js)
+                  rooms/ (une salle par fichier + RoomDoors) · Hotspot / HotspotLayer / hotspots.ts
+src/app/          App (aiguillage classique / 3D) · capabilities.ts · hashRoom.ts
 src/game/         (phase 4) XP, rangs, succès — TS pur
 scripts/          validate-content.ts
-tests/            Vitest (contenu, i18n)
+tests/            Vitest (contenu, i18n, navigation)
 ```
 
 Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/classic/` n'importe jamais
@@ -81,6 +98,17 @@ Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/
 - Projets : un fichier par projet, `order` pour l'ordre, `archived: true` pour la ceinture d'archives,
   `todo: [demo, media, year, repo]` pour les badges TODO, `planet:` pour surcharger le placement.
 - Succès : `trigger.event` ∈ `GAME_EVENTS`, `count` = nombre ou `all`.
+
+### Navigation à bord
+
+- Salle courante dans le store (`room`), reflétée dans l'adresse `#/starmap` (`replaceState`).
+  En revenant au classique, la page défile jusqu'à la section de la salle quittée.
+- Panneau ouvert = `state.panel` (`{ kind: 'project', id }`, `profile`, `pupil`, `skills`, `pipeline`,
+  `journey`, `passion`, `games`, `contact`). `PanelHost` le rend en `placement="side"` à bord,
+  `"center"` en classique.
+- Raccourcis : 1–7, ← →, C (classique), Échap (panneau). Mobile : balayage horizontal + flèches du HUD.
+- Trajet caméra : spline porte arrière → coursive → salle, ease-io, 1,6 s entre voisines
+  (+0,3 s par salle supplémentaire) ; coupe sèche avec « réduire les animations ».
 
 ### Base path
 
@@ -103,13 +131,20 @@ Durées : 140 / 280 / 560 / 1800 ms.
 ## Phases
 
 1. ✅ Squelette : contenu, i18n, mode classique, CI + Pages.
-2. Hub 3D : trou noir, vaisseau, salles, caméra, panneaux.
+2. ✅ Hub 3D : trou noir, vaisseau, salles, caméra, panneaux.
 3. Ambiance : post-processing, intro, transitions.
 4. Gamification : HUD, XP, rangs, succès, toasts, persistance.
 5. Pingouin, quartiers, son.
 6. Polish : perf, mobile, a11y, SEO, tests.
 7. Mode éditeur (Sveltia sur /admin) + README « Mettre à jour le site ».
 8. Hébergement homelab (Docker, GHCR, compose ou k3s + ArgoCD).
+
+## Points ouverts (à reprendre)
+
+- Mobile portrait : champ limité à 72°, certains hotspots sortent du cadre → phase 6.
+- Carte stellaire : étiquettes de planètes qui se chevauchent par moments.
+- Chunk 3D ≈ 1 Mo (280 ko gzip), surtout three.js → découpage / budget en phase 6.
+- Fondu noir pour les sauts lointains (> 2 salles), fov 45→55→45 et traits de vitesse → phase 3.
 
 ## À faire côté Jérémy
 

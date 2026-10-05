@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { content, type Project } from '../content/index.ts';
+import { useEffect } from 'react';
 import { useT } from '../i18n/useT.ts';
-import { ProjectSheet } from '../ui/ProjectSheet.tsx';
+import { useStore } from '../state/store.ts';
+import { PanelHost } from '../ui/panels/PanelHost.tsx';
 import s from './classic.module.css';
 import { Header } from './Header.tsx';
 import { Arsenal } from './sections/Arsenal.tsx';
@@ -16,39 +16,34 @@ import { Quarters } from './sections/Quarters.tsx';
  * Mode classique : page scrollable, même identité et même contenu que le vaisseau, sans 3D.
  * Toujours disponible, et utilisé d'office sans WebGL ou sur un appareil trop faible.
  */
-export function ClassicPage() {
+export function ClassicPage({ can3d }: { can3d: boolean }) {
   const { ui } = useT();
-  const [openId, setOpenId] = useState<string | null>(null);
-  const index = content.projects.findIndex((p) => p.id === openId);
-  const open = (project: Project) => setOpenId(project.id);
-  const navigate = (delta: -1 | 1) => {
-    const total = content.projects.length;
-    setOpenId(content.projects[(index + delta + total) % total]!.id);
-  };
+
+  // En arrivant depuis le vaisseau, on se place sur la section de la salle quittée.
+  useEffect(() => {
+    if (window.location.hash.startsWith('#/')) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    const { room } = useStore.getState();
+    if (room !== 'bridge') document.getElementById(room)?.scrollIntoView({ behavior: 'instant' });
+  }, []);
 
   return (
     <div className={s.page}>
       <a className={s.skip} href="#main">
         {ui('nav.skip')}
       </a>
-      <Header />
+      <Header can3d={can3d} />
       <main id="main" className={s.main} tabIndex={-1}>
         <Hero />
-        <Projects onOpen={open} />
+        <Projects />
         <Arsenal />
-        <Machines onOpen={open} />
+        <Machines />
         <Logbook />
         <Quarters />
       </main>
       <Comms />
-      {index >= 0 && (
-        <ProjectSheet
-          project={content.projects[index]!}
-          position={{ index, total: content.projects.length }}
-          onClose={() => setOpenId(null)}
-          onNavigate={navigate}
-        />
-      )}
+      <PanelHost placement="center" />
     </div>
   );
 }

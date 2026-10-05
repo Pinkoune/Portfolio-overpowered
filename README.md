@@ -6,18 +6,18 @@ pour qui préfère une page web toute simple.
 
 **En ligne :** https://pinkoune.github.io/Portfolio-overpowered/
 
-> État : **phase 1** — mode classique complet, contenu bilingue, CI/CD. Le vaisseau 3D arrive en phase 2.
+> État : **phase 2** — vaisseau 3D navigable (7 salles, panneaux, HUD de base) et mode classique complet.
 
 ## Stack
 
-| Rôle          | Outils                                                             |
-| ------------- | ------------------------------------------------------------------ |
-| App           | Vite, React 19, TypeScript strict                                  |
-| 3D (phase 2+) | React Three Fiber, drei, postprocessing                            |
-| État          | Zustand (persistance localStorage protégée)                        |
-| Contenu       | YAML bilingues validés par Zod, exposés au build en module virtuel |
-| Qualité       | ESLint, Prettier, Vitest                                           |
-| Livraison     | GitHub Actions → GitHub Pages (phase B : Docker → homelab)         |
+| Rôle      | Outils                                                             |
+| --------- | ------------------------------------------------------------------ |
+| App       | Vite, React 19, TypeScript strict                                  |
+| 3D        | three.js, React Three Fiber (chargés à la demande)                 |
+| État      | Zustand (persistance localStorage protégée)                        |
+| Contenu   | YAML bilingues validés par Zod, exposés au build en module virtuel |
+| Qualité   | ESLint, Prettier, Vitest                                           |
+| Livraison | GitHub Actions → GitHub Pages (phase B : Docker → homelab)         |
 
 ## Démarrer
 
@@ -36,6 +36,7 @@ content/        tout le texte du site, en YAML { fr, en }
 public/media/   captures des projets
 src/content/    schémas Zod, assemblage, plugin Vite
 src/classic/    mode classique (sans 3D)
+src/three/      vaisseau 3D (salles, caméra, trou noir, modèles)
 src/ui/         composants partagés (losanges, boutons, panneau holo…)
 src/i18n/       langue courante et formatage
 design/         direction artistique de référence (export Claude Design)

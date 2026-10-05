@@ -7,7 +7,6 @@ nav.menu: { fr: Menu, en: Menu }
 nav.close: { fr: Fermer le menu, en: Close menu }
 lang.label: { fr: Langue, en: Language }
 mode.board: { fr: Embarquer en 3D, en: Board in 3D }
-mode.soon: { fr: Bientôt, en: Soon }
 hero.ctaProjects: { fr: Voir les projets, en: See the projects }
 hero.ctaContact: { fr: Envoyer un signal, en: Send a signal }
 hero.imageAlt:
@@ -27,8 +26,6 @@ projects.year: { fr: Année, en: Year }
 projects.capture: { fr: Capture, en: Screenshot }
 projects.contextLabel: { fr: Contexte, en: Context }
 projects.statusLabel: { fr: Statut, en: Status }
-projects.prev: { fr: Projet précédent, en: Previous project }
-projects.next: { fr: Projet suivant, en: Next project }
 projects.context.perso: { fr: Perso, en: Personal }
 projects.context.epitech: { fr: Epitech, en: Epitech }
 projects.context.pro: { fr: Pro, en: Work }
@@ -56,6 +53,34 @@ comms.title: { fr: Envoyer un signal, en: Send a signal }
 comms.text:
   fr: Le plus simple pour me joindre, c'est LinkedIn. Le code, lui, est sur GitHub.
   en: The easiest way to reach me is LinkedIn. The code lives on GitHub.
-footer.made: { fr: Fait main à Toulouse, en: Handmade in Toulouse }
+footer.made:
+  fr: Fait main en collaboration avec Claude à Toulouse
+  en: Handmade in collaboration with Claude in Toulouse
 footer.source: { fr: Code source du site, en: Site source code }
 dialog.close: { fr: Fermer, en: Close }
+panel.prev: { fr: Précédent, en: Previous }
+panel.next: { fr: Suivant, en: Next }
+mode.unavailable:
+  fr: La 3D n'est pas disponible sur cet appareil
+  en: 3D is not available on this device
+hud.map: { fr: Plan du vaisseau, en: Ship map }
+hud.classic: { fr: Mode classique, en: Classic mode }
+hud.prev: { fr: Salle précédente, en: Previous room }
+hud.next: { fr: Salle suivante, en: Next room }
+hud.loading: { fr: Amarrage au PK-01, en: Docking with the PK-01 }
+hud.pilot: { fr: pilote, en: pilot }
+hud.dismiss: { fr: Fermer la bulle, en: Dismiss }
+hud.keys:
+  fr: 'Touches : 1 à 7 ou ← → pour changer de salle, Échap pour fermer un panneau, C pour le mode classique.'
+  en: 'Keys: 1 to 7 or ← → to change rooms, Esc to close a panel, C for classic mode.'
+hotspot.profile: { fr: Fiche pilote, en: Pilot file }
+hotspot.door: { fr: 'Vers {room}', en: 'To {room}' }
+pupil.name: { fr: La Pupille, en: The Pupil }
+pupil.caption: { fr: 'Trou noir · 4,1 M masses solaires', en: 'Black hole · 4.1 M solar masses' }
+pupil.text:
+  fr: >-
+    Le trou noir autour duquel orbite le PK-01. Son disque d'accrétion est facetté, rose côté
+    qui s'approche, ambre côté qui s'éloigne. Évite de le fixer trop longtemps.
+  en: >-
+    The black hole the PK-01 orbits. Its accretion disc is faceted, pink on the approaching side,
+    amber on the receding one. Try not to stare at it for too long.
