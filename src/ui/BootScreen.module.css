@@ -207,6 +207,38 @@
   border-color: var(--pk-text);
 }
 
+/* Son : coupé par défaut ; le losange s'allume en cyan quand il est actif. */
+.sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--pk-text-dim);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.sound::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.sound:hover {
+  color: var(--pk-text);
+}
+
+.sound[aria-pressed='true']::before {
+  border-color: var(--pk-holo);
+  background: var(--pk-holo);
+}
+
 @media (max-width: 720px) {
   .top {
     left: 20px;

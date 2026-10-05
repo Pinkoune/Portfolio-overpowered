@@ -99,6 +99,62 @@
   background: rgba(7, 6, 13, 0.4);
 }
 
+.short {
+  display: none;
+}
+
+/* ---------- Son : égaliseur ---------- */
+.sound {
+  padding-inline: 14px;
+}
+
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.eq span {
+  width: 2px;
+  height: 3px;
+  background: var(--pk-text-dim);
+  transition: height var(--pk-dur) var(--pk-ease-out);
+}
+
+.eq[data-on='true'] span {
+  background: var(--pk-holo);
+  animation: eq 0.9s var(--pk-ease-io) infinite alternate;
+}
+
+.eq[data-on='true'] span:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.eq[data-on='true'] span:nth-child(3) {
+  animation-delay: -0.55s;
+}
+
+.eq[data-on='true'] span:nth-child(4) {
+  animation-delay: -0.15s;
+}
+
+@keyframes eq {
+  from {
+    height: 3px;
+  }
+  to {
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq[data-on='true'] span {
+    animation: none;
+    height: 9px;
+  }
+}
+
 /* ---------- Plan du vaisseau ---------- */
 .map {
   position: absolute;
@@ -272,14 +328,30 @@
   }
 
   .controls {
-    left: 20px;
-    right: 20px;
+    left: 16px;
+    right: 16px;
     top: 16px;
+    gap: 6px;
     justify-content: space-between;
+  }
+
+  .controls [role='group'] button {
+    min-width: 0;
   }
 
   .controls button {
     min-height: 44px;
+    padding-inline: 12px;
+  }
+
+  /* Pas de clavier sur mobile : on gagne la place des touches et du libellé long. */
+  .controls [data-kbd],
+  .long {
+    display: none;
+  }
+
+  .short {
+    display: inline;
   }
 
   .map {

@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { content } from '../../content/index.ts';
+import type { Localized, RoomId } from '../../content/schema.ts';
 import { useT } from '../../i18n/useT.ts';
 import { useStore } from '../../state/store.ts';
 import { AchievementCounter, RankBadge } from '../game/RankBadge.tsx';
 import { Button, Diamond, LangSwitch } from '../primitives.tsx';
 import { ui } from '../styles.ts';
 import s from './Hud.module.css';
+import { SoundToggle } from './SoundToggle.tsx';
 
 /*
- * HUD à bord (design/Pinkoune HUD.dc.html, anatomie D). Phase 2 : salle courante, langue,
- * mode classique, plan du vaisseau, bulle de Pinkoune. Rang, XP, succès et son arrivent ensuite.
+ * HUD à bord (design/Pinkoune HUD.dc.html, anatomie D) : rang et XP, salle courante, succès, son,
+ * langue, mode classique, plan du vaisseau, bulle de Pinkoune.
  */
 
 function RoomTitle() {
@@ -93,32 +95,77 @@ function ShipMap() {
   );
 }
 
-/** Bulle de Pinkoune : 2 lignes max, se ferme seule après 6 s (DA, HUD n° 8). */
+/** Délai d'immobilité avant que Pinkoune glisse un conseil. */
+const HINT_AFTER_MS = 30_000;
+const SHOW_MS = 6000;
+
+type Line = { text: Localized; key: string };
+
+let hintIndex = 0;
+const nextHint = (room: RoomId): Localized => {
+  // Sur le pont, Pinkoune rappelle de ne pas trop fixer la Pupille ; ailleurs, il tourne ses conseils.
+  if (room === 'bridge') return content.penguin.lines.welcome;
+  const hints = content.penguin.lines.hints;
+  return hints[hintIndex++ % hints.length]!;
+};
+
+/**
+ * Bulle de Pinkoune : 2 lignes max, se ferme seule après 6 s (DA, HUD n° 8). Réplique de la salle à
+ * l'arrivée, félicitations après une montée de rang, conseil après 30 s sans bouger.
+ */
 function Companion() {
   const { t, ui: u } = useT();
   const roomId = useStore((st) => st.room);
   const traveling = useStore((st) => st.traveling);
-  const [dismissed, setDismissed] = useState<string | null>(null);
-  const room = content.rooms.find((r) => r.id === roomId)!;
+  const panelOpen = useStore((st) => st.panel !== null);
+  const [line, setLine] = useState<Line | null>(null);
 
+  // Arrivée dans une salle : sa réplique, puis un conseil si le visiteur reste sans rien ouvrir.
   useEffect(() => {
     if (traveling) return;
-    const timer = window.setTimeout(() => setDismissed(roomId), 6000);
-    return () => window.clearTimeout(timer);
+    const room = content.rooms.find((r) => r.id === roomId)!;
+    const show = window.setTimeout(() => setLine({ text: room.penguin, key: roomId }), 0);
+    return () => window.clearTimeout(show);
   }, [roomId, traveling]);
 
-  if (traveling || dismissed === roomId) return null;
+  useEffect(() => {
+    if (traveling || panelOpen) return;
+    const hint = window.setTimeout(
+      () => setLine({ text: nextHint(roomId), key: `hint-${Date.now()}` }),
+      HINT_AFTER_MS,
+    );
+    return () => window.clearTimeout(hint);
+  }, [roomId, traveling, panelOpen]);
+
+  // Après la célébration d'un rang, Pinkoune en remet une couche.
+  useEffect(
+    () =>
+      useStore.subscribe((st, prev) => {
+        if (prev.rankUp !== null && st.rankUp === null) {
+          setLine({ text: content.penguin.lines.rankUp, key: `rank-${prev.rankUp}` });
+        }
+      }),
+    [],
+  );
+
+  useEffect(() => {
+    if (!line) return;
+    const hide = window.setTimeout(() => setLine(null), SHOW_MS);
+    return () => window.clearTimeout(hide);
+  }, [line]);
+
+  if (traveling || !line) return null;
   return (
-    <aside className={s.companion} key={roomId}>
+    <aside className={s.companion} key={line.key}>
       <p className={`${ui.label} ${s.who}`}>
         <Diamond size={7} />
         {content.penguin.name} · {u('hud.pilot')}
       </p>
-      <p className={s.line}>{t(room.penguin)}</p>
+      <p className={s.line}>{t(line.text)}</p>
       <button
         type="button"
         className={s.dismiss}
-        onClick={() => setDismissed(roomId)}
+        onClick={() => setLine(null)}
         aria-label={u('hud.dismiss')}
       >
         ×
@@ -140,9 +187,15 @@ export function Hud() {
       <RoomTitle />
       <div className={`${s.controls} ${s.fades}`}>
         <AchievementCounter />
+        <SoundToggle />
         <LangSwitch />
-        <Button onClick={() => setPreferredMode('classic')} kbd="C">
-          {u('hud.classic')}
+        <Button onClick={() => setPreferredMode('classic')} kbd="C" aria-label={u('hud.classic')}>
+          <span className={s.long} aria-hidden="true">
+            {u('hud.classic')}
+          </span>
+          <span className={s.short} aria-hidden="true">
+            {u('hud.classicShort')}
+          </span>
         </Button>
       </div>
       <Companion />

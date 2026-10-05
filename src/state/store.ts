@@ -9,9 +9,9 @@ import { safeStorage } from './safeStorage.ts';
 
 /*
  * État global, découpé en tranches :
- * - réglages : langue, mode préféré (persistés) ;
- * - navigation : salle courante, salles vues, panneau ouvert (session).
- * La progression (XP, succès) arrive en phase 4.
+ * - réglages : langue, mode préféré, son (persistés) ;
+ * - navigation : salle courante, salles vues, panneau ouvert (session) ;
+ * - vaisseau : arrivée à bord ; progression : XP, succès, toasts.
  */
 
 export type Mode = '3d' | 'classic';
@@ -86,6 +86,9 @@ interface SettingsSlice {
   /** La 3D a échoué au démarrage pendant cette visite (WebGL refusé, chargement impossible). */
   threeFailed: boolean;
   setThreeFailed: (failed: boolean) => void;
+  /** Son du vaisseau, coupé par défaut (brief). */
+  soundOn: boolean;
+  toggleSound: () => void;
 }
 
 interface NavSlice {
@@ -179,6 +182,12 @@ export const useStore = create<Store>()(
       },
       threeFailed: false,
       setThreeFailed: (threeFailed) => set({ threeFailed }),
+      soundOn: false,
+      toggleSound: () => {
+        const soundOn = !get().soundOn;
+        set({ soundOn });
+        if (!soundOn) get().emit('sound.mute');
+      },
 
       ...bootState,
       embarking: false,
@@ -223,6 +232,7 @@ export const useStore = create<Store>()(
         lang: state.lang,
         preferredMode: state.preferredMode,
         introSeen: state.introSeen,
+        soundOn: state.soundOn,
         progress: state.progress,
       }),
     },

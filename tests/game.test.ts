@@ -1,6 +1,8 @@
-import { resolve } from 'node:path';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { loadContent } from '../src/content/read.ts';
+import { GAME_EVENTS } from '../src/content/schema.ts';
 import {
   applyEvent,
   emptyProgress,
@@ -149,5 +151,25 @@ describe('code Konami', () => {
       'a',
     ];
     expect(keys.map(detect).at(-1)).toBe(true);
+  });
+});
+
+describe('événements', () => {
+  const src = resolve(import.meta.dirname, '../src');
+  const files = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
+      d.isDirectory()
+        ? files(join(dir, d.name))
+        : /\.tsx?$/.test(d.name)
+          ? [join(dir, d.name)]
+          : [],
+    );
+  const code = files(src)
+    .filter((f) => !f.endsWith('schema.ts'))
+    .map((f) => readFileSync(f, 'utf8'))
+    .join('\n');
+
+  it.each(GAME_EVENTS)('« %s » est émis par le code (sinon son succès est impossible)', (event) => {
+    expect(code).toContain(`'${event}'`);
   });
 });

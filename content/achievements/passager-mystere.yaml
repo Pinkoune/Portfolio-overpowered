@@ -1,5 +1,5 @@
 order: 13
-scope: quarters
+scope: logbook
 name: { fr: Passager mystère, en: Mystery passenger }
 how: { fr: Trouver le pingouin caché à bord., en: Find the penguin hiding aboard. }
 flavor:

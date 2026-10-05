@@ -17,7 +17,14 @@ Auto-hébergées via [Fontsource](https://fontsource.org), toutes sous licence S
 
 ## Sons
 
-Aucun son pour l'instant. Phase 5 : uniquement des sons CC0, chacun listé ici avec sa source.
+Tous les sons sont **synthétisés dans le navigateur** (Web Audio, `src/audio/sound.ts`) : nappe
+d'ambiance, clics, ouverture et fermeture des panneaux, souffle des trajets, carillon des succès, accord
+de montée de rang, note de basse. Aucun fichier audio tiers, donc aucune licence à citer. Le son est
+coupé par défaut.
+
+Emplacement prévu pour le riff de basse de Jérémy (enregistrement personnel) :
+`public/audio/bass-riff.mp3`. S'il est présent, il remplace la note synthétisée quand on joue de la basse
+des Quartiers. Si un son tiers est ajouté un jour, il doit être CC0 et listé ici avec sa source.
 
 ## Jeux vidéo
 

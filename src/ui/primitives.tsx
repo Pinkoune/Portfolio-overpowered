@@ -58,7 +58,7 @@ export function Button({
     >
       {children}
       {kbd && (
-        <span className={s.kbd} aria-hidden="true">
+        <span className={s.kbd} data-kbd aria-hidden="true">
           {kbd}
         </span>
       )}
@@ -83,7 +83,7 @@ export function ButtonLink({
     >
       {children}
       {kbd && (
-        <span className={s.kbd} aria-hidden="true">
+        <span className={s.kbd} data-kbd aria-hidden="true">
           {kbd}
         </span>
       )}

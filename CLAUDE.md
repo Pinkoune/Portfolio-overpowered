@@ -41,8 +41,12 @@ contenu, sans 3D) est toujours disponible.
 - **Polices auto-hébergées** via `@fontsource-variable` (Archivo `wdth.css`, Martian Mono `wdth.css`,
   Instrument Sans `wght.css`). Familles CSS : `'Archivo Variable'`, `'Martian Mono Variable'`,
   `'Instrument Sans Variable'`.
-- **Son** (phase 5) : Web Audio maison, désactivé par défaut, sons CC0 listés dans `CREDITS.md` ; note de
-  basse synthétisée tant que le riff `public/audio/bass-riff.mp3` n'existe pas.
+- **Son** (phase 5) : Web Audio maison (`src/audio/sound.ts`), **tout est synthétisé** (aucun fichier tiers,
+  donc rien à créditer), coupé par défaut, réglage `soundOn` persisté. Riff `public/audio/bass-riff.mp3`
+  joué à la place de la note de basse s'il existe (vérifié par `content-type` audio, le serveur de dev
+  renvoie index.html). `SoundDirector` (monté avec la 3D seulement : le classique reste muet) relie le
+  store aux sons ; la montée de rang joue son accord depuis `RankUp`. `sound.on(name)` permet aux visuels
+  de réagir même son coupé (cordes de la basse).
 - **TypeScript 6.0.x** (et non 7) : typescript-eslint ne supporte pas encore TS ≥ 6.1.
 - **Mode au démarrage** (`src/app/capabilities.ts`) : 3D par défaut ; classique d'office sans WebGL ou sur
   appareil faible = rendu WebGL logiciel (SwiftShader, llvmpipe…) ou `deviceMemory` ≤ 2. **Ne pas utiliser
@@ -90,8 +94,9 @@ src/three/        scène R3F chargée en lazy :
                   intro.ts + IntroDirector (approche) · TransitionOverlay (flash, fondu, vitesse, carton)
                   objects/ (BlackHole + shader porté, Starfield avec lentille, RoomShell + Corridor,
                   Penguin, Box, ExteriorShip, PostFx) · models/ (penguin, ship, materials : portages de pinkoune-3d.js)
-                  rooms/ (une salle par fichier + RoomDoors) · Hotspot / HotspotLayer / hotspots.ts
+                  rooms/ (une salle par fichier + RoomDoors + Companions) · Hotspot / HotspotLayer / hotspots.ts
 src/app/          App (aiguillage classique / 3D) · capabilities.ts · hashRoom.ts
+src/audio/        sound.ts (Web Audio synthétisé) · SoundDirector.tsx (store → sons)
 src/game/         engine.ts (XP, rangs, succès — TS pur) · rules.ts · konami.ts
 scripts/          validate-content.ts
 tests/            Vitest (contenu, i18n, navigation, cadrage de l'intro, moteur de jeu)
@@ -121,7 +126,7 @@ Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/
 - Panneau ouvert = `state.panel` (`{ kind: 'project', id }`, `profile`, `pupil`, `skills`, `pipeline`,
   `journey`, `passion`, `games`, `contact`). `PanelHost` le rend en `placement="side"` à bord,
   `"center"` en classique.
-- Raccourcis : 1–7, ← →, C (classique), Échap (panneau). Mobile : balayage horizontal + flèches du HUD.
+- Raccourcis : 1–7, ← →, C (classique), T (trophées), S (son), Échap (panneau). Mobile : balayage horizontal + flèches du HUD.
 - Trajet caméra : spline porte arrière → coursive → salle, ease-io, 1,6 s entre voisines (1,9 s pour
   2 salles), fov +10° au milieu de la coursive, traits de vitesse et carton de salle (TransitionOverlay).
   Saut > 2 salles : deux segments, coupe au noir (fondu 38 % → 62 %, minuteries, pas d'images).
@@ -144,12 +149,25 @@ Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/
   (blackhole.zoom, `CameraRig`), immobilité 10 s sur le pont (blackhole.stare, `ShipExperience`),
   terminal de la salle des machines (machines.apply, machines.oldest-commit), Konami (`App`).
   En classique, la section active compte comme salle visitée.
-- **Pas encore émis** : `penguin.hidden`, `sound.mute` (phase 5).
+  `penguin.hidden` (astronaute derrière la baie du Journal de bord), `sound.mute` (`toggleSound` vers off).
 - UI : `ui/game/` — RankBadge + AchievementCounter (HUD), ToastStack (3D et classique), RankUp (3D
   seulement, attend qu'aucun panneau ne soit ouvert, célèbre le rang le plus récent), Trophies (panneau
   `{ kind: 'trophies' }`, touche T, compteur du HUD, bande de progression du classique).
 - Build : `__BUILD__` (commit déployé, premier commit) injecté par `vite.config.ts` ; la CI clone tout
   l'historique (`fetch-depth: 0`).
+
+### Pingouin, quartiers, son (phase 5)
+
+- `objects/Penguin.tsx` : pose de base, réaction à l'arrivée dans sa salle (`active` + `arrival` : salut au
+  pont, pointe ailleurs), clic = salut, célébration (`celebre`) tant que `rankUp` est en attente, clignement
+  toutes les 4 s, cape au rang 06 et couronne au rang 07 (`makeCape` / `makeCrown` dans `models/penguin.ts`).
+- `rooms/Companions.tsx` : un pingouin par salle (placements dans `PLACES`), et `HiddenPenguin` qui dérive
+  dehors, derrière la baie du Journal de bord, sans repère.
+- Quartiers : la basse se joue au clic (note + cordes qui vibrent + `bass.play`), le casque tourne,
+  couchette superposée et tapis hexagonal.
+- Bulle du HUD : réplique de salle à l'arrivée, conseil après 30 s sans panneau (`welcome` au pont,
+  `hints` en rotation ailleurs), félicitations après la fermeture de l'écran de rang.
+- Son : bouton égaliseur du HUD (touche S, `aria-pressed`), bascule sur l'écran d'embarquement.
 
 ### Base path
 
@@ -175,7 +193,7 @@ Durées : 140 / 280 / 560 / 1800 ms.
 2. ✅ Hub 3D : trou noir, vaisseau, salles, caméra, panneaux.
 3. ✅ Ambiance : post-processing, intro, transitions.
 4. ✅ Gamification : HUD, XP, rangs, succès, toasts, persistance.
-5. Pingouin, quartiers, son.
+5. ✅ Pingouin, quartiers, son.
 6. Polish : perf, mobile, a11y, SEO, tests.
 7. Mode éditeur (Sveltia sur /admin) + README « Mettre à jour le site ».
 8. Hébergement homelab (Docker, GHCR, compose ou k3s + ArgoCD).

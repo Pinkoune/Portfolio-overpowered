@@ -12,6 +12,7 @@ import { Starfield } from './objects/Starfield.tsx';
 import { Arsenal } from './rooms/Arsenal.tsx';
 import { Bridge } from './rooms/Bridge.tsx';
 import { Comms } from './rooms/Comms.tsx';
+import { HiddenPenguin, RoomPenguin } from './rooms/Companions.tsx';
 import { Logbook } from './rooms/Logbook.tsx';
 import { Machines } from './rooms/Machines.tsx';
 import { Quarters } from './rooms/Quarters.tsx';
@@ -85,6 +86,8 @@ export function Scene({
               <RoomShell />
               <RoomDoors room={id} active={active} />
               <Room active={active} reducedMotion={reducedMotion} />
+              <RoomPenguin room={id} active={active} />
+              {id === 'logbook' && <HiddenPenguin />}
             </group>
           );
         })}

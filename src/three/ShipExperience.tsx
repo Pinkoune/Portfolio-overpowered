@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { roomHash, parseRoomHash } from '../app/hashRoom.ts';
 import { ROOM_IDS } from '../content/schema.ts';
+import { SoundDirector } from '../audio/SoundDirector.tsx';
 import { useStore } from '../state/store.ts';
 import { RankUp } from '../ui/game/RankUp.tsx';
 import { ToastStack } from '../ui/game/ToastStack.tsx';
@@ -38,7 +39,7 @@ function useRoomHash() {
   }, [room]);
 }
 
-/** Raccourcis du HUD (DA, anatomie D) : 1–7 salles, ← → voisines, C mode classique. */
+/** Raccourcis du HUD (DA, anatomie D) : 1–7 salles, ← → voisines, C classique, T trophées, S son. */
 function useKeyboard() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -51,6 +52,7 @@ function useKeyboard() {
       else if (e.key === 'ArrowLeft') step(-1);
       else if (e.key === 'c' || e.key === 'C') setPreferredMode('classic');
       else if (e.key === 't' || e.key === 'T') useStore.getState().openPanel({ kind: 'trophies' });
+      else if (e.key === 's' || e.key === 'S') useStore.getState().toggleSound();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -148,6 +150,7 @@ export default function ShipExperience({ reducedMotion }: { reducedMotion: boole
         </>
       )}
       <TransitionOverlay reducedMotion={reducedMotion} />
+      <SoundDirector />
     </div>
   );
 }

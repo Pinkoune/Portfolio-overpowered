@@ -215,6 +215,7 @@ export const UI_KEYS = [
   'mode.failedHint',
   'hud.map',
   'hud.classic',
+  'hud.classicShort',
   'hud.prev',
   'hud.next',
   'hud.loading',
@@ -239,6 +240,9 @@ export const UI_KEYS = [
   'pupil.name',
   'pupil.caption',
   'pupil.text',
+  'sound.label',
+  'sound.on',
+  'sound.off',
 ] as const;
 export type UiKey = (typeof UI_KEYS)[number];
 export const uiSchema = z.record(z.enum(UI_KEYS), localized);
