@@ -31,6 +31,10 @@ export default tseslint.config(
   },
   {
     files: ['src/three/**/*.{ts,tsx}'],
-    rules: { 'no-restricted-imports': ['error', { patterns: ['**/classic/**'] }] },
+    rules: {
+      'no-restricted-imports': ['error', { patterns: ['**/classic/**'] }],
+      // R3F anime en mutant les objets three.js dans useFrame : c'est l'idiome attendu.
+      'react-hooks/immutability': 'off',
+    },
   },
 );

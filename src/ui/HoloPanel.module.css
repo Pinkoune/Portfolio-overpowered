@@ -13,6 +13,18 @@
   backdrop-filter: blur(4px);
 }
 
+/* À bord : le panneau se pose à droite et laisse voir la scène (maquette C). */
+.dialog[data-placement='side'] {
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(720px, calc(100dvh - 200px));
+  margin: auto 32px auto auto;
+}
+
+.dialog[data-placement='side']::backdrop {
+  background: linear-gradient(90deg, transparent 40%, rgba(7, 6, 13, 0.55));
+  backdrop-filter: none;
+}
+
 .dialog[open] {
   animation: open var(--pk-dur-slow) var(--pk-ease-out);
 }
@@ -200,11 +212,87 @@
 }
 
 @media (max-width: 720px) {
-  /* Mobile : panneau en feuille depuis le bas (maquette H2). */
-  .dialog {
+  /* Mobile : panneau en feuille depuis le bas (maquette H2), 70 % de la hauteur à bord. */
+  .dialog,
+  .dialog[data-placement='side'] {
     width: 100vw;
     max-width: 100vw;
     max-height: 88dvh;
     margin: auto 0 0;
   }
+  .dialog[data-placement='side'] {
+    max-height: 70dvh;
+  }
+}
+
+/* ---------- Blocs de contenu ---------- */
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 9px 0;
+  border-top: 1px solid var(--pk-line-soft);
+  font-size: 15px;
+}
+
+.note {
+  display: block;
+  font-size: 13px;
+  color: var(--pk-text-dim);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  counter-reset: step;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 4px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--pk-text-dim);
+}
+
+.steps li::before {
+  grid-row: span 2;
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--pk-font-hud);
+  font-size: 11px;
+  color: var(--pk-holo);
+}
+
+.steps strong {
+  color: var(--pk-text);
+  font-weight: 500;
+}
+
+.subhead {
+  color: var(--pk-text-dim);
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.games li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-left: 2px solid var(--cover, var(--pk-pink));
+  background: var(--pk-hull-800);
+  font-size: 14px;
 }

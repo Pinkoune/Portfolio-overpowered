@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { content } from '../content/index.ts';
+import { content, type RoomId } from '../content/index.ts';
 import { useT } from '../i18n/useT.ts';
+import { useStore } from '../state/store.ts';
 import { Button, Diamond, LangSwitch } from '../ui/primitives.tsx';
 import { ui } from '../ui/styles.ts';
 import s from './classic.module.css';
@@ -28,10 +29,12 @@ function useActiveSection(ids: string[]) {
 
 const sectionIds = content.rooms.map((r) => r.id);
 
-export function Header() {
+export function Header({ can3d }: { can3d: boolean }) {
   const { t, ui: u } = useT();
   const [menuOpen, setMenuOpen] = useState(false);
   const active = useActiveSection(sectionIds);
+  const setPreferredMode = useStore((st) => st.setPreferredMode);
+  const goTo = useStore((st) => st.goTo);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -40,14 +43,21 @@ export function Header() {
     return () => window.removeEventListener('keydown', onKey);
   }, [menuOpen]);
 
-  const board = (
-    <Button variant="accent" aria-disabled="true" title={u('mode.soon')}>
+  const board = can3d ? (
+    <Button
+      variant="accent"
+      onClick={() => {
+        setMenuOpen(false);
+        if (active) goTo(active as RoomId);
+        setPreferredMode('3d');
+      }}
+    >
       {u('mode.board')}
-      <span className={s.soon}>
-        <span className="visually-hidden">(</span>
-        {u('mode.soon')}
-        <span className="visually-hidden">)</span>
-      </span>
+    </Button>
+  ) : (
+    <Button variant="accent" aria-disabled="true" title={u('mode.unavailable')}>
+      {u('mode.board')}
+      <span className="visually-hidden"> — {u('mode.unavailable')}</span>
     </Button>
   );
 

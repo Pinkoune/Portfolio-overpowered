@@ -1,0 +1,39 @@
+.ship {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--pk-void);
+  touch-action: pan-y;
+}
+
+.canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* Couche des hotspots : positionnés en JS (HotspotProjector), sous le HUD. */
+.hotspots {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hotspot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  will-change: transform;
+}
+
+/* Le centre du losange (6 px de marge + 11 px) tombe sur l'ancre. */
+.hotspotInner {
+  pointer-events: auto;
+  transform: translate(-17px, -50%);
+}
+
+.hotspot[data-side='left'] .hotspotInner {
+  transform: translate(calc(-100% + 17px), -50%);
+}

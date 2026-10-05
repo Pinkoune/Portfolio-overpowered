@@ -1,0 +1,100 @@
+import { Canvas } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
+import { roomHash, parseRoomHash } from '../app/hashRoom.ts';
+import { ROOM_IDS } from '../content/schema.ts';
+import { useStore } from '../state/store.ts';
+import { Hud } from '../ui/hud/Hud.tsx';
+import { PanelHost } from '../ui/panels/PanelHost.tsx';
+import { HotspotLayer } from './HotspotLayer.tsx';
+import { Scene } from './Scene.tsx';
+import s from './ShipExperience.module.css';
+
+const step = (delta: -1 | 1) => {
+  const { room, goTo } = useStore.getState();
+  const next = ROOM_IDS[ROOM_IDS.indexOf(room) + delta];
+  if (next) goTo(next);
+};
+
+/** Salle courante ↔ adresse (#/starmap) : liens profonds et bouton précédent du navigateur. */
+function useRoomHash() {
+  const room = useStore((st) => st.room);
+  useEffect(() => {
+    const { goTo } = useStore.getState();
+    goTo(parseRoomHash(window.location.hash) ?? useStore.getState().room);
+    const onHash = () => {
+      const target = parseRoomHash(window.location.hash);
+      if (target) useStore.getState().goTo(target);
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  useEffect(() => {
+    if (window.location.hash !== roomHash(room)) {
+      history.replaceState(null, '', roomHash(room));
+    }
+  }, [room]);
+}
+
+/** Raccourcis du HUD (DA, anatomie D) : 1–7 salles, ← → voisines, C mode classique. */
+function useKeyboard() {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const { panel, goTo, setPreferredMode } = useStore.getState();
+      if (panel || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      const n = Number(e.key);
+      if (n >= 1 && n <= ROOM_IDS.length) goTo(ROOM_IDS[n - 1]!);
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'c' || e.key === 'C') setPreferredMode('classic');
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+}
+
+/** Balayage horizontal sur mobile pour changer de salle (maquette H, règles mobile). */
+function useSwipe() {
+  const start = useRef<{ x: number; y: number } | null>(null);
+  return {
+    onTouchStart: (e: React.TouchEvent) => {
+      const t = e.touches[0]!;
+      start.current = { x: t.clientX, y: t.clientY };
+    },
+    onTouchEnd: (e: React.TouchEvent) => {
+      const t = e.changedTouches[0]!;
+      const from = start.current;
+      start.current = null;
+      if (!from) return;
+      const dx = t.clientX - from.x;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(t.clientY - from.y) * 1.5) {
+        step(dx < 0 ? 1 : -1);
+      }
+    },
+  };
+}
+
+/** Le vaisseau : scène 3D, HUD et panneaux. Chargé à la demande (import dynamique). */
+export default function ShipExperience({ reducedMotion }: { reducedMotion: boolean }) {
+  useRoomHash();
+  useKeyboard();
+  const swipe = useSwipe();
+  const mobile = window.matchMedia?.('(max-width: 720px)').matches ?? false;
+
+  return (
+    <div className={s.ship} {...swipe}>
+      <Canvas
+        className={s.canvas}
+        flat
+        dpr={[1, mobile ? 1.5 : 1.75]}
+        camera={{ fov: 45, near: 0.1, far: 2000, position: [0, 1.65, 3.4] }}
+        gl={{ antialias: true, powerPreference: 'high-performance' }}
+      >
+        <Scene reducedMotion={reducedMotion} />
+      </Canvas>
+      <HotspotLayer />
+      <Hud />
+      <PanelHost placement="side" />
+    </div>
+  );
+}

@@ -22,7 +22,6 @@ export function contentPlugin(): Plugin {
     },
     load(id) {
       if (id !== RESOLVED_ID) return;
-      this.addWatchFile(root);
       const { content, errors } = loadContent(root);
       if (!content) throw new Error(`Contenu invalide :\n${formatErrors(errors)}`);
       return `export default ${JSON.stringify(content)};`;
