@@ -16,7 +16,7 @@ import { Quarters } from './sections/Quarters.tsx';
  * Mode classique : page scrollable, même identité et même contenu que le vaisseau, sans 3D.
  * Toujours disponible, et utilisé d'office sans WebGL ou sur un appareil trop faible.
  */
-export function ClassicPage({ can3d }: { can3d: boolean }) {
+export function ClassicPage({ can3d, failed }: { can3d: boolean; failed: boolean }) {
   const { ui } = useT();
 
   // En arrivant depuis le vaisseau, on se place sur la section de la salle quittée.
@@ -34,6 +34,11 @@ export function ClassicPage({ can3d }: { can3d: boolean }) {
         {ui('nav.skip')}
       </a>
       <Header can3d={can3d} />
+      {failed && (
+        <p className={s.notice} role="status">
+          <strong>{ui('mode.failed')}</strong> {ui('mode.failedHint')}
+        </p>
+      )}
       <main id="main" className={s.main} tabIndex={-1}>
         <Hero />
         <Projects />

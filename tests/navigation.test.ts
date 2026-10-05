@@ -11,8 +11,8 @@ describe('choix du mode', () => {
     expect(chooseMode(capable, null)).toBe('3d');
   });
 
-  it('bascule en classique sans WebGL, même si la 3D était préférée', () => {
-    expect(chooseMode({ ...capable, webgl: false }, '3d')).toBe('classic');
+  it('reste en classique par défaut sans WebGL', () => {
+    expect(chooseMode({ ...capable, webgl: false }, null)).toBe('classic');
   });
 
   it('propose le classique d’office sur un appareil faible', () => {
@@ -22,6 +22,14 @@ describe('choix du mode', () => {
   it('respecte le choix explicite du visiteur', () => {
     expect(chooseMode(capable, 'classic')).toBe('classic');
     expect(chooseMode({ ...capable, lowEnd: true }, '3d')).toBe('3d');
+  });
+
+  it('tente la 3D demandée même si la détection doute de WebGL', () => {
+    expect(chooseMode({ ...capable, webgl: false }, '3d')).toBe('3d');
+  });
+
+  it('revient au classique si la 3D a échoué pendant la visite', () => {
+    expect(chooseMode(capable, '3d', true)).toBe('classic');
   });
 });
 

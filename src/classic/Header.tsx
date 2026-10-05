@@ -43,9 +43,12 @@ export function Header({ can3d }: { can3d: boolean }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [menuOpen]);
 
-  const board = can3d ? (
+  // Toujours cliquable : même si la détection doute de WebGL, on tente ; en cas d'échec, App revient
+  // ici avec une explication (Failsafe).
+  const board = (
     <Button
       variant="accent"
+      title={can3d ? undefined : u('mode.unavailable')}
       onClick={() => {
         setMenuOpen(false);
         if (active) goTo(active as RoomId);
@@ -53,11 +56,6 @@ export function Header({ can3d }: { can3d: boolean }) {
       }}
     >
       {u('mode.board')}
-    </Button>
-  ) : (
-    <Button variant="accent" aria-disabled="true" title={u('mode.unavailable')}>
-      {u('mode.board')}
-      <span className="visually-hidden"> — {u('mode.unavailable')}</span>
     </Button>
   );
 
