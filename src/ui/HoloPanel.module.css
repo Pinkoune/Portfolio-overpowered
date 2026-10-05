@@ -25,17 +25,163 @@
   backdrop-filter: none;
 }
 
-.dialog[open] {
-  animation: open var(--pk-dur-slow) var(--pk-ease-out);
+/*
+ * Apparition (Motion III, 1,1 s) : losange au projecteur (0 – 160 ms, ease-back), ligne
+ * (160 – 400 ms), cadre qui se déplie (400 – 680 ms), coins (600 – 760 ms), contenu en cascade
+ * de 70 ms (680 – 1 100 ms), balayage de scan (700 – 1 400 ms). Fermeture : ordre inverse, 0,6 s.
+ */
+.dialog {
+  overflow: visible;
 }
 
-/* Ouverture : le cadre se déplie depuis la ligne centrale (point → ligne → surface). */
-@keyframes open {
+.projector {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  width: 64px;
+  transform: translateY(-50%);
+}
+
+.projector > :first-child {
+  animation: pop 160ms var(--pk-ease-back) both;
+}
+
+.beam {
+  flex: 1;
+  height: 1px;
+  margin-left: 4px;
+  background: var(--pk-holo);
+  transform-origin: left;
+  animation: grow 240ms var(--pk-ease-out) 160ms both;
+}
+
+.panel {
+  animation: unfold 280ms var(--pk-ease-out) 400ms both;
+}
+
+.panel > :global(span[data-pos]) {
+  animation: fadein 160ms linear 600ms both;
+}
+
+.body > *,
+.head,
+.foot {
+  animation: rise 420ms var(--pk-ease-out) both;
+  animation-delay: 680ms;
+}
+
+.body > :nth-child(2) {
+  animation-delay: 750ms;
+}
+.body > :nth-child(3) {
+  animation-delay: 820ms;
+}
+.body > :nth-child(4) {
+  animation-delay: 890ms;
+}
+.body > :nth-child(5) {
+  animation-delay: 960ms;
+}
+.body > :nth-child(n + 6) {
+  animation-delay: 1030ms;
+}
+.foot {
+  animation-delay: 1030ms;
+}
+
+/* Une seule passe de scan. */
+.panel::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pk-holo), transparent);
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+  animation: scan 700ms linear 700ms both;
+}
+
+.caret {
+  animation: blink 240ms steps(1) infinite;
+}
+
+.dialog[data-closing='true'] .panel {
+  animation: fold 600ms var(--pk-ease-io) both;
+}
+
+.dialog[data-closing='true'] .projector {
+  opacity: 0;
+  transition: opacity 200ms linear 400ms;
+}
+
+.dialog[data-closing='true']::backdrop {
+  opacity: 0;
+  transition: opacity 600ms var(--pk-ease-io);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes unfold {
   from {
     clip-path: inset(50% 0 50% 0);
   }
   to {
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes fold {
+  from {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(50% 0 50% 0);
+    opacity: 0.4;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes scan {
+  from {
+    top: 0;
+    opacity: 0.7;
+  }
+  to {
+    top: 100%;
+    opacity: 0.7;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }
 
@@ -200,12 +346,27 @@
   outline: 2px solid var(--pk-holo);
 }
 
+/* Mouvement réduit : opacité seule, mêmes durées. */
 @media (prefers-reduced-motion: reduce) {
-  .dialog[open] {
-    animation: fade 0.2s linear;
+  .panel,
+  .projector > *,
+  .beam,
+  .body > *,
+  .head,
+  .foot,
+  .panel > :global(span[data-pos]),
+  .dialog[data-closing='true'] .panel {
+    animation-name: fadein;
   }
-  @keyframes fade {
-    from {
+  .panel::after {
+    display: none;
+  }
+  .dialog[data-closing='true'] .panel {
+    animation-name: fadeout;
+    animation-duration: 150ms;
+  }
+  @keyframes fadeout {
+    to {
       opacity: 0;
     }
   }

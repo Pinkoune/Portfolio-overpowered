@@ -25,6 +25,33 @@ export type Panel =
   | { kind: 'games' }
   | { kind: 'contact' };
 
+/**
+ * Arrivée à bord (DA Motion, « I · Intro ») :
+ * boot = écran de chargement + approche du vaisseau ; aboard = dans les salles.
+ */
+export type Stage = 'boot' | 'aboard';
+
+interface ShipSlice {
+  stage: Stage;
+  /** Le vaisseau a rendu sa première image. */
+  sceneReady: boolean;
+  /** La séquence d'approche est arrivée à son plan final (état « prêt » de la maquette A). */
+  introReady: boolean;
+  skipIntro: boolean;
+  /** Flash rose du sas en cours, avant de passer à bord. */
+  embarking: boolean;
+  /** Visiteur connu : intro courte (2 s) la prochaine fois. Persisté. */
+  introSeen: boolean;
+  /** Fondu au noir (sauts lointains, mouvement réduit). */
+  fade: boolean;
+  setSceneReady: () => void;
+  setIntroReady: () => void;
+  requestSkip: () => void;
+  embark: () => void;
+  finishEmbark: () => void;
+  setFade: (fade: boolean) => void;
+}
+
 interface SettingsSlice {
   lang: Lang;
   setLang: (lang: Lang) => void;
@@ -45,7 +72,14 @@ interface NavSlice {
   closePanel: () => void;
 }
 
-export type Store = SettingsSlice & NavSlice;
+export type Store = SettingsSlice & NavSlice & ShipSlice;
+
+const bootState = {
+  stage: 'boot' as Stage,
+  sceneReady: false,
+  introReady: false,
+  skipIntro: false,
+};
 
 const browserLangs = () => (typeof navigator === 'undefined' ? [] : (navigator.languages ?? []));
 
@@ -55,7 +89,19 @@ export const useStore = create<Store>()(
       lang: detectLang(browserLangs()),
       setLang: (lang) => set({ lang }),
       preferredMode: null,
-      setPreferredMode: (preferredMode) => set({ preferredMode, panel: null }),
+      setPreferredMode: (preferredMode) =>
+        set({ preferredMode, panel: null, ...(preferredMode === '3d' && bootState) }),
+
+      ...bootState,
+      embarking: false,
+      introSeen: false,
+      fade: false,
+      setSceneReady: () => set({ sceneReady: true }),
+      setIntroReady: () => set({ introReady: true }),
+      requestSkip: () => set({ skipIntro: true }),
+      embark: () => set((s) => (s.stage === 'boot' && !s.embarking ? { embarking: true } : {})),
+      finishEmbark: () => set({ stage: 'aboard', embarking: false, introSeen: true }),
+      setFade: (fade) => set({ fade }),
 
       room: 'bridge',
       visited: [],
@@ -75,7 +121,11 @@ export const useStore = create<Store>()(
       name: 'pk-01',
       version: 1,
       storage: createJSONStorage(() => safeStorage),
-      partialize: (state) => ({ lang: state.lang, preferredMode: state.preferredMode }),
+      partialize: (state) => ({
+        lang: state.lang,
+        preferredMode: state.preferredMode,
+        introSeen: state.introSeen,
+      }),
     },
   ),
 );

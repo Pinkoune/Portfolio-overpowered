@@ -19,6 +19,50 @@
   color: var(--pk-text-dim);
 }
 
+/* Le HUD se trace à l'arrivée à bord (Motion I, 6,6 s), et s'efface en coursive sauf le plan (II). */
+.hud > * {
+  animation: trace var(--pk-dur-slow) var(--pk-ease-out) both;
+}
+
+.hud > :nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.hud > :nth-child(4) {
+  animation-delay: 160ms;
+}
+
+@keyframes trace {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.fades {
+  transition: opacity var(--pk-dur) var(--pk-ease-io);
+}
+
+.hud[data-traveling='true'] .fades {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud > * {
+    animation-name: appear;
+  }
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
 .brand {
   position: absolute;
   left: 32px;
@@ -124,6 +168,26 @@
   border: 1px solid var(--pk-pink);
   transform: rotate(45deg) scale(0.95);
   content: '';
+  /* Écho du losange au clic (Motion II, 0 – 150 ms puis onde). */
+  animation: echo 700ms var(--pk-ease-out);
+}
+
+@keyframes echo {
+  from {
+    transform: rotate(45deg) scale(0.4);
+    opacity: 1;
+  }
+  60% {
+    transform: rotate(45deg) scale(1.8);
+    opacity: 0;
+  }
+  61% {
+    transform: rotate(45deg) scale(0.6);
+  }
+  to {
+    transform: rotate(45deg) scale(0.95);
+    opacity: 1;
+  }
 }
 
 .name {

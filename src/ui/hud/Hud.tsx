@@ -16,7 +16,7 @@ function RoomTitle() {
   const roomId = useStore((st) => st.room);
   const room = content.rooms.find((r) => r.id === roomId)!;
   return (
-    <p className={`${ui.label} ${s.title}`} aria-live="polite">
+    <p className={`${ui.label} ${s.title} ${s.fades}`} aria-live="polite">
       <span className={s.rule} aria-hidden="true" />
       <span className={s.dim}>{room.code}</span>
       <span>{t(room.name)}</span>
@@ -129,15 +129,16 @@ function Companion() {
 export function Hud() {
   const { ui: u } = useT();
   const setPreferredMode = useStore((st) => st.setPreferredMode);
+  const traveling = useStore((st) => st.traveling);
   return (
-    <div className={s.hud}>
+    <div className={s.hud} data-traveling={traveling}>
       <p className="visually-hidden">{u('hud.keys')}</p>
-      <div className={`${ui.display} ${s.brand}`} aria-hidden="true">
+      <div className={`${ui.display} ${s.brand} ${s.fades}`} aria-hidden="true">
         <Diamond size={10} />
         {content.profile.alias}
       </div>
       <RoomTitle />
-      <div className={s.controls}>
+      <div className={`${s.controls} ${s.fades}`}>
         <LangSwitch />
         <Button onClick={() => setPreferredMode('classic')} kbd="C">
           {u('hud.classic')}

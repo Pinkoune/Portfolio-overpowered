@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { roomHash, parseRoomHash } from '../app/hashRoom.ts';
 import { ROOM_IDS } from '../content/schema.ts';
 import { useStore } from '../state/store.ts';
@@ -7,6 +7,7 @@ import { Hud } from '../ui/hud/Hud.tsx';
 import { PanelHost } from '../ui/panels/PanelHost.tsx';
 import { HotspotLayer } from './HotspotLayer.tsx';
 import { Scene } from './Scene.tsx';
+import { TransitionOverlay } from './TransitionOverlay.tsx';
 import s from './ShipExperience.module.css';
 
 const step = (delta: -1 | 1) => {
@@ -39,8 +40,8 @@ function useRoomHash() {
 function useKeyboard() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      const { panel, goTo, setPreferredMode } = useStore.getState();
-      if (panel || e.metaKey || e.ctrlKey || e.altKey) return;
+      const { panel, goTo, setPreferredMode, stage } = useStore.getState();
+      if (stage !== 'aboard' || panel || e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       const n = Number(e.key);
       if (n >= 1 && n <= ROOM_IDS.length) goTo(ROOM_IDS[n - 1]!);
@@ -62,6 +63,7 @@ function useSwipe() {
       start.current = { x: t.clientX, y: t.clientY };
     },
     onTouchEnd: (e: React.TouchEvent) => {
+      if (useStore.getState().stage !== 'aboard') return;
       const t = e.changedTouches[0]!;
       const from = start.current;
       start.current = null;
@@ -76,6 +78,11 @@ function useSwipe() {
 
 /** Le vaisseau : scène 3D, HUD et panneaux. Chargé à la demande (import dynamique). */
 export default function ShipExperience({ reducedMotion }: { reducedMotion: boolean }) {
+  // Visiteur connu ou lien profond (#/salle) : approche courte, embarquement automatique.
+  const [shortIntro] = useState(
+    () => useStore.getState().introSeen || parseRoomHash(window.location.hash) !== null,
+  );
+  const aboard = useStore((st) => st.stage === 'aboard');
   useRoomHash();
   useKeyboard();
   const swipe = useSwipe();
@@ -90,11 +97,16 @@ export default function ShipExperience({ reducedMotion }: { reducedMotion: boole
         camera={{ fov: 45, near: 0.1, far: 2000, position: [0, 1.65, 3.4] }}
         gl={{ antialias: true, powerPreference: 'high-performance' }}
       >
-        <Scene reducedMotion={reducedMotion} />
+        <Scene reducedMotion={reducedMotion} shortIntro={shortIntro} lite={mobile} />
       </Canvas>
-      <HotspotLayer />
-      <Hud />
-      <PanelHost placement="side" />
+      {aboard && (
+        <>
+          <HotspotLayer />
+          <Hud />
+          <PanelHost placement="side" />
+        </>
+      )}
+      <TransitionOverlay reducedMotion={reducedMotion} />
     </div>
   );
 }

@@ -52,6 +52,16 @@ contenu, sans 3D) est toujours disponible.
   Les hotspots sont des boutons DOM dans l'arbre principal (`HotspotLayer`), positionnés à chaque image
   par `HotspotProjector` depuis un registre d'ancres 3D (`three/hotspots.ts`).
 - **Rendu** : `<Canvas flat>` (pas de tone mapping, comme la DA), DPR ≤ 1,75 desktop / 1,5 mobile.
+- **Post-traitement** : bibliothèque `postprocessing` utilisée directement (`objects/PostFx.tsx`,
+  EffectComposer en `useFrame` priorité 1), pas `@react-three/postprocessing` (dépendances n8ao/maath
+  inutiles). Bloom seuil 0,62, allégé sur mobile. Conséquence : tout passe par un rendu linéaire réencodé
+  en sRGB à la sortie — un ShaderMaterial maison doit sortir des couleurs **linéaires** (le shader de la
+  Pupille fait `pow(col, 2.2)` en sortie).
+- **Arrivée à bord** (`state.stage` : `boot` → `aboard`) : `BootScreen` (DOM, maquette A) au-dessus du
+  canvas pendant l'approche (`IntroDirector` + `ExteriorShip`, timeline dans `three/intro.ts`) ; « Embarquer »
+  (Entrée) → flash rose 300 ms → pont. Espace = passer. Visiteur connu (`introSeen`, persisté) ou lien
+  profond `#/salle` : plan final 2 s puis embarquement automatique. Mouvement réduit : embarquement
+  immédiat avec fondu 600 ms. Les salles sont masquées pendant l'approche, le vaisseau extérieur après.
 - ESLint : `react-hooks/immutability` désactivée dans `src/three/` (muter les objets three dans
   `useFrame` est l'idiome R3F).
 
@@ -68,18 +78,19 @@ src/state/        store.ts (Zustand + persist) · safeStorage.ts (localStorage p
 src/design/       tokens.css (DA) · tokens.ts (miroir pour la 3D)
 src/motion/       easings.ts (courbes et `seg()` de pk-motion.js)
 src/ui/           primitives.tsx (Diamond, Button, Tags, LevelGauge, LangSwitch…) · HoloPanel ·
-                  panels/PanelHost (contenu des panneaux, partagé 3D/classique) · hud/ · Hotspot · Loader
+                  panels/PanelHost (contenu des panneaux, partagé 3D/classique) · hud/ · Hotspot · BootScreen
 src/classic/      mode classique (Header, sections/, SectionHeader)
 src/three/        scène R3F chargée en lazy :
                   ShipExperience (Canvas + HUD + panneaux, clavier, balayage, #/salle) · Scene · CameraRig
                   layout.ts (plan : salles alignées sur X, coursive en z ≈ 7,4, Pupille en (6, 20, -340))
+                  intro.ts + IntroDirector (approche) · TransitionOverlay (flash, fondu, vitesse, carton)
                   objects/ (BlackHole + shader porté, Starfield avec lentille, RoomShell + Corridor,
-                  Penguin, Box) · models/ (penguin, ship, materials : portages de pinkoune-3d.js)
+                  Penguin, Box, ExteriorShip, PostFx) · models/ (penguin, ship, materials : portages de pinkoune-3d.js)
                   rooms/ (une salle par fichier + RoomDoors) · Hotspot / HotspotLayer / hotspots.ts
 src/app/          App (aiguillage classique / 3D) · capabilities.ts · hashRoom.ts
 src/game/         (phase 4) XP, rangs, succès — TS pur
 scripts/          validate-content.ts
-tests/            Vitest (contenu, i18n, navigation)
+tests/            Vitest (contenu, i18n, navigation, cadrage de l'intro)
 ```
 
 Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/classic/` n'importe jamais
@@ -107,8 +118,13 @@ Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/
   `journey`, `passion`, `games`, `contact`). `PanelHost` le rend en `placement="side"` à bord,
   `"center"` en classique.
 - Raccourcis : 1–7, ← →, C (classique), Échap (panneau). Mobile : balayage horizontal + flèches du HUD.
-- Trajet caméra : spline porte arrière → coursive → salle, ease-io, 1,6 s entre voisines
-  (+0,3 s par salle supplémentaire) ; coupe sèche avec « réduire les animations ».
+- Trajet caméra : spline porte arrière → coursive → salle, ease-io, 1,6 s entre voisines (1,9 s pour
+  2 salles), fov +10° au milieu de la coursive, traits de vitesse et carton de salle (TransitionOverlay).
+  Saut > 2 salles : deux segments, coupe au noir (fondu 38 % → 62 %, minuteries, pas d'images).
+  Mouvement réduit : coupe + fondu 200 ms.
+- Panneau holo (Motion III) : projecteur (losange + faisceau), cadre qui se déplie, contenu en cascade,
+  titre tapé (texte complet pour les lecteurs d'écran), balayage ; fermeture inverse 0,6 s
+  (Échap intercepté via `cancel`).
 
 ### Base path
 
@@ -132,7 +148,7 @@ Durées : 140 / 280 / 560 / 1800 ms.
 
 1. ✅ Squelette : contenu, i18n, mode classique, CI + Pages.
 2. ✅ Hub 3D : trou noir, vaisseau, salles, caméra, panneaux.
-3. Ambiance : post-processing, intro, transitions.
+3. ✅ Ambiance : post-processing, intro, transitions.
 4. Gamification : HUD, XP, rangs, succès, toasts, persistance.
 5. Pingouin, quartiers, son.
 6. Polish : perf, mobile, a11y, SEO, tests.
@@ -144,7 +160,11 @@ Durées : 140 / 280 / 560 / 1800 ms.
 - Mobile portrait : champ limité à 72°, certains hotspots sortent du cadre → phase 6.
 - Carte stellaire : étiquettes de planètes qui se chevauchent par moments.
 - Chunk 3D ≈ 1 Mo (280 ko gzip), surtout three.js → découpage / budget en phase 6.
-- Fondu noir pour les sauts lointains (> 2 salles), fov 45→55→45 et traits de vitesse → phase 3.
+- Le rendu logiciel (CI, Playwright + SwiftShader) tourne à ~1 image/s : les étapes intermédiaires des
+  trajets ne sont pas capturables, seuls les états finaux et les bascules d'état le sont.
+- `hero.webp` (mode classique) : rendu une fois en phase 1 depuis le code three.js de `design/` (élément
+  `pk-blackhole` + `pk-penguin` de la maquette G, servi par `python3 -m http.server`). À refaire de la même
+  façon si la DA change.
 
 ## À faire côté Jérémy
 

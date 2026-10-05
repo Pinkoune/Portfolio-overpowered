@@ -6,7 +6,7 @@ pour qui préfère une page web toute simple.
 
 **En ligne :** https://pinkoune.github.io/Portfolio-overpowered/
 
-> État : **phase 2** — vaisseau 3D navigable (7 salles, panneaux, HUD de base) et mode classique complet.
+> État : **phase 3** — approche du vaisseau, bloom, transitions entre salles et panneaux animés, mode classique complet.
 
 ## Stack
 

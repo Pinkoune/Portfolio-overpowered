@@ -3,7 +3,7 @@ import { ClassicPage } from '../classic/ClassicPage.tsx';
 import { content } from '../content/index.ts';
 import { useT } from '../i18n/useT.ts';
 import { useStore } from '../state/store.ts';
-import { Loader } from '../ui/Loader.tsx';
+import { BootScreen } from '../ui/BootScreen.tsx';
 import { canRun3d, chooseMode, detectCapabilities } from './capabilities.ts';
 
 // Le vaisseau (three.js, R3F) n'est téléchargé que si on embarque.
@@ -26,11 +26,15 @@ export function App() {
   const caps = useMemo(() => detectCapabilities(), []);
   const preferred = useStore((s) => s.preferredMode);
   const mode = chooseMode(caps, preferred);
+  const booting = useStore((s) => s.stage === 'boot');
 
   if (mode === 'classic') return <ClassicPage can3d={canRun3d(caps)} />;
   return (
-    <Suspense fallback={<Loader />}>
-      <ShipExperience reducedMotion={caps.reducedMotion} />
-    </Suspense>
+    <>
+      <Suspense fallback={null}>
+        <ShipExperience reducedMotion={caps.reducedMotion} />
+      </Suspense>
+      {booting && <BootScreen />}
+    </>
   );
 }

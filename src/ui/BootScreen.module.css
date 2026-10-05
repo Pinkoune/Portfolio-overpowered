@@ -1,0 +1,235 @@
+/* Écran d'approche : texte fin posé sur le canvas, le vide d'abord (DA, P1). */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  color: var(--pk-text);
+  pointer-events: none;
+  transition: opacity var(--pk-dur-slow) var(--pk-ease-io);
+}
+
+.boot > * {
+  pointer-events: auto;
+}
+
+.boot[data-leaving='true'] {
+  opacity: 0;
+}
+
+.dim {
+  color: var(--pk-text-dim);
+}
+
+.pink {
+  color: var(--pk-pink);
+}
+
+.top {
+  position: absolute;
+  left: 40px;
+  top: 36px;
+  display: flex;
+  gap: 24px;
+}
+
+.signal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  animation: type 900ms steps(16) both;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.caret {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  width: min(560px, calc(100vw - 40px));
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--pk-dur-slow) var(--pk-ease-out),
+    visibility 0s linear var(--pk-dur-slow);
+}
+
+.boot[data-ready='true'] .center {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--pk-dur-slow) var(--pk-ease-out);
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--pk-pink);
+  transform: rotate(45deg);
+}
+
+.mark > span {
+  transform: rotate(0deg);
+}
+
+.title {
+  font-size: clamp(44px, 8vw, 80px);
+  line-height: 1;
+  letter-spacing: 0.2em;
+  margin-right: -0.2em;
+  animation: none;
+}
+
+.boot[data-ready='true'] .title {
+  animation: track 1.2s var(--pk-ease-out) both;
+}
+
+@keyframes track {
+  from {
+    letter-spacing: 0.6em;
+    opacity: 0;
+  }
+}
+
+.subtitle {
+  color: var(--pk-text-dim);
+  letter-spacing: 0.24em;
+}
+
+.progress {
+  width: min(380px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar {
+  display: block;
+  height: 1px;
+  background: var(--pk-pink);
+  transform-origin: left;
+  transition: transform var(--pk-dur-slow) var(--pk-ease-out);
+}
+
+.log {
+  position: absolute;
+  left: 40px;
+  bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--pk-font-hud);
+  font-size: 11px;
+  color: var(--pk-text-dim);
+}
+
+.log li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  opacity: 0.45;
+  transition: opacity var(--pk-dur) var(--pk-ease-out);
+}
+
+.log li[data-done='true'] {
+  opacity: 1;
+}
+
+.log li:last-child[data-done='true'] {
+  color: var(--pk-text);
+}
+
+.dots {
+  width: 80px;
+  border-bottom: 1px dotted var(--pk-line);
+}
+
+.ok {
+  min-width: 2ch;
+}
+
+.actions {
+  position: absolute;
+  right: 40px;
+  bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.link {
+  padding: 4px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pk-line);
+  background: none;
+  color: var(--pk-text);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.link:hover {
+  border-color: var(--pk-text);
+}
+
+@media (max-width: 720px) {
+  .top {
+    left: 20px;
+    top: 20px;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .log {
+    left: 20px;
+    bottom: 110px;
+  }
+  .actions {
+    left: 20px;
+    right: 20px;
+    bottom: 24px;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal,
+  .boot[data-ready='true'] .title,
+  .caret {
+    animation: none;
+  }
+}
