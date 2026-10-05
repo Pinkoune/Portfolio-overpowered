@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { sound } from '../../audio/sound.ts';
 import { content } from '../../content/index.ts';
 import { useT } from '../../i18n/useT.ts';
 import { useStore } from '../../state/store.ts';
@@ -41,6 +42,7 @@ export function RankUp() {
   useEffect(() => {
     if (shown === null) return;
     ref.current?.showModal();
+    sound.play('rank');
     const unlock = window.setTimeout(() => setLocked(false), LOCK_MS);
     return () => window.clearTimeout(unlock);
   }, [shown]);

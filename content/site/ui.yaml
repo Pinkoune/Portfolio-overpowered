@@ -83,8 +83,8 @@ hud.loading: { fr: Amarrage au PK-01, en: Docking with the PK-01 }
 hud.pilot: { fr: pilote, en: pilot }
 hud.dismiss: { fr: Fermer la bulle, en: Dismiss }
 hud.keys:
-  fr: 'Touches : 1 à 7 ou ← → pour changer de salle, Échap pour fermer un panneau, C pour le mode classique.'
-  en: 'Keys: 1 to 7 or ← → to change rooms, Esc to close a panel, C for classic mode.'
+  fr: 'Touches : 1 à 7 ou ← → pour changer de salle, Échap pour fermer un panneau, T pour les trophées, S pour le son, C pour le mode classique.'
+  en: 'Keys: 1 to 7 or ← → to change rooms, Esc to close a panel, T for trophies, S for sound, C for classic mode.'
 hotspot.profile: { fr: Fiche pilote, en: Pilot file }
 hotspot.door: { fr: 'Vers {room}', en: 'To {room}' }
 pupil.name: { fr: La Pupille, en: The Pupil }
@@ -143,3 +143,7 @@ scope.hud: { fr: 'HUD', en: 'HUD' }
 machines.terminal: { fr: 'Terminal de bord', en: 'Ship terminal' }
 machines.build: { fr: 'Build {commit} · {date}', en: 'Build {commit} · {date}' }
 machines.gitlog: { fr: 'Historique du vaisseau', en: 'Ship history' }
+sound.label: { fr: Son, en: Sound }
+sound.on: { fr: Son activé · casque conseillé, en: Sound on · headphones recommended }
+sound.off: { fr: Activer le son, en: Turn sound on }
+hud.classicShort: { fr: Classique, en: Classic }

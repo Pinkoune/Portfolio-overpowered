@@ -34,10 +34,14 @@ export function BootScreen() {
   const embark = useStore((st) => st.embark);
   const requestSkip = useStore((st) => st.requestSkip);
   const setPreferredMode = useStore((st) => st.setPreferredMode);
+  const soundOn = useStore((st) => st.soundOn);
+  const toggleSound = useStore((st) => st.toggleSound);
   const { profile } = content;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // Un bouton qui a le focus (son, mode classique) garde Entrée et Espace pour lui.
+      if (e.target instanceof HTMLButtonElement) return;
       if (e.key === 'Enter' && useStore.getState().introReady) embark();
       else if (e.key === ' ' && !useStore.getState().introReady) {
         e.preventDefault();
@@ -114,6 +118,18 @@ export function BootScreen() {
             {u('boot.skip')} · <span aria-hidden="true">Espace</span>
           </button>
         )}
+        <button
+          type="button"
+          className={s.sound}
+          aria-pressed={soundOn}
+          onClick={(e) => {
+            toggleSound();
+            // Au clic souris, on rend Entrée à « Embarquer » ; au clavier, le focus reste ici.
+            if (e.detail > 0) e.currentTarget.blur();
+          }}
+        >
+          {u(soundOn ? 'sound.on' : 'sound.off')}
+        </button>
         <button type="button" className={s.link} onClick={() => setPreferredMode('classic')}>
           {u('boot.classic')}
         </button>

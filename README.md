@@ -6,7 +6,7 @@ pour qui préfère une page web toute simple.
 
 **En ligne :** https://pinkoune.github.io/Portfolio-overpowered/
 
-> État : **phase 4** — vaisseau 3D, approche, transitions, et progression (XP, rangs, succès, salle des trophées) ; mode classique complet.
+> État : **phase 5** — vaisseau 3D, approche, transitions, progression (XP, rangs, succès, trophées), Pinkoune dans chaque salle, Quartiers interactifs et son synthétisé (coupé par défaut) ; mode classique complet.
 
 ## Stack
 
@@ -93,6 +93,16 @@ Un fichier par succès dans `content/achievements/`. `trigger.event` doit être 
 (liste `GAME_EVENTS` dans `src/content/schema.ts`), `count` un nombre ou `all`. Un nouveau type
 d'événement demande de l'émettre dans le code (`useStore.getState().emit('mon.evenement')`).
 Les rangs et l'XP des visites sont dans `content/site/ranks.yaml`.
+
+### Répliques de Pinkoune
+
+`content/site/rooms.yaml` (`penguin:`) pour la réplique de chaque salle, `content/site/penguin.yaml` pour
+les félicitations de rang et les conseils qu'il glisse après 30 s d'immobilité. Deux lignes maximum.
+
+### Riff de basse
+
+Déposer un enregistrement court (quelques secondes, MP3) sous `public/audio/bass-riff.mp3` : il sera joué
+à la place de la note synthétisée quand on clique la basse des Quartiers.
 
 Le mode éditeur (CMS sur `/admin`) arrive en phase 7.
 

@@ -28,6 +28,8 @@ export function Bridge({ active }: { active: boolean }) {
         <cylinderGeometry args={[2.6, 2.7, 0.1, 6]} />
       </mesh>
       <Penguin
+        active={active}
+        arrival="salut"
         onClick={() => useStore.getState().emit('penguin.click')}
         position={[-0.3, 0.1, -2.8]}
         rotation={[0, 0.2, 0]}

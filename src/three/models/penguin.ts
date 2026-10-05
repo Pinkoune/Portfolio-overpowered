@@ -2,10 +2,12 @@ import {
   BoxGeometry,
   ConeGeometry,
   CylinderGeometry,
+  DoubleSide,
   Group,
   IcosahedronGeometry,
   LatheGeometry,
   Mesh,
+  MeshStandardMaterial,
   TorusGeometry,
   Vector2,
 } from 'three';
@@ -25,9 +27,12 @@ export interface PenguinRig {
   /** flipper_L / flipper_R de la DA. */
   fl: Group;
   fr: Group;
+  /** Yeux (blancs, pupilles, reflets) : pour le clignement. */
+  eyes: Mesh[];
 }
 
-export type PenguinPose = 'idle' | 'salut' | 'pointe' | 'pointe-d';
+/** idle, salut, pointe (vers la gauche du pingouin) et pointe-d de la DA ; celebre pour la montée de rang. */
+export type PenguinPose = 'idle' | 'salut' | 'pointe' | 'pointe-d' | 'celebre';
 
 export function makePenguin(): PenguinRig {
   const root = new Group();
@@ -63,6 +68,7 @@ export function makePenguin(): PenguinRig {
   belly.position.set(0, 0.74, 0.3);
   body.add(belly);
 
+  const eyes: Mesh[] = [];
   for (const sx of [-1, 1]) {
     const eyeWhite = new Mesh(new IcosahedronGeometry(0.115, 1), white);
     eyeWhite.scale.set(1, 1.1, 0.4);
@@ -77,6 +83,7 @@ export function makePenguin(): PenguinRig {
     cheekMesh.scale.set(1.1, 0.6, 0.3);
     cheekMesh.position.set(0.29 * sx, -0.03, 0.55);
     head.add(eyeWhite, pupil, highlight, cheekMesh);
+    eyes.push(eyeWhite, pupil, highlight);
   }
 
   const beakGeometry = new ConeGeometry(0.08, 0.13, 6);
@@ -113,7 +120,39 @@ export function makePenguin(): PenguinRig {
   root.traverse((o) => {
     if (o instanceof Mesh) o.castShadow = false;
   });
-  return { root, body, head, fl, fr };
+  return { root, body, head, fl, fr, eyes };
+}
+
+/** Récompense du rang 06 : une cape rose profond, attachée aux épaules. */
+export function makeCape(): Mesh {
+  const geometry = new ConeGeometry(0.62, 1.25, 6, 1, true, Math.PI * 0.55, Math.PI * 0.9);
+  geometry.translate(0, -0.55, 0);
+  const material = new MeshStandardMaterial({
+    color: 0xb8286a,
+    flatShading: true,
+    roughness: 0.75,
+    side: DoubleSide,
+  });
+  const cape = new Mesh(geometry, material);
+  cape.position.set(0, 1.42, -0.12);
+  cape.rotation.x = 0.12;
+  return cape;
+}
+
+/** Récompense du rang 07 : une couronne ambre (l'Empereur, le pingouin, pas le tyran). */
+export function makeCrown(): Group {
+  const crown = new Group();
+  const band = new Mesh(new CylinderGeometry(0.2, 0.22, 0.1, 6, 1, true), glow(0xffb547));
+  crown.add(band);
+  for (let i = 0; i < 6; i++) {
+    const a = (i / 6) * Math.PI * 2;
+    const spike = new Mesh(new ConeGeometry(0.045, 0.12, 4), glow(0xffb547));
+    spike.position.set(Math.cos(a) * 0.2, 0.1, Math.sin(a) * 0.2);
+    crown.add(spike);
+  }
+  crown.position.set(0, 0.42, 0);
+  crown.rotation.z = -0.12;
+  return crown;
 }
 
 /** Socle hexagonal à liseré rose (DA, turnaround). */
@@ -130,9 +169,18 @@ export function makePlatform(): Group {
   return g;
 }
 
+/** Clignement toutes les 4 s (DA, pose idle), 120 ms. */
+function blink(rig: PenguinRig, t: number) {
+  const phase = t % 4;
+  const closed = phase > 3.88 ? 0.12 : 1;
+  for (const eye of rig.eyes) eye.scale.y = eye.userData.sy ?? (eye.userData.sy = eye.scale.y);
+  if (closed < 1) for (const eye of rig.eyes) eye.scale.y = (eye.userData.sy as number) * closed;
+}
+
 /** Poses en boucle de la DA : respiration 2,8 s, salut, pointe (vers la gauche ou la droite). */
 export function pose(rig: PenguinRig, name: PenguinPose, t: number) {
   const s = Math.sin(t * 2.2);
+  blink(rig, t);
   rig.body.position.y = s * 0.025;
   rig.body.rotation.set(0, 0, 0);
   rig.head.rotation.set(0, 0, 0);
@@ -153,6 +201,12 @@ export function pose(rig: PenguinRig, name: PenguinPose, t: number) {
     rig.head.rotation.y = 0.4;
     rig.head.rotation.x = -0.05;
     rig.body.rotation.y = 0.15;
+  } else if (name === 'celebre') {
+    // Montée de rang : petits bonds, ailerons levés qui battent, tête qui dodeline.
+    rig.body.position.y = Math.abs(Math.sin(t * 6)) * 0.22;
+    rig.fl.rotation.set(0, 0, 2.3 + Math.sin(t * 12) * 0.25);
+    rig.fr.rotation.set(0, 0, -2.3 - Math.sin(t * 12) * 0.25);
+    rig.head.rotation.z = Math.sin(t * 6) * 0.12;
   } else {
     rig.fl.rotation.set(0, 0, 0.2 + s * 0.05);
     rig.fr.rotation.set(0, 0, -0.2 - s * 0.05);
