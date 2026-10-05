@@ -1,0 +1,18 @@
+# TODO: niveaux proposés par Claude, à valider par Jérémy.
+order: 2
+code: MOD-02
+name: { fr: Langages, en: Languages }
+description:
+  fr: Ce que j'écris, du script d'infra à l'application.
+  en: What I write, from infra scripts to applications.
+skills:
+  - { name: TypeScript / JavaScript, level: 4 }
+  - { name: Shell, level: 4 }
+  - { name: Python, level: 3 }
+  - { name: Java, level: 3 }
+  - { name: Go, level: 2 }
+  - { name: SQL, level: 3 }
+  - { name: Swift, level: 2 }
+  - { name: C#, level: 2 }
+  - { name: Ruby, level: 2 }
+  - { name: PHP, level: 2 }

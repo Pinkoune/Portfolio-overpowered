@@ -1,0 +1,34 @@
+# Une catégorie de compétences par fichier, rangées par `order`.
+# level : maîtrise de 1 (notions) à 5 (expert). Absent = pas de jauge (soft skills).
+# TODO: niveaux proposés par Claude, à valider par Jérémy.
+order: 1
+code: MOD-01
+name: { fr: DevOps & cloud, en: DevOps & cloud }
+description:
+  fr: Le cœur du métier, pratiqué tous les jours en alternance.
+  en: The core of the job, practised daily as an apprentice.
+skills:
+  - name: Kubernetes
+    level: 4
+    note: { fr: EKS en entreprise, en: EKS at work }
+  - name: Terraform
+    level: 4
+  - name: GitLab CI
+    level: 4
+    note: { fr: Templates ToBeContinuous, en: ToBeContinuous templates }
+  - name: ArgoCD
+    level: 3
+  - name: Helm
+    level: 3
+  - name: Docker
+    level: 4
+  - name: Jenkins
+    level: 3
+  - name: Ansible
+    level: 3
+  - name: AWS
+    level: 3
+  - name: Azure
+    level: 2
+  - name: OpenBao
+    level: 2

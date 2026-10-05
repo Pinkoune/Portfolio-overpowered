@@ -1,0 +1,15 @@
+# TODO: niveaux proposés par Claude, à valider par Jérémy.
+order: 5
+code: MOD-05
+name: { fr: 'Jeu, 3D & XR', en: 'Games, 3D & XR' }
+description:
+  fr: Le terrain de jeu — littéralement.
+  en: The playground — literally.
+skills:
+  - name: Unity
+    level: 2
+    note: { fr: VR sur Meta Quest 3, en: VR on Meta Quest 3 }
+  - { name: LibGDX, level: 2 }
+  - name: Three.js
+    level: 3
+    note: { fr: Ce site, en: This site }

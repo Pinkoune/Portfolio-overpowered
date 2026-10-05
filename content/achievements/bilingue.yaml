@@ -1,0 +1,8 @@
+order: 20
+scope: hud
+name: { fr: Bilingue, en: Bilingual }
+how: { fr: Changer de langue., en: Switch languages. }
+flavor:
+  { fr: Translation complete. Traduction terminée., en: Traduction terminée. Translation complete. }
+xp: 25
+trigger: { event: lang.switch }

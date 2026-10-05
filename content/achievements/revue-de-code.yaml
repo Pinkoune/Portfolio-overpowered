@@ -1,0 +1,7 @@
+order: 6
+scope: starmap
+name: { fr: Revue de code, en: Code review }
+how: { fr: Ouvrir toutes les fiches projet de la carte., en: Open every project file on the map. }
+flavor: { fr: LGTM. Approuvé sans commentaire., en: LGTM. Approved without comments. }
+xp: 150
+trigger: { event: project.open, count: all }

@@ -1,0 +1,30 @@
+order: 6
+title: deident
+tagline:
+  fr: Anonymiser avant de partager avec une IA
+  en: Anonymise before sharing with an AI
+summary:
+  fr: CLI et extension VS Code qui anonymisent secrets, identifiants et noms internes avant de partager du code ou un ticket avec une IA.
+  en: CLI and VS Code extension that anonymise secrets, identifiers and internal names before sharing code or a ticket with an AI.
+description:
+  - fr: >-
+      deident est un outil Node.js, disponible en ligne de commande et en extension VS Code. Il
+      repère et remplace les données sensibles — secrets, identifiants, noms internes — dans du
+      code ou des tickets, avant de les soumettre à un assistant IA.
+    en: >-
+      deident is a Node.js tool, available as a CLI and a VS Code extension. It detects and
+      replaces sensitive data — secrets, identifiers, internal names — in code or tickets before
+      they are sent to an AI assistant.
+  - fr: Il illustre ma façon d'utiliser l'IA au quotidien, avec des garde-fous.
+    en: It reflects how I use AI day to day, with guardrails.
+highlights:
+  - { fr: CLI + extension VS Code, en: CLI + VS Code extension }
+  - {
+      fr: 'Détection de secrets, identifiants et noms internes',
+      en: 'Detects secrets, identifiers and internal names',
+    }
+  - { fr: Usage responsable de l'IA, en: Responsible AI usage }
+stack: [Node.js, TypeScript, VS Code API]
+context: perso
+status: wip # TODO: vérifier le statut et la stack exacte
+todo: [repo, media, year]

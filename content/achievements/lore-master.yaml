@@ -1,0 +1,8 @@
+order: 11
+scope: logbook
+name: { fr: Lore master, en: Lore master }
+how: { fr: Lire toutes les entrées du journal de bord., en: Read every logbook entry. }
+flavor:
+  { fr: Tu connais l'histoire mieux que le pilote., en: You know the story better than the pilot. }
+xp: 100
+trigger: { event: journey.open, count: all }

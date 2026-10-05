@@ -1,0 +1,9 @@
+order: 12
+scope: quarters
+name: { fr: Ligne de basse, en: Bass line }
+how:
+  { fr: Jouer une note sur la basse des quartiers., en: Play a note on the bass in the quarters. }
+flavor:
+  { fr: Personne ne remarque le bassiste. Sauf toi., en: Nobody notices the bassist. Except you. }
+xp: 75
+trigger: { event: bass.play }

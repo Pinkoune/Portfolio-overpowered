@@ -1,0 +1,17 @@
+# Voix de Pinkoune : fier de son vaisseau, un peu cabotin, phrases courtes, il tutoie.
+# Jamais plus de deux lignes.
+name: Pinkoune
+lines:
+  welcome:
+    fr: Bienvenue à bord. Évite de fixer la Pupille, elle fixe en retour.
+    en: Welcome aboard. Try not to stare at the Pupil, it stares back.
+  rankUp:
+    fr: Promotion ! Je savais que t'avais l'étoffe.
+    en: Promotion! I knew you had it in you.
+  hints:
+    - fr: Si tu te perds, suis les losanges. Moi je fais ça.
+      en: If you get lost, follow the diamonds. That's what I do.
+    - fr: Le mode classique est toujours là, en haut à droite. Sans rancune.
+      en: Classic mode is always up there on the right. No hard feelings.
+    - fr: Il paraît qu'un autre pingouin se cache à bord. Moi je dis rien.
+      en: Rumour has it another penguin is hiding aboard. My lips are sealed.

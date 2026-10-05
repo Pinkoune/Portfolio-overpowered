@@ -1,0 +1,7 @@
+order: 16
+scope: ship
+name: { fr: kubectl get rooms, en: kubectl get rooms }
+how: { fr: Visiter les 7 salles., en: Visit all 7 rooms. }
+flavor: { fr: '7/7 Running. Aucun CrashLoopBackOff.', en: '7/7 Running. No CrashLoopBackOff.' }
+xp: 200
+trigger: { event: room.visit, count: all }

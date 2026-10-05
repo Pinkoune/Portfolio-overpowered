@@ -1,0 +1,16 @@
+# TODO: niveaux proposés par Claude, à valider par Jérémy.
+order: 4
+code: MOD-04
+name: { fr: Web, en: Web }
+description:
+  fr: Des interfaces et des API, pour les projets perso comme pour l'école.
+  en: Interfaces and APIs, for personal and school projects alike.
+skills:
+  - { name: React, level: 4 }
+  - { name: Node.js, level: 3 }
+  - { name: Firebase, level: 4 }
+  - { name: Tailwind, level: 3 }
+  - { name: Vue.js, level: 2 }
+  - { name: Ruby on Rails, level: 2 }
+  - { name: Spring Boot, level: 2 }
+  - { name: Bootstrap, level: 3 }

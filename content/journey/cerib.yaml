@@ -1,0 +1,12 @@
+kind: internship
+start: '2022'
+title:
+  fr: Stage en administration système et réseau
+  en: System and network administration internship
+organization: Cerib
+location: Épernon
+duration: { fr: 2 mois, en: 2 months }
+summary:
+  fr: Administration réseau et serveurs Microsoft, et découverte du rôle d'un système d'information.
+  en: Network and Microsoft server administration, and a first look at how an IT department works.
+tags: [Windows Server]

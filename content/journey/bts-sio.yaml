@@ -1,0 +1,11 @@
+kind: education
+start: '2020'
+end: '2022'
+title:
+  fr: BTS SIO
+  en: BTS SIO (IT services associate degree)
+organization: Lycée du Parc des Loges
+location: Évry
+summary:
+  fr: Services informatiques aux organisations.
+  en: IT services for organisations.

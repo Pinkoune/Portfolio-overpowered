@@ -1,0 +1,7 @@
+order: 2
+scope: bridge
+name: { fr: Bonjour toi, en: Hello you }
+how: { fr: Saluer Pinkoune en cliquant dessus., en: Say hi to Pinkoune by clicking him. }
+flavor: { fr: 'Il a rougi. Enfin, encore plus.', en: 'He blushed. Well, even more.' }
+xp: 50
+trigger: { event: penguin.click }

@@ -1,0 +1,24 @@
+order: 5
+title: Journey Through XR
+tagline:
+  fr: Sensibiliser aux risques domestiques en VR
+  en: Raising awareness of household hazards in VR
+summary:
+  fr: Proof of concept en réalité virtuelle sous Unity pour Meta Quest 3, qui sensibilise aux risques domestiques.
+  en: Virtual reality proof of concept built with Unity for Meta Quest 3, raising awareness of household hazards.
+description:
+  - fr: >-
+      Projet Epitech : un proof of concept VR sous Unity pour Meta Quest 3. Le joueur évolue dans
+      un intérieur et apprend à repérer les risques domestiques.
+    en: >-
+      Epitech project: a VR proof of concept built with Unity for Meta Quest 3. The player moves
+      through a home and learns to spot household hazards.
+  - fr: Gestion de projet sur Linear.
+    en: Project management on Linear.
+highlights:
+  - { fr: Interactions VR sur Meta Quest 3, en: VR interactions on Meta Quest 3 }
+  - { fr: Suivi de projet sur Linear, en: Project tracking on Linear }
+stack: [Unity, C#, Meta Quest 3, Linear]
+context: epitech
+status: poc
+todo: [media, year]

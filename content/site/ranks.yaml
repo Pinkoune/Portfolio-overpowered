@@ -1,0 +1,22 @@
+# Rangs (DA : 7 rangs, de passager clandestin à Empereur — le pingouin, pas le tyran).
+# Les seuils d'XP doivent croître ; le premier rang commence à 0.
+xp:
+  roomVisit: 25 # XP à la première visite de chaque salle
+  projectOpen: 15 # XP à la première ouverture de chaque fiche projet
+ranks:
+  - name: { fr: Passager clandestin, en: Stowaway }
+    xp: 0
+  - name: { fr: Mousse, en: Deckhand }
+    xp: 150
+  - name: { fr: Cadet, en: Cadet }
+    xp: 400
+  - name: { fr: Navigateur, en: Navigator }
+    xp: 800
+  - name: { fr: Pilote, en: Pilot }
+    xp: 1200
+  - name: { fr: Capitaine, en: Captain }
+    xp: 1400
+    reward: { fr: Pinkoune gagne une cape, en: Pinkoune earns a cape }
+  - name: { fr: Empereur, en: Emperor }
+    xp: 2000
+    reward: { fr: Pinkoune gagne une couronne, en: Pinkoune earns a crown }

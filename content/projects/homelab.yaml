@@ -1,0 +1,36 @@
+# Rester général : aucune IP, aucun nom de domaine, aucun détail réseau sensible.
+order: 4
+title: Homelab
+tagline:
+  fr: Un Dell T430 sous Proxmox, à la maison
+  en: A Dell T430 running Proxmox, at home
+summary:
+  fr: Serveur personnel sous Proxmox avec plusieurs VM de services auto-hébergés, accessibles à distance via un reverse proxy.
+  en: Personal Proxmox server running several VMs of self-hosted services, reachable remotely through a reverse proxy.
+description:
+  - fr: >-
+      Un serveur Dell T430 sous Proxmox fait tourner plusieurs VM : VPN WireGuard, serveur
+      Minecraft (AMP), Immich pour les photos, n8n pour l'automatisation, Nextcloud, et une stack
+      média auto-hébergée sur 10 To de stockage.
+    en: >-
+      A Dell T430 server running Proxmox hosts several VMs: a WireGuard VPN, a Minecraft server
+      (AMP), Immich for photos, n8n for automation, Nextcloud, and a self-hosted media stack on
+      10 TB of storage.
+  - fr: >-
+      L'accès distant passe par un nom de domaine et le reverse proxy SWAG. C'est aussi là que ce
+      portfolio sera hébergé en phase B.
+    en: >-
+      Remote access goes through a domain name and the SWAG reverse proxy. It is also where this
+      portfolio will be hosted in phase B.
+highlights:
+  - {
+      fr: 'Virtualisation Proxmox, plusieurs VM isolées',
+      en: 'Proxmox virtualisation, several isolated VMs',
+    }
+  - { fr: VPN WireGuard, en: WireGuard VPN }
+  - { fr: Reverse proxy SWAG, en: SWAG reverse proxy }
+  - { fr: Stack média auto-hébergée (10 To), en: Self-hosted media stack (10 TB) }
+stack: [Proxmox, WireGuard, SWAG, Docker, AMP, Immich, n8n, Nextcloud]
+context: perso
+status: live
+todo: [media]

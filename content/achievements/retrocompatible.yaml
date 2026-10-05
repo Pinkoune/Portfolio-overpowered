@@ -1,0 +1,11 @@
+order: 19
+scope: hud
+name: { fr: Rétrocompatible, en: Backwards compatible }
+how:
+  {
+    fr: 'Ouvrir le mode classique, puis revenir à bord.',
+    en: 'Open classic mode, then come back aboard.',
+  }
+flavor: { fr: 'Même contenu, moins de polygones.', en: 'Same content, fewer polygons.' }
+xp: 50
+trigger: { event: classic.roundtrip }

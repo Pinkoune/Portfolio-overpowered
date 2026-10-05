@@ -1,0 +1,30 @@
+order: 3
+title: McTime
+tagline:
+  fr: Gestion du temps de travail sur iOS
+  en: Work-time tracking on iOS
+summary:
+  fr: Application iOS SwiftUI de gestion du temps de travail des employés, avec CI sur runners macOS.
+  en: SwiftUI iOS app for tracking employee working time, with CI on macOS runners.
+description:
+  - fr: >-
+      Projet Epitech : une application iOS en SwiftUI pour suivre le temps de travail des employés,
+      avec tableau de bord, gestion du compte et des équipes, sur une architecture modulaire.
+    en: >-
+      Epitech project: a SwiftUI iOS app to track employees' working time, with a dashboard,
+      account and team management, on a modular architecture.
+  - fr: >-
+      Les tests utilisent Swift Testing et tournent en CI GitHub Actions sur des runners macOS.
+      J'ai débloqué les tests qui coinçaient en CI : démarrage du simulateur et timeouts
+      compatibles macOS.
+    en: >-
+      Tests use Swift Testing and run in GitHub Actions CI on macOS runners. I unblocked the tests
+      that kept hanging in CI: simulator boot and macOS-compatible timeouts.
+highlights:
+  - { fr: Architecture modulaire SwiftUI, en: Modular SwiftUI architecture }
+  - { fr: Tests Swift Testing, en: Swift Testing test suite }
+  - { fr: CI sur runners macOS stabilisée, en: Stabilised CI on macOS runners }
+stack: [Swift, SwiftUI, Swift Testing, GitHub Actions]
+context: epitech
+status: done
+todo: [demo, media, repo, year]

@@ -1,0 +1,14 @@
+# Un succès par fichier. trigger.event = événement émis par le site (liste dans
+# src/content/schema.ts → GAME_EVENTS) ; count = nombre d'occurrences distinctes, ou "all".
+# secret: true = description masquée tant que le succès n'est pas débloqué.
+order: 1
+scope: ship
+name: { fr: Premier contact, en: First contact }
+how: { fr: Embarquer à bord du PK-01., en: Board the PK-01. }
+flavor:
+  {
+    fr: Le sas s'est refermé derrière toi. Trop tard.,
+    en: The airlock closed behind you. Too late.,
+  }
+xp: 50
+trigger: { event: ship.board }

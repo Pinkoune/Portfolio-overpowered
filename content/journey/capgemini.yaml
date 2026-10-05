@@ -1,0 +1,25 @@
+# Une étape de parcours par fichier. Tri automatique du plus récent au plus ancien.
+# start / end : "AAAA" ou "AAAA-MM" ; end: present pour une étape en cours.
+# Rien de confidentiel : ni nom de client, ni détail interne.
+kind: work
+start: 2025-01
+end: present
+title:
+  fr: Alternant DevOps / plateforme
+  en: DevOps / platform apprentice
+organization: Capgemini
+location: Toulouse
+summary:
+  fr: Équipe plateforme pour un grand énergéticien français.
+  en: Platform team for a major French energy company.
+highlights:
+  - {
+      fr: Migration de pipelines Jenkins vers GitLab CI,
+      en: Migrating Jenkins pipelines to GitLab CI,
+    }
+  - {
+      fr: 'Kubernetes, Terraform et ArgoCD au quotidien',
+      en: 'Kubernetes, Terraform and ArgoCD day to day',
+    }
+  - { fr: Outillage sécurité et gestion d'images, en: Security tooling and image management }
+tags: [GitLab CI, Jenkins, Kubernetes, Terraform, ArgoCD]

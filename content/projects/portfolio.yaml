@@ -1,0 +1,37 @@
+order: 7
+title: PK-01
+tagline:
+  fr: Ce portfolio, livré par sa propre CI
+  en: This portfolio, shipped by its own CI
+summary:
+  fr: Un vaisseau low-poly en three.js, traité comme un projet DevOps — tests, CI/CD, déploiement automatisé.
+  en: A low-poly ship in three.js, treated as a DevOps project — tests, CI/CD, automated deployment.
+description:
+  - fr: >-
+      Le site que tu parcours : React, React Three Fiber, un trou noir en shader et un pingouin
+      rose construit en primitives. Le contenu vit dans des fichiers YAML bilingues validés par
+      schéma, séparés du code 3D.
+    en: >-
+      The site you are browsing: React, React Three Fiber, a shader black hole and a pink penguin
+      built from primitives. Content lives in bilingual YAML files validated by schema, separate
+      from the 3D code.
+  - fr: >-
+      Chaque push passe par lint, typage, validation du contenu, tests et build, puis part sur
+      GitHub Pages. Prochaine étape : une image Docker servie depuis mon homelab.
+    en: >-
+      Every push goes through lint, typecheck, content validation, tests and build, then ships to
+      GitHub Pages. Next step: a Docker image served from my homelab.
+highlights:
+  - { fr: Contenu YAML bilingue validé par Zod, en: Bilingual YAML content validated with Zod }
+  - {
+      fr: Pipeline GitHub Actions jusqu'à GitHub Pages,
+      en: GitHub Actions pipeline to GitHub Pages,
+    }
+  - { fr: 'Mode classique sans 3D, même contenu', en: 'Classic mode without 3D, same content' }
+stack: [React, TypeScript, Three.js, React Three Fiber, Vite, Zod, Vitest, GitHub Actions]
+context: perso
+year: '2026'
+status: wip
+links:
+  repo: https://github.com/Pinkoune/Portfolio-overpowered
+  demo: https://pinkoune.github.io/Portfolio-overpowered/

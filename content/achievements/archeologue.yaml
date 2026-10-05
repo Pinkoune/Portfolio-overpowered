@@ -1,0 +1,7 @@
+order: 7
+scope: starmap
+name: { fr: Archéologue, en: Archaeologist }
+how: { fr: Ouvrir un projet de la ceinture d'archives., en: Open a project from the archive belt. }
+flavor: { fr: Du code legacy. Respect aux anciens., en: Legacy code. Respect your elders. }
+xp: 50
+trigger: { event: archive.open }

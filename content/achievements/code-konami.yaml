@@ -1,0 +1,8 @@
+order: 21
+scope: hud
+name: { fr: ↑↑↓↓←→←→BA, en: ↑↑↓↓←→←→BA }
+how: { fr: Entrer un code bien connu., en: Enter a well-known code. }
+flavor: { fr: '+30 vies. Ah non, mauvais jeu.', en: '+30 lives. Oh wait, wrong game.' }
+xp: 150
+secret: true
+trigger: { event: konami }

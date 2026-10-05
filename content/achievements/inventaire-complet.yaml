@@ -1,0 +1,7 @@
+order: 8
+scope: arsenal
+name: { fr: Inventaire complet, en: Full inventory }
+how: { fr: Inspecter chaque râtelier de l'arsenal., en: Inspect every rack in the armory. }
+flavor: { fr: Tout est rangé. Pour une fois., en: Everything's in its place. For once. }
+xp: 100
+trigger: { event: skill.inspect, count: all }

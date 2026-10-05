@@ -1,0 +1,12 @@
+order: 17
+scope: ship
+name: { fr: Zéro downtime, en: Zero downtime }
+how: { fr: Visiter les 7 salles en moins de 2 minutes., en: Visit all 7 rooms in under 2 minutes. }
+flavor:
+  {
+    fr: Rolling update terminé. Personne n'a rien vu.,
+    en: Rolling update done. Nobody noticed a thing.,
+  }
+xp: 150
+secret: true
+trigger: { event: ship.speedrun }
