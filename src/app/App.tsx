@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo } from 'react';
 import { ClassicPage } from '../classic/ClassicPage.tsx';
 import { content } from '../content/index.ts';
+import { konamiDetector } from '../game/konami.ts';
 import { useT } from '../i18n/useT.ts';
 import { useStore } from '../state/store.ts';
 import { BootScreen } from '../ui/BootScreen.tsx';
@@ -22,8 +23,21 @@ function useDocumentMeta() {
   }, [lang, t]);
 }
 
+/** ↑ ↑ ↓ ↓ ← → ← → B A, partout sur le site. */
+function useKonami() {
+  useEffect(() => {
+    const detect = konamiDetector();
+    const onKey = (e: KeyboardEvent) => {
+      if (detect(e.key)) useStore.getState().emit('konami');
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+}
+
 export function App() {
   useDocumentMeta();
+  useKonami();
   const caps = useMemo(() => detectCapabilities(), []);
   const preferred = useStore((s) => s.preferredMode);
   const failed = useStore((s) => s.threeFailed);

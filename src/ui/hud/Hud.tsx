@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { content } from '../../content/index.ts';
 import { useT } from '../../i18n/useT.ts';
 import { useStore } from '../../state/store.ts';
+import { AchievementCounter, RankBadge } from '../game/RankBadge.tsx';
 import { Button, Diamond, LangSwitch } from '../primitives.tsx';
 import { ui } from '../styles.ts';
 import s from './Hud.module.css';
@@ -133,12 +134,12 @@ export function Hud() {
   return (
     <div className={s.hud} data-traveling={traveling}>
       <p className="visually-hidden">{u('hud.keys')}</p>
-      <div className={`${ui.display} ${s.brand} ${s.fades}`} aria-hidden="true">
-        <Diamond size={10} />
-        {content.profile.alias}
+      <div className={`${s.brand} ${s.fades}`}>
+        <RankBadge />
       </div>
       <RoomTitle />
       <div className={`${s.controls} ${s.fades}`}>
+        <AchievementCounter />
         <LangSwitch />
         <Button onClick={() => setPreferredMode('classic')} kbd="C">
           {u('hud.classic')}

@@ -331,6 +331,32 @@
   text-wrap: pretty;
 }
 
+.strip {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  padding: 18px 22px;
+  border: 1px solid var(--pk-line-soft);
+  background: none;
+  color: var(--pk-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--pk-dur-fast) var(--pk-ease-out);
+}
+
+.strip:hover {
+  border-color: var(--pk-line);
+}
+
+.stripRank {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
 @media (max-width: 900px) {
   .hero,
   .about {

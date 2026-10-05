@@ -82,7 +82,7 @@ src/state/        store.ts (Zustand + persist) · safeStorage.ts (localStorage p
 src/design/       tokens.css (DA) · tokens.ts (miroir pour la 3D)
 src/motion/       easings.ts (courbes et `seg()` de pk-motion.js)
 src/ui/           primitives.tsx (Diamond, Button, Tags, LevelGauge, LangSwitch…) · HoloPanel ·
-                  panels/PanelHost (contenu des panneaux, partagé 3D/classique) · hud/ · Hotspot · BootScreen
+                  panels/PanelHost (+ ShipTerminal) · hud/ · game/ (rang, toasts, rang+, trophées) · Hotspot · BootScreen
 src/classic/      mode classique (Header, sections/, SectionHeader)
 src/three/        scène R3F chargée en lazy :
                   ShipExperience (Canvas + HUD + panneaux, clavier, balayage, #/salle) · Scene · CameraRig
@@ -92,9 +92,9 @@ src/three/        scène R3F chargée en lazy :
                   Penguin, Box, ExteriorShip, PostFx) · models/ (penguin, ship, materials : portages de pinkoune-3d.js)
                   rooms/ (une salle par fichier + RoomDoors) · Hotspot / HotspotLayer / hotspots.ts
 src/app/          App (aiguillage classique / 3D) · capabilities.ts · hashRoom.ts
-src/game/         (phase 4) XP, rangs, succès — TS pur
+src/game/         engine.ts (XP, rangs, succès — TS pur) · rules.ts · konami.ts
 scripts/          validate-content.ts
-tests/            Vitest (contenu, i18n, navigation, cadrage de l'intro)
+tests/            Vitest (contenu, i18n, navigation, cadrage de l'intro, moteur de jeu)
 ```
 
 Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/classic/` n'importe jamais
@@ -130,6 +130,27 @@ Règles d'indépendance (vérifiées par ESLint `no-restricted-imports`) : `src/
   titre tapé (texte complet pour les lecteurs d'écran), balayage ; fermeture inverse 0,6 s
   (Échap intercepté via `cancel`).
 
+### Gamification (phase 4)
+
+- Moteur pur `src/game/engine.ts` : `applyEvent(progress, rules, { type, value, at })` compte les valeurs
+  **distinctes** vues par événement, donne l'XP (première visite de salle, première fiche projet) et
+  débloque les succès (`count` ou `all` = total de `rules.totals`). « Zéro downtime » est dérivé (7 salles
+  en < 2 min depuis la première visite). Renvoie le même objet si rien ne change.
+- `src/game/rules.ts` construit les règles depuis le contenu ; `konami.ts` (fenêtre glissante).
+- Store : `progress` persisté, `emit(type, value)`, `toasts` (3 max), `rankUp` (rang à célébrer).
+  Émetteurs : `goTo` (room.visit, à bord), `openPanel` (project/archive.open, skill.inspect, journey.open,
+  blackhole.click, bass.play, helmet.click), `finishEmbark` (ship.board), `setLang` (lang.switch),
+  `setPreferredMode` (classic.roundtrip), liens LinkedIn/GitHub (link.open), pingouin du pont, molette
+  (blackhole.zoom, `CameraRig`), immobilité 10 s sur le pont (blackhole.stare, `ShipExperience`),
+  terminal de la salle des machines (machines.apply, machines.oldest-commit), Konami (`App`).
+  En classique, la section active compte comme salle visitée.
+- **Pas encore émis** : `penguin.hidden`, `sound.mute` (phase 5).
+- UI : `ui/game/` — RankBadge + AchievementCounter (HUD), ToastStack (3D et classique), RankUp (3D
+  seulement, attend qu'aucun panneau ne soit ouvert, célèbre le rang le plus récent), Trophies (panneau
+  `{ kind: 'trophies' }`, touche T, compteur du HUD, bande de progression du classique).
+- Build : `__BUILD__` (commit déployé, premier commit) injecté par `vite.config.ts` ; la CI clone tout
+  l'historique (`fetch-depth: 0`).
+
 ### Base path
 
 `VITE_BASE` sinon `/Portfolio-overpowered/` pour `build` et `preview`, `/` pour `dev`.
@@ -153,7 +174,7 @@ Durées : 140 / 280 / 560 / 1800 ms.
 1. ✅ Squelette : contenu, i18n, mode classique, CI + Pages.
 2. ✅ Hub 3D : trou noir, vaisseau, salles, caméra, panneaux.
 3. ✅ Ambiance : post-processing, intro, transitions.
-4. Gamification : HUD, XP, rangs, succès, toasts, persistance.
+4. ✅ Gamification : HUD, XP, rangs, succès, toasts, persistance.
 5. Pingouin, quartiers, son.
 6. Polish : perf, mobile, a11y, SEO, tests.
 7. Mode éditeur (Sveltia sur /admin) + README « Mettre à jour le site ».

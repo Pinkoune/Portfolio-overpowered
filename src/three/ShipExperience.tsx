@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { roomHash, parseRoomHash } from '../app/hashRoom.ts';
 import { ROOM_IDS } from '../content/schema.ts';
 import { useStore } from '../state/store.ts';
+import { RankUp } from '../ui/game/RankUp.tsx';
+import { ToastStack } from '../ui/game/ToastStack.tsx';
 import { Hud } from '../ui/hud/Hud.tsx';
 import { PanelHost } from '../ui/panels/PanelHost.tsx';
 import { HotspotLayer } from './HotspotLayer.tsx';
@@ -48,9 +50,45 @@ function useKeyboard() {
       else if (e.key === 'ArrowRight') step(1);
       else if (e.key === 'ArrowLeft') step(-1);
       else if (e.key === 'c' || e.key === 'C') setPreferredMode('classic');
+      else if (e.key === 't' || e.key === 'T') useStore.getState().openPanel({ kind: 'trophies' });
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
+  }, []);
+}
+
+/** « Horizon des événements » : fixer la Pupille 10 s depuis le pont sans bouger la souris. */
+function useStare() {
+  useEffect(() => {
+    let timer = 0;
+    const arm = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        const { stage, room, panel, traveling, emit } = useStore.getState();
+        if (stage === 'aboard' && room === 'bridge' && !panel && !traveling)
+          emit('blackhole.stare');
+        else arm();
+      }, 10_000);
+    };
+    arm();
+    const events = ['pointermove', 'pointerdown', 'keydown', 'wheel'] as const;
+    events.forEach((e) => window.addEventListener(e, arm, { passive: true }));
+    // Le compte repart de zéro à l'arrivée à bord, à chaque salle, panneau ou trajet.
+    const unsubscribe = useStore.subscribe((st, prev) => {
+      if (
+        st.stage !== prev.stage ||
+        st.room !== prev.room ||
+        st.panel !== prev.panel ||
+        st.traveling !== prev.traveling
+      ) {
+        arm();
+      }
+    });
+    return () => {
+      window.clearTimeout(timer);
+      unsubscribe();
+      events.forEach((e) => window.removeEventListener(e, arm));
+    };
   }, []);
 }
 
@@ -85,6 +123,7 @@ export default function ShipExperience({ reducedMotion }: { reducedMotion: boole
   const aboard = useStore((st) => st.stage === 'aboard');
   useRoomHash();
   useKeyboard();
+  useStare();
   const swipe = useSwipe();
   const mobile = window.matchMedia?.('(max-width: 720px)').matches ?? false;
 
@@ -104,6 +143,8 @@ export default function ShipExperience({ reducedMotion }: { reducedMotion: boole
           <HotspotLayer />
           <Hud />
           <PanelHost placement="side" />
+          <ToastStack />
+          <RankUp />
         </>
       )}
       <TransitionOverlay reducedMotion={reducedMotion} />

@@ -6,7 +6,7 @@ pour qui préfère une page web toute simple.
 
 **En ligne :** https://pinkoune.github.io/Portfolio-overpowered/
 
-> État : **phase 3** — approche du vaisseau, bloom, transitions entre salles et panneaux animés, mode classique complet.
+> État : **phase 4** — vaisseau 3D, approche, transitions, et progression (XP, rangs, succès, salle des trophées) ; mode classique complet.
 
 ## Stack
 
@@ -91,7 +91,8 @@ Les libellés (boutons, menus…) sont dans `content/site/ui.yaml`. Les textes d
 
 Un fichier par succès dans `content/achievements/`. `trigger.event` doit être un événement connu
 (liste `GAME_EVENTS` dans `src/content/schema.ts`), `count` un nombre ou `all`. Un nouveau type
-d'événement demande de l'émettre dans le code.
+d'événement demande de l'émettre dans le code (`useStore.getState().emit('mon.evenement')`).
+Les rangs et l'XP des visites sont dans `content/site/ranks.yaml`.
 
 Le mode éditeur (CMS sur `/admin`) arrive en phase 7.
 

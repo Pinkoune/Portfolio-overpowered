@@ -1,0 +1,643 @@
+/* Gamification : rang + XP, compteur, toasts, montée de rang, salle des trophées (DA 04, 06 ; Motion IV, V). */
+
+.dim {
+  color: var(--pk-text-dim);
+}
+
+.amber {
+  color: var(--pk-amber);
+}
+
+/* ---------- Rang + XP (HUD n° 1) ---------- */
+.rank {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--pk-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.rankMark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+}
+
+.rankMark > span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--pk-pink);
+  transform: rotate(45deg);
+}
+
+.rankMark > span > span {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  background: var(--pk-pink);
+  color: var(--pk-void);
+  font-family: var(--pk-font-hud);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.rankMark > span > span > span {
+  display: block;
+  transform: rotate(-45deg);
+}
+
+.rankBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 270px;
+}
+
+.rankRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  white-space: nowrap;
+  letter-spacing: 0.16em;
+}
+
+.track {
+  position: relative;
+  height: 3px;
+  background: rgba(59, 57, 96, 0.8);
+}
+
+/* Le gain apparaît d'abord en rose clair, puis la barre se remplit (Motion IV, 1 700 – 2 400 ms). */
+.gain,
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+}
+
+.gain {
+  background: var(--pk-pink-soft);
+  transition: width var(--pk-dur) var(--pk-ease-out) 1700ms;
+}
+
+.fill {
+  background: var(--pk-pink);
+  transition: width 500ms var(--pk-ease-out) 1900ms;
+}
+
+.rank:hover .rankRow > span:first-child,
+.rank:focus-visible .rankRow > span:first-child {
+  color: var(--pk-pink-soft);
+}
+
+/* ---------- Compteur de succès (HUD n° 3) ---------- */
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--pk-line);
+  background: rgba(7, 6, 13, 0.4);
+  color: var(--pk-text);
+  font-family: var(--pk-font-hud);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  /* Flash ambre 300 ms à chaque nouveau succès (le bouton est remonté). */
+  animation: counter-flash 600ms var(--pk-ease-out);
+}
+
+.counterMark {
+  width: 9px;
+  height: 9px;
+  background: var(--pk-amber);
+  transform: rotate(45deg);
+}
+
+.counter:hover {
+  border-color: var(--pk-amber);
+}
+
+@keyframes counter-flash {
+  0%,
+  50% {
+    color: var(--pk-amber);
+    border-color: var(--pk-amber);
+  }
+}
+
+/* ---------- Toasts (Motion IV) ---------- */
+.toasts {
+  position: fixed;
+  right: 32px;
+  top: 84px;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(360px, calc(100vw - 40px));
+  pointer-events: none;
+}
+
+.toast {
+  position: relative;
+  border: 1px solid var(--pk-line);
+  background: rgba(13, 12, 23, 0.94);
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+  animation: toast-in 450ms var(--pk-ease-out) 300ms both;
+}
+
+.toast[data-leaving='true'] {
+  animation: toast-out 300ms var(--pk-ease-io) both;
+}
+
+.toastLine {
+  display: block;
+  height: 2px;
+  background: var(--pk-amber);
+  transform-origin: left;
+  animation: grow 350ms var(--pk-ease-out) 500ms both;
+}
+
+.toastRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px 10px;
+}
+
+.toastIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  flex: none;
+  border: 1px solid var(--pk-amber);
+  animation: spin-in 450ms var(--pk-ease-back) 450ms both;
+}
+
+.toastIcon > span {
+  width: 14px;
+  height: 14px;
+  background: var(--pk-amber);
+}
+
+.toastText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.toastText > * {
+  animation: slide 300ms var(--pk-ease-out) both;
+}
+
+.toastText > :nth-child(1) {
+  animation-delay: 600ms;
+}
+.toastText > :nth-child(2) {
+  animation-delay: 680ms;
+}
+.toastText > :nth-child(3) {
+  animation-delay: 760ms;
+}
+
+.toastHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--pk-amber);
+  font-size: 10px;
+}
+
+.toastHead > span:last-child {
+  animation: pop-chip 250ms linear 900ms both;
+}
+
+.toastName {
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+}
+
+.toastFlavor {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--pk-text-dim);
+}
+
+.toastFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px 10px;
+  border-top: 1px solid var(--pk-line-soft);
+  color: var(--pk-text-dim);
+  font-size: 10px;
+}
+
+.toastFoot button {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--pk-text);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.fly {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  color: var(--pk-pink);
+  font-family: var(--pk-font-hud);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes spin-in {
+  from {
+    transform: rotate(225deg) scale(0);
+  }
+  to {
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+
+@keyframes pop-chip {
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+/* ---------- Montée de rang (Motion V) ---------- */
+.rankUp {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: rgba(7, 6, 13, 0.86);
+  color: var(--pk-text);
+  text-align: center;
+  animation: veil 400ms var(--pk-ease-io) both;
+}
+
+.rankUp::backdrop {
+  background: transparent;
+}
+
+.rankUp[data-closing='true'] {
+  animation: veil-out 400ms var(--pk-ease-io) both;
+}
+
+.rankStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 18px;
+}
+
+.ring,
+.burst {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.ring {
+  transform: rotate(45deg);
+  animation: ring-in 500ms var(--pk-ease-back) both;
+}
+
+.ring[data-ring='0'] {
+  border: 1px solid rgba(255, 181, 71, 0.35);
+  animation-delay: 400ms;
+}
+
+.ring[data-ring='1'] {
+  border: 1px solid var(--pk-amber);
+  animation-delay: 520ms;
+}
+
+.ring[data-ring='2'] {
+  background: var(--pk-amber);
+  animation-delay: 640ms;
+}
+
+.burst {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--pk-amber);
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: burst 550ms var(--pk-ease-out) 950ms both;
+}
+
+.rankNumber {
+  position: relative;
+  color: var(--pk-void);
+  font-family: var(--pk-font-hud);
+  font-size: 15px;
+  font-weight: 500;
+  animation: fade 200ms linear 900ms both;
+}
+
+.rankKicker {
+  color: var(--pk-amber);
+  letter-spacing: 0.3em;
+  animation: fade 300ms linear 1000ms both;
+}
+
+.rankTitle {
+  font-size: clamp(36px, 7vw, 72px);
+  line-height: 1;
+  animation: tighten 700ms var(--pk-ease-out) 1100ms both;
+}
+
+.rewards {
+  display: flex;
+  gap: 22px;
+  color: var(--pk-text-dim);
+  animation: rise 300ms var(--pk-ease-out) 1700ms both;
+}
+
+.rewards li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rankButton {
+  animation: rise 250ms var(--pk-ease-out) 2200ms both;
+}
+
+.rankButton[aria-disabled='true'] {
+  cursor: wait;
+}
+
+.rankNext {
+  position: absolute;
+  right: 40px;
+  bottom: 36px;
+  color: var(--pk-text-dim);
+}
+
+@keyframes veil {
+  from {
+    background: rgba(7, 6, 13, 0);
+  }
+}
+
+@keyframes veil-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ring-in {
+  from {
+    transform: rotate(135deg) scale(0);
+  }
+  to {
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) scale(4);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes tighten {
+  from {
+    opacity: 0;
+    letter-spacing: 0.7em;
+  }
+  to {
+    letter-spacing: 0.12em;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ---------- Salle des trophées ---------- */
+.trophiesIntro {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pk-text-dim);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.summary dt {
+  color: var(--pk-text-dim);
+  font-size: 10px;
+}
+
+.summary dd {
+  margin-top: 4px;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+
+.subhead {
+  margin-top: 8px;
+  color: var(--pk-text-dim);
+}
+
+.ladder {
+  display: flex;
+  flex-direction: column;
+}
+
+.ladder li {
+  display: grid;
+  grid-template-columns: 16px 130px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid var(--pk-line-soft);
+  font-size: 14px;
+  color: var(--pk-text-dim);
+}
+
+.ladder li[data-state='here'] {
+  color: var(--pk-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.grid li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--pk-line-soft);
+  opacity: 0.7;
+}
+
+.grid li[data-done='true'] {
+  border-color: rgba(255, 181, 71, 0.45);
+  opacity: 1;
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  color: var(--pk-text-dim);
+  font-size: 10px;
+}
+
+.cardName {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.cardHow {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--pk-text-dim);
+}
+
+.reset {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pk-line);
+  background: none;
+  color: var(--pk-text-dim);
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: var(--pk-text);
+}
+
+@media (max-width: 720px) {
+  .rankBody {
+    width: 150px;
+  }
+  .toasts {
+    right: 20px;
+    top: 76px;
+  }
+  .summary {
+    grid-template-columns: 1fr;
+  }
+  .rankNext {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toastLine,
+  .toastIcon,
+  .toastText > *,
+  .toastHead > span:last-child,
+  .ring,
+  .burst,
+  .rankNumber,
+  .rankKicker,
+  .rankTitle,
+  .rewards,
+  .rankButton,
+  .counter {
+    animation-name: fade;
+  }
+  .burst {
+    display: none;
+  }
+  .gain,
+  .fill {
+    transition-delay: 0ms;
+  }
+}
